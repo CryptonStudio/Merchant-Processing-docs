@@ -4,6 +4,9 @@ export default defineConfig({
     title: 'Crypto Payment Gateway',
     description: 'Complete documentation for crypto payment processing',
 
+    // Настройка для GitHub Pages
+    base: '/Merchant-Processing-docs/',
+
     // Отключаем проверку мертвых ссылок для деплоя
     ignoreDeadLinks: true,
 
