@@ -63,32 +63,18 @@ html.dark {
     }
 }
 
-/* Кнопка переключения темы */
+/* Кнопка переключения темы VitePress */
 .VPSwitchAppearance {
     display: flex !important;
 }
 
-.theme-toggle {
-    background: none !important;
-    border: none !important;
-    cursor: pointer !important;
-    padding: 8px !important;
-    margin-left: 8px !important;
-    border-radius: 6px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    transition: background-color 0.3s ease !important;
+/* Стилизация встроенной кнопки темы */
+.VPSwitchAppearance .check {
+    background-color: var(--vp-c-brand) !important;
+}
+
+.VPSwitchAppearance .icon {
     color: var(--vp-c-text-1) !important;
-}
-
-.theme-toggle:hover {
-    background-color: var(--vp-c-bg-soft) !important;
-}
-
-.theme-toggle svg {
-    width: 16px;
-    height: 16px;
 }
 
 /* Улучшенные стили для hero секции */

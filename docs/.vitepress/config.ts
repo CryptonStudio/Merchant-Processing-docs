@@ -158,7 +158,7 @@ export default defineConfig({
         logo: '/logo.svg',
         footer: {
             message: 'Released under the MIT License.',
-            copyright: 'Copyright © 2025 Crypto Payment Gateway'
+            copyright: '© 2016-2025 Crypton Studio LLC.<br/>All rights reserved.'
         }
     },
 

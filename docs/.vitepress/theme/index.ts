@@ -24,7 +24,7 @@ export default {
 function addThemeToggle() {
     // Ждем загрузки DOM
     setTimeout(() => {
-        const nav = document.querySelector('.VPNav .container .content')
+        const nav = document.querySelector('.VPNavBar .content .curtain')
         if (nav && !document.querySelector('.theme-toggle')) {
             const toggleButton = document.createElement('button')
             toggleButton.className = 'theme-toggle'
