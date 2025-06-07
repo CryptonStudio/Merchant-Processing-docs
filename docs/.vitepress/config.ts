@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 
-export default defineConfig({
+export default withMermaid(defineConfig({
     title: 'Crypto Payment Gateway',
     description: 'Complete documentation for crypto payment processing',
 
@@ -13,7 +14,7 @@ export default defineConfig({
 
 
     locales: {
-        root: {
+        en: {
             label: 'English',
             lang: 'en',
             title: 'Crypto Payment Gateway',
@@ -24,6 +25,7 @@ export default defineConfig({
                     { text: 'API Reference', link: '/en/api/overview' },
                     { text: 'Integration', link: '/en/integration/getting-started' },
                     { text: 'Examples', link: '/en/examples/basic-usage' },
+                    { text: 'Demo API', link: '/en/guide/demo-api' },
                     { text: 'Theme Demo', link: '/en/guide/theme-demo' }
                 ],
                 sidebar: {
@@ -33,6 +35,7 @@ export default defineConfig({
                             items: [
                                 { text: 'Introduction', link: '/en/guide/introduction' },
                                 { text: 'Quick Start', link: '/en/guide/quick-start' },
+                                { text: 'Demo API', link: '/en/guide/demo-api' },
                                 { text: 'Architecture', link: '/en/guide/architecture' },
                                 { text: 'Deployment', link: '/en/guide/deployment' }
                             ]
@@ -93,7 +96,8 @@ export default defineConfig({
                     { text: 'Руководство', link: '/ru/guide/introduction' },
                     { text: 'API Справочник', link: '/ru/api/overview' },
                     { text: 'Интеграция', link: '/ru/integration/getting-started' },
-                    { text: 'Примеры', link: '/ru/examples/basic-usage' }
+                    { text: 'Примеры', link: '/ru/examples/basic-usage' },
+                    { text: 'Демо API', link: '/ru/guide/demo-api' }
                 ],
                 sidebar: {
                     '/ru/guide/': [
@@ -102,6 +106,7 @@ export default defineConfig({
                             items: [
                                 { text: 'Введение', link: '/ru/guide/introduction' },
                                 { text: 'Быстрый старт', link: '/ru/guide/quick-start' },
+                                { text: 'Демо API', link: '/ru/guide/demo-api' },
                                 { text: 'Архитектура', link: '/ru/guide/architecture' },
                                 { text: 'Развертывание', link: '/ru/guide/deployment' }
                             ]
@@ -165,5 +170,10 @@ export default defineConfig({
     head: [
         ['link', { rel: 'icon', href: '/favicon.ico' }],
         ['meta', { name: 'theme-color', content: '#3c82f6' }]
-    ]
-}) 
+    ],
+
+    // Конфигурация Mermaid
+    mermaid: {
+        theme: 'default'
+    }
+}))

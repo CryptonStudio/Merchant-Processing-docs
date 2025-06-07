@@ -21,10 +21,23 @@
 
 Проверьте соединение, получив список доступных сетей:
 
+**Продакшн:**
 ```bash
 curl -X GET https://api.your-gateway.com/api/v1/networks \
   -H "X-Api-Key: your-api-key"
 ```
+
+**Демо/Тестирование:**
+```bash
+curl -X GET https://cp-merch-dev.wsdemo.online/api/networks \
+  -H "X-Api-Key: demo-key"
+```
+
+::: tip Демо-окружение
+Сначала попробуйте демо API: https://cp-merch-dev.wsdemo.online/api/openapi/
+
+Используйте демо-учетные данные для тестирования без реальных транзакций.
+:::
 
 Ожидаемый ответ:
 ```json

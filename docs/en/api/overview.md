@@ -4,9 +4,21 @@ The Crypto Payment Gateway provides a comprehensive RESTful API for managing cry
 
 ## Base URL
 
+**Production:**
 ```
 https://api.your-gateway.com/api/v1
 ```
+
+**Demo/Testing:**
+```
+https://cp-merch-dev.wsdemo.online/api
+```
+
+::: tip Demo Environment
+Use the demo environment for testing and development. The demo API includes sample data and doesn't process real transactions.
+
+**OpenAPI Documentation:** https://cp-merch-dev.wsdemo.online/api/openapi/
+:::
 
 ## Authentication
 

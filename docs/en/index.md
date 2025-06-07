@@ -46,17 +46,6 @@ features:
     details: Beautiful dark theme with automatic system preference detection and manual toggle
 ---
 
-<script setup>
-import { onMounted } from 'vue'
-
-onMounted(() => {
-  // Автоматический редирект на английскую версию если нет языкового префикса
-  if (window.location.pathname === '/Merchant-Processing-docs/' || window.location.pathname === '/') {
-    window.location.href = '/Merchant-Processing-docs/en/'
-  }
-})
-</script>
-
 ## Supported Networks
 
 - **Bitcoin** - The original cryptocurrency

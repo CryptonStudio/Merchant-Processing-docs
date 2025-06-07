@@ -21,10 +21,23 @@ Before you begin, ensure you have:
 
 Test your connection by listing available networks:
 
+**Production:**
 ```bash
 curl -X GET https://api.your-gateway.com/api/v1/networks \
   -H "X-Api-Key: your-api-key"
 ```
+
+**Demo/Testing:**
+```bash
+curl -X GET https://cp-merch-dev.wsdemo.online/api/networks \
+  -H "X-Api-Key: demo-key"
+```
+
+::: tip Demo Environment
+Try the demo API first: https://cp-merch-dev.wsdemo.online/api/openapi/
+
+Use demo credentials for testing without real transactions.
+:::
 
 Expected response:
 ```json
