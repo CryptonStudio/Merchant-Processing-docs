@@ -1,0 +1,1 @@
+import{_ as t,c as a,o as e}from"./chunks/framework.BtEkjhVd.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"ru/api/authentication.md","filePath":"ru/api/authentication.md"}'),n={name:"ru/api/authentication.md"};function i(o,r,c,s,p,u){return e(),a("div")}const m=t(n,[["render",i]]);export{d as __pageData,m as default};

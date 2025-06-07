@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as a}from"./chunks/framework.BtEkjhVd.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"ru/guide/transactions.md","filePath":"ru/guide/transactions.md"}'),r={name:"ru/guide/transactions.md"};function s(n,o,c,i,d,p){return a(),e("div")}const m=t(r,[["render",s]]);export{u as __pageData,m as default};

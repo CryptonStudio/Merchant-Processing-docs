@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as r}from"./chunks/framework.BtEkjhVd.js";const u=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"ru/guide/networks.md","filePath":"ru/guide/networks.md"}'),o={name:"ru/guide/networks.md"};function a(s,n,c,d,i,p){return r(),t("div")}const m=e(o,[["render",a]]);export{u as __pageData,m as default};

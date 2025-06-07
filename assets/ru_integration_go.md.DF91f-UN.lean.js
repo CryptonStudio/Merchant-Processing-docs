@@ -1,0 +1,1 @@
+import{_ as t,c as e,o}from"./chunks/framework.BtEkjhVd.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"ru/integration/go.md","filePath":"ru/integration/go.md"}'),r={name:"ru/integration/go.md"};function a(n,i,s,c,p,_){return o(),e("div")}const f=t(r,[["render",a]]);export{m as __pageData,f as default};

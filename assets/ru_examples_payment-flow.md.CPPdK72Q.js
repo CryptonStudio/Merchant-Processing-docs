@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.BtEkjhVd.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"ru/examples/payment-flow.md","filePath":"ru/examples/payment-flow.md"}'),o={name:"ru/examples/payment-flow.md"};function r(n,s,p,m,c,l){return a(),t("div")}const d=e(o,[["render",r]]);export{_ as __pageData,d as default};

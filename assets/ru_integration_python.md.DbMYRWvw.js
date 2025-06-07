@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as n}from"./chunks/framework.BtEkjhVd.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"ru/integration/python.md","filePath":"ru/integration/python.md"}'),o={name:"ru/integration/python.md"};function r(a,i,s,c,p,_){return n(),e("div")}const f=t(o,[["render",r]]);export{m as __pageData,f as default};

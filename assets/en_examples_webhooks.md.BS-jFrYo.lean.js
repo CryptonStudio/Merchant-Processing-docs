@@ -1,0 +1,1 @@
+import{_ as e,c as o,o as t}from"./chunks/framework.BtEkjhVd.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"en/examples/webhooks.md","filePath":"en/examples/webhooks.md"}'),a={name:"en/examples/webhooks.md"};function s(n,r,c,p,m,_){return t(),o("div")}const l=e(a,[["render",s]]);export{i as __pageData,l as default};

@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.BtEkjhVd.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"ru/guide/withdrawals.md","filePath":"ru/guide/withdrawals.md"}'),r={name:"ru/guide/withdrawals.md"};function s(d,i,o,c,n,l){return a(),t("div")}const u=e(r,[["render",s]]);export{_ as __pageData,u as default};
