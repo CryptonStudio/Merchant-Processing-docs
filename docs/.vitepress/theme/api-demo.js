@@ -4,17 +4,31 @@ if (typeof window !== 'undefined') {
     const API_BASE_URL = 'https://cp-merch-dev.wsdemo.online/api/v1';
 
     // Utility function to get API key
-    function getApiKey() {
-        const apiKeyInput = document.getElementById('api-key');
+    function getApiKey(container = null) {
+        let apiKeyInput;
+
+        // Try to find API key input in the specific container first
+        if (container) {
+            apiKeyInput = container.querySelector('#api-key') || container.querySelector('input[id="api-key"]');
+        }
+
+        // Fallback to document-wide search
+        if (!apiKeyInput) {
+            apiKeyInput = document.getElementById('api-key');
+        }
+
         if (!apiKeyInput) {
             alert('Пожалуйста, введите API ключ в поле выше');
             return null;
         }
+
         const apiKey = apiKeyInput.value.trim();
         if (!apiKey) {
             alert('Пожалуйста, введите API ключ');
             return null;
         }
+
+        console.log('Using API key:', apiKey); // Debug log
         return apiKey;
     }
 
@@ -24,6 +38,8 @@ if (typeof window !== 'undefined') {
         if (!apiKey) return;
 
         const url = `${API_BASE_URL}${endpoint}`;
+        console.log('Making API request to:', url, 'with API key:', apiKey); // Debug log
+
         const defaultOptions = {
             headers: {
                 'X-Api-Key': apiKey,
@@ -41,8 +57,12 @@ if (typeof window !== 'undefined') {
         };
 
         try {
+            console.log('Sending request with options:', finalOptions); // Debug log
             const response = await fetch(url, finalOptions);
+            console.log('Response status:', response.status, response.statusText); // Debug log
+
             const data = await response.json();
+            console.log('Response data:', data); // Debug log
 
             return {
                 success: response.ok,
@@ -51,6 +71,7 @@ if (typeof window !== 'undefined') {
                 headers: Object.fromEntries(response.headers.entries())
             };
         } catch (error) {
+            console.error('API request error:', error); // Debug log
             // Handle CORS and network errors
             let errorMessage = error.message;
             if (error.message.includes('NetworkError') || error.message.includes('CORS')) {
@@ -370,7 +391,7 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
             const response = await fetch(`${API_BASE_URL}/invoices`, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${apiKey}`,
+                    'X-Api-Key': apiKey,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
@@ -412,7 +433,7 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${apiKey}`
+                    'X-Api-Key': apiKey
                 }
             });
 
@@ -446,7 +467,7 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
             const response = await fetch(`${API_BASE_URL}/invoices?id=${invoiceId}`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${apiKey}`
+                    'X-Api-Key': apiKey
                 }
             });
 
@@ -480,7 +501,7 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
             const response = await fetch(`${API_BASE_URL}/invoices/getByExternalId?externalId=${externalId}`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${apiKey}`
+                    'X-Api-Key': apiKey
                 }
             });
 
@@ -508,7 +529,7 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
             const response = await fetch(`${API_BASE_URL}/invoices/summary`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${apiKey}`
+                    'X-Api-Key': apiKey
                 }
             });
 
@@ -543,7 +564,7 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
             const response = await fetch(`${API_BASE_URL}/invoices`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${apiKey}`,
+                    'X-Api-Key': apiKey,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
@@ -576,7 +597,7 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
             const response = await fetch(`${API_BASE_URL}/invoices/configureSettings`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${apiKey}`
+                    'X-Api-Key': apiKey
                 }
             });
 
