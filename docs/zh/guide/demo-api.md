@@ -276,7 +276,7 @@ async function callApi(endpoint, options = {}) {
     const response = await fetch(baseUrl + endpoint, {
       method: options.method || 'GET',
       headers: {
-        'Authorization': 'Bearer ' + apiKey + '',
+        'X-Api-Key': apiKey,
         'Content-Type': 'application/json',
         ...options.headers
       },

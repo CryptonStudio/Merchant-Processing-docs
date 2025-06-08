@@ -385,7 +385,7 @@ func main() {
     jsonData, _ := json.Marshal(payload)
     
     req, _ := http.NewRequest("POST", "https://cp-merch-dev.wsdemo.online/api/v1/invoices", bytes.NewBuffer(jsonData))
-    req.Header.Set("Authorization", "Bearer YOUR_API_KEY")
+    req.Header.Set("X-Api-Key", "YOUR_API_KEY")
     req.Header.Set("Content-Type", "application/json")
     
     client := &http.Client{}
@@ -400,7 +400,7 @@ func main() {
     
     // Получить список инвойсов
     req2, _ := http.NewRequest("GET", "https://cp-merch-dev.wsdemo.online/api/v1/invoices/getAll?page=1&perPage=20", nil)
-    req2.Header.Set("Authorization", "Bearer YOUR_API_KEY")
+    req2.Header.Set("X-Api-Key", "YOUR_API_KEY")
     
     resp2, err := client.Do(req2)
     if err != nil {
@@ -481,7 +481,7 @@ const createInvoice = async () => {
   const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/invoices', {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY',
+      'X-Api-Key': 'YOUR_API_KEY',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -497,7 +497,7 @@ const createInvoice = async () => {
   // Получить список инвойсов
   const listResponse = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/invoices/getAll?page=1&perPage=20', {
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY'
+      'X-Api-Key': 'YOUR_API_KEY'
     }
   });
   
@@ -507,7 +507,7 @@ const createInvoice = async () => {
   // Получить инвойс по ID
   const invoiceResponse = await fetch(`https://cp-merch-dev.wsdemo.online/api/v1/invoices?id=${invoice.id}`, {
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY'
+      'X-Api-Key': 'YOUR_API_KEY'
     }
   });
   
@@ -517,7 +517,7 @@ const createInvoice = async () => {
   // Получить сводку
   const summaryResponse = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/invoices/summary', {
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY'
+      'X-Api-Key': 'YOUR_API_KEY'
     }
   });
   
@@ -537,7 +537,7 @@ try {
   const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/invoices', {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY',
+      'X-Api-Key': 'YOUR_API_KEY',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -570,7 +570,7 @@ import json
 # Конфигурация API
 API_BASE = 'https://cp-merch-dev.wsdemo.online/api/v1'
 headers = {
-    'Authorization': 'Bearer YOUR_API_KEY',
+    'X-Api-Key': 'YOUR_API_KEY',
     'Content-Type': 'application/json'
 }
 

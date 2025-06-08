@@ -249,7 +249,7 @@ const createCoin = async () => {
   const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY',
+      'X-Api-Key': 'YOUR_API_KEY',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -281,7 +281,7 @@ import requests
 # Конфигурация API
 API_BASE = 'https://cp-merch-dev.wsdemo.online/api/v1'
 headers = {
-    'Authorization': 'Bearer YOUR_API_KEY',
+    'X-Api-Key': 'YOUR_API_KEY',
     'Content-Type': 'application/json'
 }
 
@@ -337,7 +337,7 @@ func main() {
     jsonData, _ := json.Marshal(payload)
     
     req, _ := http.NewRequest("POST", "https://cp-merch-dev.wsdemo.online/api/v1/coins", bytes.NewBuffer(jsonData))
-    req.Header.Set("Authorization", "Bearer YOUR_API_KEY")
+    req.Header.Set("X-Api-Key", "YOUR_API_KEY")
     req.Header.Set("Content-Type", "application/json")
     
     client := &http.Client{}
@@ -417,7 +417,7 @@ if (typeof window !== 'undefined') {
       const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
+          'X-Api-Key': apiKey,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -455,7 +455,7 @@ if (typeof window !== 'undefined') {
       const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins/precreate-token', {
         method: 'PUT',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
+          'X-Api-Key': apiKey,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -482,7 +482,7 @@ if (typeof window !== 'undefined') {
     try {
       const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
         headers: {
-          'Authorization': `Bearer ${apiKey}`
+          'X-Api-Key': apiKey
         }
       });
       

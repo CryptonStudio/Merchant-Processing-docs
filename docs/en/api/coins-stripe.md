@@ -377,7 +377,7 @@ func main() {
     jsonData, _ := json.Marshal(payload)
     
     req, _ := http.NewRequest("POST", "https://cp-merch-dev.wsdemo.online/api/v1/coins", bytes.NewBuffer(jsonData))
-    req.Header.Set("Authorization", "Bearer YOUR_API_KEY")
+    req.Header.Set("X-Api-Key", "YOUR_API_KEY")
     req.Header.Set("Content-Type", "application/json")
     
     client := &http.Client{}
@@ -392,7 +392,7 @@ func main() {
     
     // Get coins list
     req2, _ := http.NewRequest("GET", "https://cp-merch-dev.wsdemo.online/api/v1/coins", nil)
-    req2.Header.Set("Authorization", "Bearer YOUR_API_KEY")
+    req2.Header.Set("X-Api-Key", "YOUR_API_KEY")
     
     resp2, err := client.Do(req2)
     if err != nil {
@@ -417,7 +417,7 @@ const createCoin = async () => {
   const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY',
+      'X-Api-Key': 'YOUR_API_KEY',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -436,7 +436,7 @@ const createCoin = async () => {
   // Get coins list
   const coinsResponse = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY'
+      'X-Api-Key': 'YOUR_API_KEY'
     }
   });
   
@@ -446,7 +446,7 @@ const createCoin = async () => {
   // Get specific coin
   const coinResponse = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins/btc', {
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY'
+      'X-Api-Key': 'YOUR_API_KEY'
     }
   });
   
@@ -457,7 +457,7 @@ const createCoin = async () => {
   const editResponse = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
     method: 'PUT',
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY',
+      'X-Api-Key': 'YOUR_API_KEY',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -487,7 +487,7 @@ import json
 # API configuration
 API_BASE = 'https://cp-merch-dev.wsdemo.online/api/v1'
 headers = {
-    'Authorization': 'Bearer YOUR_API_KEY',
+    'X-Api-Key': 'YOUR_API_KEY',
     'Content-Type': 'application/json'
 }
 
@@ -640,7 +640,7 @@ if (typeof window !== 'undefined') {
       const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
+          'X-Api-Key': apiKey,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -678,7 +678,7 @@ if (typeof window !== 'undefined') {
       const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins/precreate-token', {
         method: 'PUT',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
+          'X-Api-Key': apiKey,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -705,7 +705,7 @@ if (typeof window !== 'undefined') {
     try {
       const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
         headers: {
-          'Authorization': `Bearer ${apiKey}`
+          'X-Api-Key': apiKey
         }
       });
       
@@ -728,7 +728,7 @@ if (typeof window !== 'undefined') {
     try {
       const response = await fetch(`https://cp-merch-dev.wsdemo.online/api/v1/coins/${coinSlug}`, {
         headers: {
-          'Authorization': `Bearer ${apiKey}`
+          'X-Api-Key': apiKey
         }
       });
       
@@ -763,7 +763,7 @@ if (typeof window !== 'undefined') {
       const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
         method: 'PUT',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
+          'X-Api-Key': apiKey,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)

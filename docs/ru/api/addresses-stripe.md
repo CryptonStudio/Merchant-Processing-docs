@@ -103,7 +103,7 @@ func main() {
     jsonData, _ := json.Marshal(payload)
     
     req, _ := http.NewRequest("POST", "https://cp-merch-dev.wsdemo.online/api/v1/addresses", bytes.NewBuffer(jsonData))
-    req.Header.Set("Authorization", "Bearer YOUR_API_KEY")
+    req.Header.Set("X-Api-Key", "YOUR_API_KEY")
     req.Header.Set("Content-Type", "application/json")
     
     client := &http.Client{}
@@ -129,7 +129,7 @@ const createAddress = async () => {
   const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/addresses', {
     method: 'POST',
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY',
+      'X-Api-Key': 'YOUR_API_KEY',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -155,7 +155,7 @@ import requests
 import json
 
 headers = {
-    'Authorization': 'Bearer YOUR_API_KEY',
+    'X-Api-Key': 'YOUR_API_KEY',
     'Content-Type': 'application/json'
 }
 

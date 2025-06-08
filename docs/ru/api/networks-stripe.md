@@ -110,7 +110,7 @@ import (
 
 func main() {
     req, _ := http.NewRequest("GET", "https://cp-merch-dev.wsdemo.online/api/v1/networks", nil)
-    req.Header.Set("Authorization", "Bearer YOUR_API_KEY")
+    req.Header.Set("X-Api-Key", "YOUR_API_KEY")
     
     client := &http.Client{}
     resp, err := client.Do(req)
@@ -134,7 +134,7 @@ func main() {
 const getNetworks = async () => {
   const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/networks', {
     headers: {
-      'Authorization': 'Bearer YOUR_API_KEY'
+      'X-Api-Key': 'YOUR_API_KEY'
     }
   });
   
@@ -155,7 +155,7 @@ getNetworks();
 import requests
 
 headers = {
-    'Authorization': 'Bearer YOUR_API_KEY'
+    'X-Api-Key': 'YOUR_API_KEY'
 }
 
 response = requests.get('https://cp-merch-dev.wsdemo.online/api/v1/networks', 

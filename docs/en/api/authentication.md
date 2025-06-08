@@ -265,7 +265,7 @@ const axios = require('axios');
 const apiClient = axios.create({
   baseURL: 'https://api.gateway.com/v1',
   headers: {
-    'Authorization': `Bearer ${process.env.GATEWAY_API_KEY}`,
+    'X-Api-Key': apiKey,
     'Content-Type': 'application/json'
   }
 });
@@ -283,7 +283,7 @@ class GatewayAPI:
     def __init__(self):
         self.base_url = 'https://api.gateway.com/v1'
         self.headers = {
-            'Authorization': f'Bearer {os.getenv("GATEWAY_API_KEY")}',
+            'X-Api-Key': os.getenv('GATEWAY_API_KEY'),
             'Content-Type': 'application/json'
         }
     
@@ -325,7 +325,7 @@ func (c *GatewayClient) makeRequest(method, endpoint string) (*http.Response, er
         return nil, err
     }
     
-    req.Header.Set("Authorization", "Bearer "+c.APIKey)
+    req.Header.Set("X-Api-Key", c.APIKey)
     req.Header.Set("Content-Type", "application/json")
     
     return c.Client.Do(req)

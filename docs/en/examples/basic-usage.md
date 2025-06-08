@@ -13,7 +13,7 @@ const API_KEY = 'your_api_key_here';
 const BASE_URL = 'https://api.your-gateway.com/api/v1';
 
 const headers = {
-  'Authorization': `Bearer ${API_KEY}`,
+  'X-Api-Key': apiKey,
   'Content-Type': 'application/json'
 };
 ```
@@ -113,7 +113,7 @@ class CryptoPaymentProcessor {
     this.apiKey = apiKey;
     this.baseURL = 'https://api.your-gateway.com/api/v1';
     this.headers = {
-      'Authorization': `Bearer ${apiKey}`,
+      'X-Api-Key': apiKey,
       'Content-Type': 'application/json'
     };
   }
