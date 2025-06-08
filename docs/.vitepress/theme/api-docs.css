@@ -288,6 +288,174 @@
 
     .api-content {
         border-right: none;
+        padding: 1rem;
+    }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .api-content {
+        padding: 0.75rem;
+    }
+
+    .api-examples {
+        padding: 1rem;
+    }
+
+    /* Mobile-friendly demo controls */
+    .demo-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .demo-controls label {
+        margin-bottom: 0.25rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .demo-controls input,
+    .demo-controls select {
+        min-width: 100%;
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+        border-radius: 8px;
+        border: 2px solid #d1d5db;
+        box-sizing: border-box;
+    }
+
+    /* Mobile button improvements */
+    .test-button,
+    .copy-curl-button {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        font-size: 16px;
+        /* Prevents zoom on iOS */
+        font-weight: 600;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        touch-action: manipulation;
+        /* Improves touch responsiveness */
+        -webkit-tap-highlight-color: transparent;
+        /* Removes tap highlight */
+    }
+
+    .test-button {
+        background: #3b82f6;
+        margin-bottom: 0.5rem;
+    }
+
+    .test-button:active {
+        background: #1d4ed8;
+        transform: scale(0.98);
+    }
+
+    .copy-curl-button {
+        background: #059669;
+    }
+
+    .copy-curl-button:active {
+        background: #047857;
+        transform: scale(0.98);
+    }
+
+    /* Button container for better spacing */
+    .demo-controls .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    /* Mobile-friendly result display */
+    .demo-result {
+        font-size: 0.8rem;
+        max-height: 200px;
+        overflow-x: auto;
+        word-break: break-word;
+        white-space: pre-wrap;
+    }
+
+    /* Better touch targets for code tabs */
+    .code-tab {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        min-height: 44px;
+        /* iOS recommended touch target */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Improved scrolling for code blocks */
+    .api-examples pre {
+        font-size: 0.8rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Better spacing for API sections */
+    .api-section {
+        margin-bottom: 2rem;
+    }
+
+    .api-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .api-section h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    /* Mobile-friendly parameter tables */
+    .params-table {
+        font-size: 0.8rem;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .params-table th,
+    .params-table td {
+        padding: 0.5rem;
+        min-width: 120px;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+
+    .api-content,
+    .api-examples {
+        padding: 0.5rem;
+    }
+
+    .demo-controls input,
+    .demo-controls select,
+    .test-button,
+    .copy-curl-button {
+        padding: 1rem;
+        font-size: 16px;
+    }
+
+    .api-section h2 {
+        font-size: 1.25rem;
+    }
+
+    .api-section h3 {
+        font-size: 1.125rem;
+    }
+
+    .method-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
     }
 }
 

@@ -164,8 +164,10 @@ All API requests require authentication via Bearer token in the Authorization he
     </select>
     <label for="invoice-amount">Amount:</label>
     <input type="number" id="invoice-amount" value="0.001" step="0.000001" />
-    <button onclick="testCreateInvoice()" class="test-button">Test</button>
-    <button onclick="copyCurlCommand('/invoices', {method: 'POST', body: JSON.stringify({currency: 'eth', amount: 0.001, externalId: 'demo_123'})})" class="copy-curl-button">📋 Copy curl</button>
+    <div class="button-group">
+      <button onclick="testCreateInvoice()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/invoices', {method: 'POST', body: JSON.stringify({currency: 'eth', amount: 0.001, externalId: 'demo_123'})})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
   </div>
 </div>
 
