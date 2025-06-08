@@ -51,21 +51,34 @@ API адресов позволяет:
 
   <template #examples>
 
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>Конфигурация API</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Ключ:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Установить API Ключ</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
 <div class="example-block" data-lang="curl">
 
 ### Создать адрес
 
 <div class="api-demo">
   <div class="demo-controls">
-    <label for="api-key">API Ключ:</label>
-    <input type="text" id="api-key" placeholder="Введите ваш API ключ" />
     <label for="address-network">Сеть:</label>
     <select id="address-network">
       <option value="ethereum" selected>Ethereum</option>
       <option value="bitcoin">Bitcoin</option>
     </select>
-    <button onclick="testCreateAddress()" class="test-button">Тест</button>
-    <button onclick="copyCurlCommand('/addresses', {method: 'POST', body: JSON.stringify({network: 'ethereum'})})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testCreateAddress()" class="test-button">Тест</button>
+      <button onclick="copyCurlCommand('/addresses', {method: 'POST', body: JSON.stringify({network: 'ethereum'})})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 

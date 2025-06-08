@@ -147,14 +147,25 @@ API инвойсов позволяет:
 
   <template #examples>
 
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>Конфигурация API</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Ключ:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Установить API Ключ</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
 <div class="example-block" data-lang="curl">
 
 ### Создать инвойс
 
 <div class="api-demo">
   <div class="demo-controls">
-    <label for="api-key">API Key:</label>
-    <input type="text" id="api-key" placeholder="Введите ваш API ключ" />
     <label for="invoice-currency">Валюта:</label>
     <select id="invoice-currency">
       <option value="btc">BTC</option>
@@ -164,8 +175,10 @@ API инвойсов позволяет:
     </select>
     <label for="invoice-amount">Сумма:</label>
     <input type="number" id="invoice-amount" value="0.001" step="0.000001" />
-    <button onclick="testCreateInvoice()" class="test-button">Тестировать</button>
-    <button onclick="copyCurlCommand('/invoices', {method: 'POST', body: JSON.stringify({currency: 'eth', amount: 0.001, externalId: 'demo_123'})})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testCreateInvoice()" class="test-button">Тестировать</button>
+      <button onclick="copyCurlCommand('/invoices', {method: 'POST', body: JSON.stringify({currency: 'eth', amount: 0.001, externalId: 'demo_123'})})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 
@@ -210,8 +223,10 @@ curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/invoices" \
       <option value="eth">ETH</option>
       <option value="usdt">USDT</option>
     </select>
-    <button onclick="testGetInvoices()" class="test-button">Тестировать</button>
-    <button onclick="copyCurlCommand('/invoices/getAll?page=1&perPage=20', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testGetInvoices()" class="test-button">Тестировать</button>
+      <button onclick="copyCurlCommand('/invoices/getAll?page=1&perPage=20', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 
@@ -258,8 +273,10 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices/getAll?page=1&pe
   <div class="demo-controls">
     <label for="invoice-id">ID инвойса:</label>
     <input type="text" id="invoice-id" placeholder="inv_abc123def456" />
-    <button onclick="testGetInvoice()" class="test-button">Тестировать</button>
-    <button onclick="copyCurlCommand('/invoices?id=inv_abc123def456', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testGetInvoice()" class="test-button">Тестировать</button>
+      <button onclick="copyCurlCommand('/invoices?id=inv_abc123def456', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 
@@ -274,8 +291,10 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices?id=inv_abc123def
   <div class="demo-controls">
     <label for="external-id">Внешний ID:</label>
     <input type="text" id="external-id" placeholder="demo_123" />
-    <button onclick="testGetInvoiceByExternalId()" class="test-button">Тестировать</button>
-    <button onclick="copyCurlCommand('/invoices/getByExternalId?externalId=demo_123', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testGetInvoiceByExternalId()" class="test-button">Тестировать</button>
+      <button onclick="copyCurlCommand('/invoices/getByExternalId?externalId=demo_123', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 
@@ -288,8 +307,10 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices/getByExternalId?
 
 <div class="api-demo">
   <div class="demo-controls">
-    <button onclick="testGetSummary()" class="test-button">Тестировать</button>
-    <button onclick="copyCurlCommand('/invoices/summary', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testGetSummary()" class="test-button">Тестировать</button>
+      <button onclick="copyCurlCommand('/invoices/summary', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 
@@ -327,8 +348,10 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices/summary" \
       <option value="cancelled">cancelled</option>
       <option value="expired">expired</option>
     </select>
-    <button onclick="testChangeInvoiceStatus()" class="test-button">Тестировать</button>
-    <button onclick="copyCurlCommand('/invoices', {method: 'PUT', body: JSON.stringify({invoiceId: 'inv_abc123def456', status: 'completed'})})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testChangeInvoiceStatus()" class="test-button">Тестировать</button>
+      <button onclick="copyCurlCommand('/invoices', {method: 'PUT', body: JSON.stringify({invoiceId: 'inv_abc123def456', status: 'completed'})})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 
@@ -346,8 +369,10 @@ curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/invoices" \
 
 <div class="api-demo">
   <div class="demo-controls">
-    <button onclick="testGetInvoiceSettings()" class="test-button">Тестировать</button>
-    <button onclick="copyCurlCommand('/invoices/configureSettings', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testGetInvoiceSettings()" class="test-button">Тестировать</button>
+      <button onclick="copyCurlCommand('/invoices/configureSettings', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 

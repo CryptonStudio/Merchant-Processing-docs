@@ -793,3 +793,141 @@
     color: #3b82f6;
     font-weight: 500;
 }
+
+/* API Key Configuration Section */
+.api-key-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.api-key-section h4 {
+    margin: 0 0 1rem 0;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.api-key-section h4::before {
+    content: "🔑";
+    font-size: 1.2rem;
+}
+
+.api-key-controls {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.api-key-input-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.api-key-input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.api-key-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    backdrop-filter: blur(10px);
+}
+
+.api-key-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.api-key-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.set-api-key-button {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    backdrop-filter: blur(10px);
+    white-space: nowrap;
+}
+
+.set-api-key-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+.set-api-key-button:active {
+    transform: translateY(0);
+}
+
+.set-api-key-button.success {
+    background: rgba(34, 197, 94, 0.8);
+    border-color: rgba(34, 197, 94, 1);
+}
+
+.api-key-status {
+    margin-top: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: none;
+}
+
+.api-key-status.success {
+    background: rgba(34, 197, 94, 0.2);
+    color: rgba(34, 197, 94, 1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    display: block;
+}
+
+.api-key-status.error {
+    background: rgba(239, 68, 68, 0.2);
+    color: rgba(239, 68, 68, 1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    display: block;
+}
+
+/* Mobile responsiveness for API Key section */
+@media (max-width: 768px) {
+    .api-key-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .api-key-input-group {
+        min-width: auto;
+    }
+
+    .set-api-key-button {
+        width: 100%;
+        text-align: center;
+    }
+}

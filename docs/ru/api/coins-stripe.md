@@ -115,6 +115,19 @@ API управления монетами позволяет:
 
   <template #examples>
 
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>Конфигурация API</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Ключ:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Установить API Ключ</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
 <div class="example-block" data-lang="curl">
 
 ### Создать монету
@@ -132,8 +145,10 @@ API управления монетами позволяет:
     </select>
     <label for="coin-name">Название монеты:</label>
     <input type="text" id="coin-name" placeholder="Мой токен" />
-    <button onclick="testCreateCoin()" class="test-button">Тест</button>
-    <button onclick="copyCurlCommand('/coins', {method: 'POST', body: JSON.stringify({network: 'ethereum', name: 'Мой токен'})})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testCreateCoin()" class="test-button">Тест</button>
+      <button onclick="copyCurlCommand('/coins', {method: 'POST', body: JSON.stringify({network: 'ethereum', name: 'Мой токен'})})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 
@@ -170,8 +185,10 @@ curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
       <option value="bsc">BSC</option>
       <option value="polygon">Polygon</option>
     </select>
-    <button onclick="testPrecreateToken()" class="test-button">Тест</button>
-    <button onclick="copyCurlCommand('/coins/precreate-token', {method: 'PUT', body: JSON.stringify({contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7', network: 'ethereum'})})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testPrecreateToken()" class="test-button">Тест</button>
+      <button onclick="copyCurlCommand('/coins/precreate-token', {method: 'PUT', body: JSON.stringify({contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7', network: 'ethereum'})})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 
@@ -199,8 +216,10 @@ curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/coins/precreate-token" \
 
 <div class="api-demo">
   <div class="demo-controls">
-    <button onclick="testGetCoins()" class="test-button">Тест</button>
-    <button onclick="copyCurlCommand('/coins', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testGetCoins()" class="test-button">Тест</button>
+      <button onclick="copyCurlCommand('/coins', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 

@@ -115,6 +115,19 @@ The coins API allows you to:
 
   <template #examples>
 
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>API Configuration</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Key:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Set API Key</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
 <div class="example-block" data-lang="curl">
 
 ### Create Coin
@@ -132,8 +145,10 @@ The coins API allows you to:
     </select>
     <label for="coin-name">Coin Name:</label>
     <input type="text" id="coin-name" placeholder="My Token" />
-    <button onclick="testCreateCoin()" class="test-button">Test</button>
-    <button onclick="copyCurlCommand('/coins', {method: 'POST', body: JSON.stringify({network: 'ethereum', name: 'My Token'})})" class="copy-curl-button">📋 Copy curl</button>
+    <div class="button-group">
+      <button onclick="testCreateCoin()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/coins', {method: 'POST', body: JSON.stringify({network: 'ethereum', name: 'My Token'})})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
   </div>
 </div>
 
@@ -170,8 +185,10 @@ curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
       <option value="bsc">BSC</option>
       <option value="polygon">Polygon</option>
     </select>
-    <button onclick="testPrecreateToken()" class="test-button">Test</button>
-    <button onclick="copyCurlCommand('/coins/precreate-token', {method: 'PUT', body: JSON.stringify({contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7', network: 'ethereum'})})" class="copy-curl-button">📋 Copy curl</button>
+    <div class="button-group">
+      <button onclick="testPrecreateToken()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/coins/precreate-token', {method: 'PUT', body: JSON.stringify({contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7', network: 'ethereum'})})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
   </div>
 </div>
 
@@ -199,8 +216,10 @@ curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/coins/precreate-token" \
 
 <div class="api-demo">
   <div class="demo-controls">
-    <button onclick="testGetCoins()" class="test-button">Test</button>
-    <button onclick="copyCurlCommand('/coins', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
+    <div class="button-group">
+      <button onclick="testGetCoins()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/coins', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
   </div>
 </div>
 
@@ -265,8 +284,10 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
   <div class="demo-controls">
     <label for="get-coin-slug">Coin Slug:</label>
     <input type="text" id="get-coin-slug" placeholder="btc" value="btc" />
-    <button onclick="testGetCoin()" class="test-button">Test</button>
-    <button onclick="copyCurlCommand('/coins/btc', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
+    <div class="button-group">
+      <button onclick="testGetCoin()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/coins/btc', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
   </div>
 </div>
 
@@ -321,8 +342,10 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins/btc" \
     </select>
     <label for="edit-min-value">Min Value:</label>
     <input type="number" id="edit-min-value" placeholder="0.0001" step="0.0001" />
-    <button onclick="testEditCoin()" class="test-button">Test</button>
-    <button onclick="copyCurlCommand('/coins', {method: 'PUT', body: JSON.stringify({coin: 'btc', status: 'ACTIVE', minValue: 0.0001})})" class="copy-curl-button">📋 Copy curl</button>
+    <div class="button-group">
+      <button onclick="testEditCoin()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/coins', {method: 'PUT', body: JSON.stringify({coin: 'btc', status: 'ACTIVE', minValue: 0.0001})})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
   </div>
 </div>
 

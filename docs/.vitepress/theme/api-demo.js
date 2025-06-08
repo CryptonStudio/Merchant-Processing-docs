@@ -3,8 +3,96 @@
 if (typeof window !== 'undefined') {
     const API_BASE_URL = 'https://cp-merch-dev.wsdemo.online/api/v1';
 
+    // Global API key storage
+    let globalApiKey = '';
+
+    // Set global API key
+    function setGlobalApiKey() {
+        const input = document.getElementById('global-api-key');
+        const button = document.querySelector('.set-api-key-button');
+        const status = document.querySelector('.api-key-status');
+
+        if (!input) {
+            console.error('Global API key input not found');
+            return;
+        }
+
+        const apiKey = input.value.trim();
+
+        if (!apiKey) {
+            showApiKeyStatus('error', 'Пожалуйста, введите API ключ');
+            return;
+        }
+
+        // Validate API key format (basic check)
+        if (!apiKey.startsWith('sk_')) {
+            showApiKeyStatus('error', 'API ключ должен начинаться с "sk_"');
+            return;
+        }
+
+        globalApiKey = apiKey;
+
+        // Update button state
+        if (button) {
+            button.classList.add('success');
+            button.textContent = '✅ API Key Set';
+            setTimeout(() => {
+                button.classList.remove('success');
+                button.textContent = 'Set API Key';
+            }, 2000);
+        }
+
+        showApiKeyStatus('success', `API ключ установлен: ${apiKey.substring(0, 10)}...`);
+
+        // Store in localStorage for persistence
+        localStorage.setItem('merchant-api-key', apiKey);
+
+        console.log('Global API key set:', apiKey);
+    }
+
+    // Show API key status
+    function showApiKeyStatus(type, message) {
+        const status = document.querySelector('.api-key-status');
+        if (!status) return;
+
+        status.className = `api-key-status ${type}`;
+        status.textContent = message;
+
+        if (type === 'error') {
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 5000);
+        }
+    }
+
+    // Load API key from localStorage on page load
+    function loadStoredApiKey() {
+        const stored = localStorage.getItem('merchant-api-key');
+        if (stored) {
+            globalApiKey = stored;
+            const input = document.getElementById('global-api-key');
+            if (input) {
+                input.value = stored;
+                showApiKeyStatus('success', `API ключ загружен: ${stored.substring(0, 10)}...`);
+            }
+        }
+    }
+
+    // Initialize on DOM ready
+    document.addEventListener('DOMContentLoaded', loadStoredApiKey);
+
+    // Make functions globally available
+    window.setGlobalApiKey = setGlobalApiKey;
+
     // Utility function to get API key
     function getApiKey(container = null) {
+        // First, try to use global API key
+        if (globalApiKey) {
+            console.log('Using global API key:', globalApiKey); // Debug log
+            return globalApiKey;
+        }
+
+        // Fallback to local API key inputs for backward compatibility
         let apiKeyInput;
 
         // Try to find API key input in the specific container first
@@ -18,17 +106,17 @@ if (typeof window !== 'undefined') {
         }
 
         if (!apiKeyInput) {
-            alert('Пожалуйста, введите API ключ в поле выше');
+            alert('Пожалуйста, установите API ключ в секции выше или введите в поле');
             return null;
         }
 
         const apiKey = apiKeyInput.value.trim();
         if (!apiKey) {
-            alert('Пожалуйста, введите API ключ');
+            alert('Пожалуйста, установите API ключ в секции выше или введите в поле');
             return null;
         }
 
-        console.log('Using API key:', apiKey); // Debug log
+        console.log('Using local API key:', apiKey); // Debug log
         return apiKey;
     }
 

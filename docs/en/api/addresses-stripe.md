@@ -172,14 +172,25 @@ Different endpoints require different levels of authentication:
 
   <template #examples>
 
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>API Configuration</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Key:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Set API Key</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
 <div class="example-block" data-lang="curl">
 
 ### Create Address
 
 <div class="api-demo">
   <div class="demo-controls">
-    <label for="api-key">API Key:</label>
-    <input type="text" id="api-key" value="sk_test_demo_key_12345" placeholder="Enter your API key" />
     <label for="address-network">Network:</label>
     <select id="address-network">
       <option value="bitcoin">Bitcoin</option>
@@ -190,8 +201,10 @@ Different endpoints require different levels of authentication:
     </select>
     <label for="address-coin">Coin (optional):</label>
     <input type="text" id="address-coin" placeholder="e.g., usdt, eth" />
-    <button onclick="testCreateAddress()" class="test-button">Test</button>
-    <button onclick="copyCurlCommand('/addresses', {method: 'POST', body: JSON.stringify({network: 'ethereum', coin: 'eth'})})" class="copy-curl-button">📋 Copy curl</button>
+    <div class="button-group">
+      <button onclick="testCreateAddress()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/addresses', {method: 'POST', body: JSON.stringify({network: 'ethereum', coin: 'eth'})})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
   </div>
 </div>
 
@@ -224,8 +237,10 @@ curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/addresses" \
   <div class="demo-controls">
     <label for="get-address">Address:</label>
     <input type="text" id="get-address" placeholder="0x742d35Cc6634C0532925a3b8D4C9db96590c6C87" />
-    <button onclick="testGetAddress()" class="test-button">Test</button>
-    <button onclick="copyCurlCommand('/addresses/0x742d35Cc6634C0532925a3b8D4C9db96590c6C87', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
+    <div class="button-group">
+      <button onclick="testGetAddress()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/addresses/0x742d35Cc6634C0532925a3b8D4C9db96590c6C87', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
   </div>
 </div>
 
@@ -265,8 +280,10 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/addresses/0x742d35Cc6634C
       <option value="ethereum" selected>Ethereum</option>
       <option value="tron">Tron</option>
     </select>
-    <button onclick="testGetHotWallet()" class="test-button">Test</button>
-    <button onclick="copyCurlCommand('/addresses/hot-wallet/ethereum', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
+    <div class="button-group">
+      <button onclick="testGetHotWallet()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/addresses/hot-wallet/ethereum', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
   </div>
 </div>
 

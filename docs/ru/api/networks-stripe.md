@@ -75,16 +75,29 @@ API сетей позволяет:
 
   <template #examples>
 
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>Конфигурация API</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Ключ:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Установить API Ключ</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
 <div class="example-block" data-lang="curl">
 
 ### Получить сети
 
 <div class="api-demo">
   <div class="demo-controls">
-    <label for="api-key">API Ключ:</label>
-    <input type="text" id="api-key" value="sk_test_demo_key_12345" placeholder="Введите ваш API ключ" />
-    <button onclick="testGetNetworks()" class="test-button">Тест</button>
-    <button onclick="copyCurlCommand('/networks', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    <div class="button-group">
+      <button onclick="testGetNetworks()" class="test-button">Тест</button>
+      <button onclick="copyCurlCommand('/networks', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
   </div>
 </div>
 
