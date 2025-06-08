@@ -24,12 +24,6 @@ if (typeof window !== 'undefined') {
             return;
         }
 
-        // Validate API key format (basic check)
-        if (!apiKey.startsWith('sk_')) {
-            showApiKeyStatus('error', 'API ключ должен начинаться с "sk_"');
-            return;
-        }
-
         globalApiKey = apiKey;
 
         // Update button state
