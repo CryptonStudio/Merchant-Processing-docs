@@ -56,9 +56,11 @@ export default withMermaid(defineConfig({
                             items: [
                                 { text: 'Overview', link: '/en/api/overview' },
                                 { text: 'Authentication', link: '/en/api/authentication' },
-                                { text: 'Addresses', link: '/en/api/addresses' },
-                                { text: 'Networks', link: '/en/api/networks' },
-                                { text: 'Withdrawals', link: '/en/api/withdrawals' }
+                                { text: 'Merchant', link: '/en/api/merchant-stripe' },
+                                { text: 'Addresses', link: '/en/api/addresses-stripe' },
+                                { text: 'Networks', link: '/en/api/networks-stripe' },
+                                { text: 'Withdrawals', link: '/en/api/withdraws-stripe' },
+                                { text: 'Webhooks', link: '/en/api/webhooks' }
                             ]
                         }
                     ],
@@ -127,9 +129,11 @@ export default withMermaid(defineConfig({
                             items: [
                                 { text: 'Обзор', link: '/ru/api/overview' },
                                 { text: 'Аутентификация', link: '/ru/api/authentication' },
-                                { text: 'Адреса', link: '/ru/api/addresses' },
-                                { text: 'Сети', link: '/ru/api/networks' },
-                                { text: 'Выводы', link: '/ru/api/withdrawals' }
+                                { text: 'Мерчант', link: '/ru/api/merchant-stripe' },
+                                { text: 'Адреса', link: '/ru/api/addresses-stripe' },
+                                { text: 'Сети', link: '/ru/api/networks-stripe' },
+
+                                { text: 'Выводы', link: '/ru/api/withdraws-stripe' }
                             ]
                         }
                     ],

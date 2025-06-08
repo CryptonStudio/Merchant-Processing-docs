@@ -1,9 +1,16 @@
 import DefaultTheme from 'vitepress/theme'
 import './custom.css'
+import './api-docs.css'
+import './api-demo.js'
+import ApiDoc from '../components/ApiDoc.vue'
+import ApiMethod from '../components/ApiMethod.vue'
 
 export default {
     extends: DefaultTheme,
     enhanceApp({ app, router, siteData }) {
+        // Регистрируем компоненты
+        app.component('ApiDoc', ApiDoc)
+        app.component('ApiMethod', ApiMethod)
         // Инициализация темы при загрузке
         if (typeof window !== 'undefined') {
             // Проверяем сохраненную тему или системные настройки

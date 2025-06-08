@@ -1,0 +1,626 @@
+/* API Documentation Styles - Stripe-like Layout */
+
+/* Override VitePress container for full width */
+.VPDoc.has-sidebar .container,
+.VPDoc.has-aside .container {
+    max-width: none !important;
+}
+
+.VPDoc.has-sidebar .content,
+.VPDoc.has-aside .content {
+    max-width: none !important;
+    padding: 0 !important;
+}
+
+/* Main API layout with two columns */
+.api-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.api-content {
+    padding: 2rem;
+    background: #fff;
+    border-right: 1px solid #e6e6e6;
+    min-height: 100vh;
+}
+
+.api-examples {
+    background: #0d1117;
+    color: #f0f6fc;
+    padding: 2rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Dark theme for code examples */
+.api-examples pre {
+    background: #161b22 !important;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    margin: 1rem 0;
+    overflow-x: auto;
+    white-space: pre;
+    word-wrap: normal;
+    max-width: 100%;
+}
+
+.api-examples code {
+    color: #f0f6fc !important;
+    background: transparent !important;
+    white-space: pre;
+    word-wrap: normal;
+}
+
+/* Language tabs for code examples */
+.code-tabs {
+    display: flex;
+    background: #21262d;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 0;
+    border: 1px solid #30363d;
+    border-bottom: none;
+}
+
+.code-tab {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.code-tab.active {
+    background: #161b22;
+    color: #f0f6fc;
+}
+
+.code-tab:hover {
+    color: #f0f6fc;
+}
+
+/* Code block styling */
+.api-code-block {
+    position: relative;
+    margin: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.api-code-block pre {
+    margin: 0;
+    border-radius: 0 0 8px 8px;
+    border-top: none;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+/* Method badges */
+.method-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.method-get {
+    background: #dcfdf4;
+    color: #065f46;
+}
+
+.method-post {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.method-put {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.method-delete {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* API endpoint styling */
+.api-endpoint {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+}
+
+.api-endpoint-url {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* Parameters table */
+.params-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.875rem;
+}
+
+.params-table th,
+.params-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.params-table th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #374151;
+}
+
+.params-table .param-name {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-weight: 600;
+    color: #7c3aed;
+}
+
+.params-table .param-type {
+    color: #059669;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.params-table .param-required {
+    color: #dc2626;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Response examples */
+.response-example {
+    margin: 1.5rem 0;
+}
+
+.response-status {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: #dcfdf4;
+    color: #065f46;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Section headers */
+.api-section {
+    margin: 3rem 0 2rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.api-section h2 {
+    margin: 0 0 0.5rem 0;
+    color: #1e293b;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.api-section h3 {
+    margin: 2rem 0 1rem 0;
+    color: #374151;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Interactive elements */
+.try-it-button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin: 1rem 0;
+}
+
+.try-it-button:hover {
+    background: #2563eb;
+}
+
+/* Copy button for code blocks */
+.copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #374151;
+    color: #f9fafb;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.api-code-block:hover .copy-button {
+    opacity: 1;
+}
+
+.copy-button:hover {
+    background: #4b5563;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .api-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .api-examples {
+        position: static;
+        height: auto;
+        border-top: 1px solid #30363d;
+        overflow-x: auto;
+    }
+
+    .api-content {
+        border-right: none;
+    }
+}
+
+/* Fix for very long lines */
+.api-examples pre code {
+    display: block;
+    overflow-x: auto;
+    padding: 1rem;
+    line-height: 1.5;
+}
+
+/* Ensure code doesn't break layout */
+.api-examples .example-block {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Better handling of long URLs and code */
+.api-examples pre {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    tab-size: 2;
+}
+
+/* Prevent text from overflowing */
+.api-examples {
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+/* API Demo Styles */
+.api-demo {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.demo-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.demo-controls label {
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.875rem;
+}
+
+.demo-controls input,
+.demo-controls select {
+    padding: 0.5rem;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    min-width: 150px;
+    background: #ffffff !important;
+    color: #1f2937 !important;
+    font-weight: 500;
+}
+
+.demo-controls input:focus,
+.demo-controls select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background: #ffffff;
+    color: #1f2937;
+}
+
+.demo-controls input::placeholder {
+    color: #9ca3af;
+    opacity: 1;
+}
+
+/* Dark theme support */
+.dark .demo-controls input,
+.dark .demo-controls select {
+    background: #374151 !important;
+    color: #f9fafb !important;
+    border-color: #4b5563;
+}
+
+.dark .demo-controls input:focus,
+.dark .demo-controls select:focus {
+    background: #374151 !important;
+    color: #f9fafb !important;
+    border-color: #60a5fa;
+}
+
+.dark .demo-controls input::placeholder {
+    color: #6b7280;
+}
+
+.dark .demo-controls label {
+    color: #e5e7eb;
+}
+
+.dark .api-demo {
+    background: #1f2937;
+    border-color: #374151;
+}
+
+/* Force visibility for all themes */
+.demo-controls input[type="text"],
+.demo-controls input[type="password"] {
+    -webkit-text-fill-color: #1f2937 !important;
+    -webkit-background-clip: text !important;
+    text-shadow: none !important;
+}
+
+.dark .demo-controls input[type="text"],
+.dark .demo-controls input[type="password"] {
+    -webkit-text-fill-color: #f9fafb !important;
+}
+
+/* Additional contrast improvements */
+.demo-controls input {
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dark .demo-controls input {
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.test-button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.test-button:hover {
+    background: #2563eb;
+}
+
+.test-button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.copy-curl-button {
+    background: #059669;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.copy-curl-button:hover {
+    background: #047857;
+}
+
+.demo-result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+    white-space: pre-wrap;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.demo-result.success {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #166534;
+}
+
+.demo-result.error {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.demo-loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 50%;
+    border-top-color: #3b82f6;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Custom scrollbar for code examples */
+.api-examples::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.api-examples::-webkit-scrollbar-track {
+    background: #0d1117;
+}
+
+.api-examples::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 4px;
+}
+
+.api-examples::-webkit-scrollbar-thumb:hover {
+    background: #484f58;
+}
+
+/* Scrollbar for code blocks */
+.api-examples pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+.api-examples pre::-webkit-scrollbar-track {
+    background: #161b22;
+}
+
+.api-examples pre::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 4px;
+}
+
+.api-examples pre::-webkit-scrollbar-thumb:hover {
+    background: #484f58;
+}
+
+/* Syntax highlighting adjustments */
+.api-examples .token.string {
+    color: #a5d6ff !important;
+}
+
+.api-examples .token.number {
+    color: #79c0ff !important;
+}
+
+.api-examples .token.boolean {
+    color: #79c0ff !important;
+}
+
+.api-examples .token.property {
+    color: #ffa657 !important;
+}
+
+.api-examples .token.punctuation {
+    color: #f0f6fc !important;
+}
+
+/* Go-specific syntax highlighting */
+.api-examples .token.keyword {
+    color: #ff7b72 !important;
+}
+
+.api-examples .token.function {
+    color: #d2a8ff !important;
+}
+
+.api-examples .token.builtin {
+    color: #79c0ff !important;
+}
+
+.api-examples .token.comment {
+    color: #8b949e !important;
+    font-style: italic;
+}
+
+.api-examples .token.operator {
+    color: #ff7b72 !important;
+}
+
+.api-examples .token.class-name {
+    color: #ffa657 !important;
+}
+
+/* Navigation improvements for API docs */
+.api-nav {
+    position: sticky;
+    top: 2rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.api-nav h4 {
+    margin: 0 0 0.5rem 0;
+    color: #374151;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.api-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.api-nav li {
+    margin: 0.25rem 0;
+}
+
+.api-nav a {
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.api-nav a:hover {
+    color: #3b82f6;
+}
+
+.api-nav a.active {
+    color: #3b82f6;
+    font-weight: 500;
+}
