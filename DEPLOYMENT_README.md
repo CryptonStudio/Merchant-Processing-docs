@@ -2,11 +2,17 @@
 
 ## 📦 Deployment Package
 
-**Version:** Latest ($(date +%Y-%m-%d))  
-**Build Size:** ~13MB  
-**Archive:** `merchant-processing-docs-$(date +%Y%m%d-%H%M%S).tar.gz`
+**Version:** Latest (2025-06-08)  
+**Source Archive:** `merchant-processing-docs-20250608-152056.tar.gz` (225KB)  
+**Static Build:** `merchant-processing-docs-static-20250608-152129.tar.gz` (2.4MB)
 
 ## ✨ Latest Features
+
+### 🎨 Crypton Studio Branding
+- Official Crypton Studio favicon from crypton.studio
+- Multiple icon sizes (16x16, 32x32, 180x180) for all devices
+- Apple Touch Icon support for iOS devices
+- Professional branding in browser tabs
 
 ### 🔑 Global API Key Management
 - Beautiful gradient API key configuration section
@@ -19,6 +25,7 @@
 - Touch-friendly interactions
 - Responsive design optimizations
 - Glass effect UI elements
+- Fixed button overlapping issues on mobile
 
 ### 🌐 Multilingual Support
 - **English:** Complete API documentation with interactive testing
@@ -145,6 +152,6 @@ For optimal performance, consider deploying to:
 
 ---
 
-**Deployment Date:** $(date)  
-**Git Commit:** $(git rev-parse --short HEAD)  
+**Deployment Date:** 2025-06-08 15:21  
+**Git Commit:** 76ff632 (Crypton Studio favicon + mobile fixes)  
 **Build Status:** ✅ Ready for Production 
