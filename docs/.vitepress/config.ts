@@ -59,6 +59,7 @@ export default withMermaid(defineConfig({
                                 { text: 'Merchant', link: '/en/api/merchant-stripe' },
                                 { text: 'Addresses', link: '/en/api/addresses-stripe' },
                                 { text: 'Networks', link: '/en/api/networks-stripe' },
+                                { text: 'Coins', link: '/en/api/coins-stripe' },
                                 { text: 'Withdrawals', link: '/en/api/withdraws-stripe' },
                                 { text: 'Webhooks', link: '/en/api/webhooks' }
                             ]
@@ -132,7 +133,7 @@ export default withMermaid(defineConfig({
                                 { text: 'Мерчант', link: '/ru/api/merchant-stripe' },
                                 { text: 'Адреса', link: '/ru/api/addresses-stripe' },
                                 { text: 'Сети', link: '/ru/api/networks-stripe' },
-
+                                { text: 'Монеты', link: '/ru/api/coins-stripe' },
                                 { text: 'Выводы', link: '/ru/api/withdraws-stripe' }
                             ]
                         }

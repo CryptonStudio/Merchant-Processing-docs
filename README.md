@@ -157,7 +157,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 This documentation is maintained by **Crypton Studio LLC** - a leading provider of cryptocurrency payment processing solutions.
 
-- **Website**: [https://cryptonstudio.com](https://cryptonstudio.com)
+- **Website**: [https://crypton.studio/](https://crypton.studio/)
 - **Support**: Contact your system administrator
 - **Documentation**: [https://cryptonstudio.github.io/Merchant-Processing-docs/](https://cryptonstudio.github.io/Merchant-Processing-docs/)
 
