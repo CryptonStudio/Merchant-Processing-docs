@@ -83,7 +83,7 @@ The networks API allows you to:
 <div class="api-demo">
   <div class="demo-controls">
     <label for="api-key">API Key:</label>
-    <input type="text" id="api-key" placeholder="Enter your API key" />
+    <input type="text" id="api-key" value="sk_test_demo_key_12345" placeholder="Enter your API key" />
     <button onclick="testGetNetworks()" class="test-button">Test</button>
     <button onclick="copyCurlCommand('/networks', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
   </div>

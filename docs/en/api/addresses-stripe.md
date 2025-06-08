@@ -179,7 +179,7 @@ Different endpoints require different levels of authentication:
 <div class="api-demo">
   <div class="demo-controls">
     <label for="api-key">API Key:</label>
-    <input type="text" id="api-key" placeholder="Enter your API key" />
+    <input type="text" id="api-key" value="sk_test_demo_key_12345" placeholder="Enter your API key" />
     <label for="address-network">Network:</label>
     <select id="address-network">
       <option value="bitcoin">Bitcoin</option>

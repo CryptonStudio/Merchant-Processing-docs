@@ -82,7 +82,7 @@ API сетей позволяет:
 <div class="api-demo">
   <div class="demo-controls">
     <label for="api-key">API Ключ:</label>
-    <input type="text" id="api-key" placeholder="Введите ваш API ключ" />
+    <input type="text" id="api-key" value="sk_test_demo_key_12345" placeholder="Введите ваш API ключ" />
     <button onclick="testGetNetworks()" class="test-button">Тест</button>
     <button onclick="copyCurlCommand('/networks', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
   </div>

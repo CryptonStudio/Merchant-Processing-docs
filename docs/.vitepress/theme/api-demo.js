@@ -26,7 +26,7 @@ if (typeof window !== 'undefined') {
         const url = `${API_BASE_URL}${endpoint}`;
         const defaultOptions = {
             headers: {
-                'Authorization': `Bearer ${apiKey}`,
+                'X-Api-Key': apiKey,
                 'Content-Type': 'application/json',
             },
         };

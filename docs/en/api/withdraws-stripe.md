@@ -61,7 +61,7 @@ The withdraws API allows you to:
 <div class="api-demo">
   <div class="demo-controls">
     <label for="api-key">API Key:</label>
-    <input type="text" id="api-key" placeholder="Enter your API key" />
+    <input type="text" id="api-key" value="sk_test_demo_key_12345" placeholder="Enter your API key" />
     <label for="withdraw-network">Network:</label>
     <select id="withdraw-network">
       <option value="ethereum" selected>Ethereum</option>
