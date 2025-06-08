@@ -1,158 +1,166 @@
-# 🚀 Crypto Payment Gateway Documentation
+# Crypto Payment Gateway Documentation
 
-Полная документация для криптоплатежного шлюза с поддержкой множества блокчейн сетей.
+Complete documentation for cryptocurrency payment processing system with support for multiple blockchain networks.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/CryptonStudio/Merchant-Processing-docs)
+## 🚀 Features
 
-## 🌟 Особенности
+- **Multi-Network Support**: Bitcoin, Ethereum, Tron, BSC, Polygon, Arbitrum, Fantom, Litecoin
+- **Comprehensive API**: RESTful API for payment processing, address management, and withdrawals
+- **Real-time Testing**: Interactive API testing with live examples
+- **Multiple Languages**: Documentation available in English and Russian
+- **Stripe-style Documentation**: Modern, developer-friendly interface
 
-- 📚 **Полная документация** - API, руководства, примеры интеграции
-- 🌐 **Мультиязычность** - Поддержка английского и русского языков
-- 🌙 **Темная тема** - Автоматическое переключение и ручное управление
-- 📱 **Адаптивный дизайн** - Отлично работает на всех устройствах
-- ⚡ **Быстрая загрузка** - Оптимизированная производительность
-- 🔍 **Поиск** - Встроенный поиск по документации
+## 📖 Documentation
 
-## 🌐 Поддерживаемые сети
+Visit our comprehensive documentation at: **[https://cryptonstudio.github.io/Merchant-Processing-docs/](https://cryptonstudio.github.io/Merchant-Processing-docs/)**
 
-- **Bitcoin** - Оригинальная криптовалюта
-- **Ethereum** - Смарт-контракты и ERC-20 токены
-- **Tron** - Высокопроизводительный блокчейн
-- **Polygon** - Решение масштабирования Layer 2
-- **BSC** - Binance Smart Chain
-- **Arbitrum** - Ethereum Layer 2
-- **Fantom** - Высокоскоростной блокчейн
-- **Litecoin** - Быстрый и легкий
+### Quick Links
 
-## 🚀 Быстрый старт
+- **[API Reference](https://cryptonstudio.github.io/Merchant-Processing-docs/en/api/overview)** - Complete API documentation
+- **[Getting Started](https://cryptonstudio.github.io/Merchant-Processing-docs/en/guide/introduction)** - Quick start guide
+- **[Architecture](https://cryptonstudio.github.io/Merchant-Processing-docs/en/guide/architecture)** - System architecture overview
+- **[Integration Examples](https://cryptonstudio.github.io/Merchant-Processing-docs/en/examples/basic-usage)** - Code examples
 
-### Локальная разработка
+## 🛠 API Endpoints
+
+### Core APIs
+- **Merchant API** - Invoice management and merchant operations
+- **Addresses API** - Cryptocurrency address generation and management
+- **Networks API** - Blockchain network information and operations
+- **Withdrawals API** - Cryptocurrency withdrawal processing
+
+### Supported Operations
+- Create and manage invoices
+- Generate cryptocurrency addresses
+- Process payments across multiple networks
+- Handle withdrawals and transfers
+- Real-time transaction monitoring
+- Webhook notifications
+
+## 🌐 Supported Networks
+
+| Network | Native Coin | Tokens Supported |
+|---------|-------------|------------------|
+| Bitcoin | BTC | - |
+| Ethereum | ETH | USDT, USDC, DAI, and more |
+| Tron | TRX | USDT-TRC20, and more |
+| BSC | BNB | USDT-BEP20, BUSD, and more |
+| Polygon | MATIC | USDT, USDC, and more |
+| Arbitrum | ETH | USDT, USDC, and more |
+| Fantom | FTM | USDT, and more |
+| Litecoin | LTC | - |
+
+## 🔧 Development
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+
+### Local Development
 
 ```bash
-# Клонируйте репозиторий
+# Clone the repository
 git clone https://github.com/CryptonStudio/Merchant-Processing-docs.git
-
-# Перейдите в папку проекта
 cd Merchant-Processing-docs
 
-# Установите зависимости
+# Install dependencies
 npm install
 
-# Запустите dev сервер
-npm run dev
-```
+# Start development server
+cd docs && npm run dev
 
-Документация будет доступна по адресу `http://localhost:5173`
-
-### Сборка для продакшн
-
-```bash
-# Соберите проект
+# Build for production
 npm run build
-
-# Предварительный просмотр
-npm run preview
 ```
 
-## 📖 Структура документации
+### Project Structure
 
 ```
-docs/
-├── en/                     # Английская версия
-│   ├── guide/             # Руководства
-│   ├── api/               # API справочник
-│   ├── integration/       # Интеграция
-│   └── examples/          # Примеры кода
-├── ru/                     # Русская версия
-│   ├── guide/             # Руководства
-│   ├── api/               # API справочник
-│   ├── integration/       # Интеграция
-│   └── examples/          # Примеры кода
-└── public/                # Статические файлы
+├── docs/
+│   ├── .vitepress/          # VitePress configuration
+│   │   ├── components/      # Vue components
+│   │   ├── theme/          # Custom theme files
+│   │   └── config.ts       # Main configuration
+│   ├── en/                 # English documentation
+│   │   ├── api/           # API reference
+│   │   ├── guide/         # User guides
+│   │   └── examples/      # Code examples
+│   └── ru/                # Russian documentation
+├── .github/workflows/      # GitHub Actions
+└── README.md              # This file
 ```
 
-## 🛠️ Технологии
+## 📝 API Examples
 
-- **[VitePress](https://vitepress.dev/)** - Генератор статических сайтов
-- **[Vue 3](https://vuejs.org/)** - Фреймворк для интерфейса
-- **[TypeScript](https://www.typescriptlang.org/)** - Типизированный JavaScript
-- **CSS Custom Properties** - Для темизации
+### Create Invoice
 
-## 🌐 Деплой
-
-Документация готова для деплоя на различных платформах:
-
-### Vercel (Рекомендуется)
 ```bash
-# Автоматический деплой из GitHub
-# Настройки в vercel.json
+curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/invoices" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "currency": "eth",
+    "amount": 0.001,
+    "externalId": "order_123"
+  }'
 ```
 
-### Netlify
+### Generate Address
+
 ```bash
-# Настройки в netlify.toml
+curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/addresses" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "network": "ethereum",
+    "coin": "eth"
+  }'
 ```
 
-### GitHub Pages
+### Get Networks
+
 ```bash
-# Автоматический деплой через GitHub Actions
-# Настройки в .github/workflows/deploy.yml
+curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/networks" \
+  -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-## 📝 Содержание документации
+## 🔐 Authentication
 
-### 📘 Руководства
-- Введение и быстрый старт
-- Архитектура системы
-- Управление адресами и кошельками
-- Работа с сетями и монетами
-- Обработка транзакций
-- Выводы средств
-- Развертывание
+All API requests require authentication using Bearer tokens:
 
-### 🔌 API Справочник
-- Обзор API
-- Аутентификация
-- Адреса
-- Сети
-- Транзакции
-- Выводы
-- Webhooks
+```
+Authorization: Bearer YOUR_API_KEY
+```
 
-### 🛠️ Интеграция
-- Начало работы
-- Go SDK
-- TypeScript SDK
-- Python SDK
+Contact your system administrator to obtain API credentials.
 
-### 💡 Примеры
-- Базовое использование
-- Поток платежей
-- Обработка подписок
-- Webhook обработка
-- Обработка ошибок
+## 🌍 Internationalization
 
-## 🤝 Вклад в проект
+Documentation is available in multiple languages:
 
-Мы приветствуем вклад в улучшение документации!
+- **English** - `/en/`
+- **Russian** - `/ru/`
 
-1. Fork репозитория
-2. Создайте ветку для изменений (`git checkout -b feature/improvement`)
-3. Внесите изменения
-4. Commit изменения (`git commit -am 'Add some improvement'`)
-5. Push в ветку (`git push origin feature/improvement`)
-6. Создайте Pull Request
+## 🤝 Contributing
 
-## 📄 Лицензия
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Этот проект лицензирован под [MIT License](docs/LICENSE).
+## 📄 License
 
-## 📞 Поддержка
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- 📖 [Документация](https://cryptonstudio.github.io/Merchant-Processing-docs/)
-- 💬 [Issues](https://github.com/CryptonStudio/Merchant-Processing-docs/issues)
-- 📧 Email: support@cryptonstudio.com
+## 🏢 About Crypton Studio
+
+This documentation is maintained by **Crypton Studio LLC** - a leading provider of cryptocurrency payment processing solutions.
+
+- **Website**: [https://cryptonstudio.com](https://cryptonstudio.com)
+- **Support**: Contact your system administrator
+- **Documentation**: [https://cryptonstudio.github.io/Merchant-Processing-docs/](https://cryptonstudio.github.io/Merchant-Processing-docs/)
 
 ---
 
-**Создано с ❤️ командой CryptonStudio**
+© 2016-2025 Crypton Studio LLC. All rights reserved.
