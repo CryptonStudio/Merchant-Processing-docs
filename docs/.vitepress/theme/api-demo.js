@@ -36,12 +36,12 @@ if (typeof window !== 'undefined') {
             }, 2000);
         }
 
-        showApiKeyStatus('success', `API ключ установлен: ${apiKey.substring(0, 10)}...`);
+        showApiKeyStatus('success', `✅ API ключ установлен: ${apiKey.substring(0, 10)}... (будет использоваться во всех запросах)`);
 
         // Store in localStorage for persistence
         localStorage.setItem('merchant-api-key', apiKey);
 
-        console.log('Global API key set:', apiKey);
+        console.log('✅ Global API key set:', apiKey.substring(0, 10) + '... (length:', apiKey.length + ')');
     }
 
     // Show API key status
@@ -82,7 +82,7 @@ if (typeof window !== 'undefined') {
     function getApiKey(container = null) {
         // First, try to use global API key
         if (globalApiKey) {
-            console.log('Using global API key:', globalApiKey); // Debug log
+            console.log('✅ Using global API key:', globalApiKey.substring(0, 10) + '...'); // Debug log
             return globalApiKey;
         }
 
@@ -460,12 +460,12 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
 
     // Функции для тестирования API инвойсов
     window.testCreateInvoice = async function () {
-        const apiKey = document.getElementById('api-key')?.value;
+        const apiKey = getApiKey();
         const currency = document.getElementById('invoice-currency')?.value || 'eth';
         const amount = parseFloat(document.getElementById('invoice-amount')?.value) || 0.001;
 
         if (!apiKey) {
-            alert('Пожалуйста, введите API ключ');
+            alert('Пожалуйста, установите API ключ в секции выше или введите в поле');
             return;
         }
 
@@ -496,13 +496,13 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
     };
 
     window.testGetInvoices = async function () {
-        const apiKey = document.getElementById('api-key')?.value;
+        const apiKey = getApiKey();
         const page = document.getElementById('invoices-page')?.value || 1;
         const perPage = document.getElementById('invoices-perPage')?.value || 20;
         const currency = document.getElementById('invoices-currency')?.value || '';
 
         if (!apiKey) {
-            alert('Пожалуйста, введите API ключ');
+            alert('Пожалуйста, установите API ключ в секции выше или введите в поле');
             return;
         }
 
@@ -532,11 +532,11 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
     };
 
     window.testGetInvoice = async function () {
-        const apiKey = document.getElementById('api-key')?.value;
+        const apiKey = getApiKey();
         const invoiceId = document.getElementById('invoice-id')?.value;
 
         if (!apiKey) {
-            alert('Пожалуйста, введите API ключ');
+            alert('Пожалуйста, установите API ключ в секции выше или введите в поле');
             return;
         }
 
@@ -566,11 +566,11 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
     };
 
     window.testGetInvoiceByExternalId = async function () {
-        const apiKey = document.getElementById('api-key')?.value;
+        const apiKey = getApiKey();
         const externalId = document.getElementById('external-id')?.value;
 
         if (!apiKey) {
-            alert('Пожалуйста, введите API ключ');
+            alert('Пожалуйста, установите API ключ в секции выше или введите в поле');
             return;
         }
 
@@ -600,10 +600,10 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
     };
 
     window.testGetSummary = async function () {
-        const apiKey = document.getElementById('api-key')?.value;
+        const apiKey = getApiKey();
 
         if (!apiKey) {
-            alert('Пожалуйста, введите API ключ');
+            alert('Пожалуйста, установите API ключ в секции выше или введите в поле');
             return;
         }
 
@@ -628,12 +628,12 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
     };
 
     window.testChangeInvoiceStatus = async function () {
-        const apiKey = document.getElementById('api-key')?.value;
+        const apiKey = getApiKey();
         const invoiceId = document.getElementById('status-invoice-id')?.value;
         const status = document.getElementById('new-status')?.value;
 
         if (!apiKey) {
-            alert('Пожалуйста, введите API ключ');
+            alert('Пожалуйста, установите API ключ в секции выше или введите в поле');
             return;
         }
 
@@ -668,10 +668,10 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
     };
 
     window.testGetInvoiceSettings = async function () {
-        const apiKey = document.getElementById('api-key')?.value;
+        const apiKey = getApiKey();
 
         if (!apiKey) {
-            alert('Пожалуйста, введите API ключ');
+            alert('Пожалуйста, установите API ключ в секции выше или введите в поле');
             return;
         }
 
