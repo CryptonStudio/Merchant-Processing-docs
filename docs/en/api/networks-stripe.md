@@ -91,7 +91,7 @@ The networks API allows you to:
 
 ```bash
 curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/networks" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 </div>
@@ -182,7 +182,7 @@ $apiKey = 'YOUR_API_KEY';
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, 'https://cp-merch-dev.wsdemo.online/api/v1/networks');
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Authorization: Bearer ' . $apiKey
+    'X-Api-Key: ' . $apiKey
 ]);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 

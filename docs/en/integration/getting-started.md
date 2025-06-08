@@ -36,7 +36,7 @@ Verify your API access with a simple test call:
 
 ```bash
 curl -X GET "https://api.gateway.com/v1/auth/test" \
-  -H "Authorization: Bearer sk_test_your_test_key_here"
+  -H "X-Api-Key: sk_test_your_test_key_here"
 ```
 
 Expected response:
@@ -58,7 +58,7 @@ Generate a cryptocurrency address to receive payments:
 
 ```bash
 curl -X POST "https://api.gateway.com/v1/addresses" \
-  -H "Authorization: Bearer sk_test_your_test_key_here" \
+  -H "X-Api-Key: sk_test_your_test_key_here" \
   -H "Content-Type: application/json" \
   -d '{
     "network": "ethereum",
@@ -484,7 +484,7 @@ function verifySignature(payload, signature) {
 
 ```bash
 curl -X POST "https://api.gateway.com/v1/webhooks" \
-  -H "Authorization: Bearer sk_test_your_test_key_here" \
+  -H "X-Api-Key: sk_test_your_test_key_here" \
   -H "Content-Type: application/json" \
   -d '{
     "url": "https://your-domain.com/webhooks/gateway",
@@ -510,7 +510,7 @@ Use test API keys and test networks:
 ```bash
 # Send test transaction
 curl -X POST "https://api.gateway.com/v1/test/transactions" \
-  -H "Authorization: Bearer sk_test_your_test_key_here" \
+  -H "X-Api-Key: sk_test_your_test_key_here" \
   -H "Content-Type: application/json" \
   -d '{
     "to_address": "0x742d35Cc6634C0532925a3b8D4C9db96590c6C87",

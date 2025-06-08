@@ -197,7 +197,7 @@ Different endpoints require different levels of authentication:
 
 ```bash
 curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/addresses" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "X-Api-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "network": "ethereum",
@@ -231,7 +231,7 @@ curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/addresses" \
 
 ```bash
 curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/addresses/0x742d35Cc6634C0532925a3b8D4C9db96590c6C87" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 **Response:**
@@ -272,7 +272,7 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/addresses/0x742d35Cc6634C
 
 ```bash
 curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/addresses/hot-wallet/ethereum" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 **Response:**
@@ -440,7 +440,7 @@ curl_setopt($ch, CURLOPT_URL, $baseUrl . '/addresses');
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Authorization: Bearer ' . $apiKey,
+    'X-Api-Key: ' . $apiKey,
     'Content-Type: application/json'
 ]);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

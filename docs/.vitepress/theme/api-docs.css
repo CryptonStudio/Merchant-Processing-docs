@@ -362,8 +362,8 @@
 }
 
 .demo-controls input::placeholder {
-    color: #9ca3af;
-    opacity: 1;
+    color: #d1d5db;
+    opacity: 0.6;
 }
 
 /* Dark theme support */
@@ -382,7 +382,8 @@
 }
 
 .dark .demo-controls input::placeholder {
-    color: #6b7280;
+    color: #4b5563;
+    opacity: 0.6;
 }
 
 .dark .demo-controls label {

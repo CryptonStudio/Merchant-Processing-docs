@@ -25,7 +25,7 @@ Use the demo environment for testing and development. The demo API includes samp
 All API requests require authentication using one of the following methods:
 
 - **API Key** - Include `X-Api-Key` header with your API key
-- **Bearer Token** - Include `Authorization: Bearer <token>` header
+- **API Key** - Include `X-Api-Key: <token>` header
 
 ## API Versioning
 

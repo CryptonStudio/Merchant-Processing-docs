@@ -71,7 +71,7 @@ API адресов позволяет:
 
 ```bash
 curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/addresses" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "X-Api-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "network": "ethereum"
@@ -188,7 +188,7 @@ curl_setopt($ch, CURLOPT_URL, 'https://cp-merch-dev.wsdemo.online/api/v1/address
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Authorization: Bearer ' . $apiKey,
+    'X-Api-Key: ' . $apiKey,
     'Content-Type: application/json'
 ]);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

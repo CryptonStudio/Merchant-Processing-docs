@@ -139,7 +139,7 @@ The coins API allows you to:
 
 ```bash
 curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "X-Api-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "network": "ethereum",
@@ -177,7 +177,7 @@ curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
 
 ```bash
 curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/coins/precreate-token" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "X-Api-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "contractAddress": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
@@ -206,7 +206,7 @@ curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/coins/precreate-token" \
 
 ```bash
 curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 **Response:**
@@ -272,7 +272,7 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
 
 ```bash
 curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins/btc" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 **Response:**
@@ -328,7 +328,7 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins/btc" \
 
 ```bash
 curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "X-Api-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "coin": "btc",
@@ -567,7 +567,7 @@ curl_setopt($ch, CURLOPT_URL, $baseUrl . '/coins');
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Authorization: Bearer ' . $apiKey,
+    'X-Api-Key: ' . $apiKey,
     'Content-Type: application/json'
 ]);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -584,7 +584,7 @@ if ($httpCode === 201) {
     $ch2 = curl_init();
     curl_setopt($ch2, CURLOPT_URL, $baseUrl . '/coins');
     curl_setopt($ch2, CURLOPT_HTTPHEADER, [
-        'Authorization: Bearer ' . $apiKey
+        'X-Api-Key: ' . $apiKey
     ]);
     curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
     
@@ -600,7 +600,7 @@ if ($httpCode === 201) {
         $ch3 = curl_init();
         curl_setopt($ch3, CURLOPT_URL, $baseUrl . '/coins/btc');
         curl_setopt($ch3, CURLOPT_HTTPHEADER, [
-            'Authorization: Bearer ' . $apiKey
+            'X-Api-Key: ' . $apiKey
         ]);
         curl_setopt($ch3, CURLOPT_RETURNTRANSFER, true);
         

@@ -160,7 +160,7 @@ GET /api/v1/transactions
 **Example:**
 ```bash
 curl -X GET "https://api.gateway.com/v1/transactions?network=ethereum&coin=usdt&status=confirmed&limit=50" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 ### Get Transaction Details

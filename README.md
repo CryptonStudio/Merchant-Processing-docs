@@ -96,7 +96,7 @@ npm run build
 
 ```bash
 curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/invoices" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "X-Api-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "currency": "eth",
@@ -109,7 +109,7 @@ curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/invoices" \
 
 ```bash
 curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/addresses" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "X-Api-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "network": "ethereum",
@@ -121,15 +121,15 @@ curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/addresses" \
 
 ```bash
 curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/networks" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 ## 🔐 Authentication
 
-All API requests require authentication using Bearer tokens:
+All API requests require authentication using API keys:
 
 ```
-Authorization: Bearer YOUR_API_KEY
+X-Api-Key: YOUR_API_KEY
 ```
 
 Contact your system administrator to obtain API credentials.

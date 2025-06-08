@@ -1,0 +1,29 @@
+
+> merchant-processing-docs@1.0.0 dev
+> vitepress dev docs
+
+
+  vitepress v1.6.3
+
+  ➜  Local:   http://localhost:5173/Merchant-Processing-docs/
+  ➜  Network: use --host to expose
+  ➜  press h to show help
+1:15:46 PM [vitepress] Internal server error: Invalid end tag.
+  Plugin: vite:vue
+  File: /home/timofvy/Projects/CRYPTO_PROCESSING/merchant-processing-docs/docs/zh/api/addresses-stripe.md:503:10
+  501|    var envId = 'global-environment';
+  502|    const envSelect = document.getElementById(envId);
+  503|    if (envSelect) {
+     |            ^
+  504|      envSelect.value = savedEnvironment;
+  505|    }
+      at createCompilerError (/home/timofvy/Projects/CRYPTO_PROCESSING/merchant-processing-docs/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1364:17)
+      at emitError (/home/timofvy/Projects/CRYPTO_PROCESSING/merchant-processing-docs/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2949:5)
+      at Object.onclosetag (/home/timofvy/Projects/CRYPTO_PROCESSING/merchant-processing-docs/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2318:9)
+      at Tokenizer.stateInClosingTagName (/home/timofvy/Projects/CRYPTO_PROCESSING/merchant-processing-docs/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:785:16)
+      at Tokenizer.parse (/home/timofvy/Projects/CRYPTO_PROCESSING/merchant-processing-docs/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:1143:16)
+      at Object.baseParse (/home/timofvy/Projects/CRYPTO_PROCESSING/merchant-processing-docs/node_modules/@vue/compiler-core/dist/compiler-core.cjs.js:2988:13)
+      at Object.parse (/home/timofvy/Projects/CRYPTO_PROCESSING/merchant-processing-docs/node_modules/@vue/compiler-dom/dist/compiler-dom.cjs.js:907:23)
+      at Object.parse$1 [as parse] (/home/timofvy/Projects/CRYPTO_PROCESSING/merchant-processing-docs/node_modules/@vue/compiler-sfc/dist/compiler-sfc.cjs.js:1794:24)
+      at createDescriptor (file:///home/timofvy/Projects/CRYPTO_PROCESSING/merchant-processing-docs/node_modules/@vitejs/plugin-vue/dist/index.mjs:71:43)
+      at transformMain (file:///home/timofvy/Projects/CRYPTO_PROCESSING/merchant-processing-docs/node_modules/@vitejs/plugin-vue/dist/index.mjs:2421:34)

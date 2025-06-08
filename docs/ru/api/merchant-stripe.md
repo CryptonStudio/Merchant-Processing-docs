@@ -171,7 +171,7 @@ API инвойсов позволяет:
 
 ```bash
 curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/invoices" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "X-Api-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "currency": "eth",
@@ -217,7 +217,7 @@ curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/invoices" \
 
 ```bash
 curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices/getAll?page=1&perPage=20" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 **Ответ:**
@@ -265,7 +265,7 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices/getAll?page=1&pe
 
 ```bash
 curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices?id=inv_abc123def456" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 ### Получить инвойс по внешнему ID
@@ -281,7 +281,7 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices?id=inv_abc123def
 
 ```bash
 curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices/getByExternalId?externalId=demo_123" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 ### Получить сводку
@@ -295,7 +295,7 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices/getByExternalId?
 
 ```bash
 curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices/summary" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 **Ответ:**
@@ -334,7 +334,7 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices/summary" \
 
 ```bash
 curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/invoices" \
-  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "X-Api-Key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
     "invoiceId": "inv_abc123def456",
@@ -353,7 +353,7 @@ curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/invoices" \
 
 ```bash
 curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/invoices/configureSettings" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 </div>
@@ -660,7 +660,7 @@ curl_setopt($ch, CURLOPT_URL, $baseUrl . '/invoices');
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Authorization: Bearer ' . $apiKey,
+    'X-Api-Key: ' . $apiKey,
     'Content-Type: application/json'
 ]);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -677,7 +677,7 @@ if ($httpCode === 201) {
     $ch2 = curl_init();
     curl_setopt($ch2, CURLOPT_URL, $baseUrl . '/invoices/getAll?page=1&perPage=20');
     curl_setopt($ch2, CURLOPT_HTTPHEADER, [
-        'Authorization: Bearer ' . $apiKey
+        'X-Api-Key: ' . $apiKey
     ]);
     curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
     
@@ -694,7 +694,7 @@ if ($httpCode === 201) {
     $ch3 = curl_init();
     curl_setopt($ch3, CURLOPT_URL, $baseUrl . '/invoices/summary');
     curl_setopt($ch3, CURLOPT_HTTPHEADER, [
-        'Authorization: Bearer ' . $apiKey
+        'X-Api-Key: ' . $apiKey
     ]);
     curl_setopt($ch3, CURLOPT_RETURNTRANSFER, true);
     
@@ -726,7 +726,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
     'amount' => 0.001
 ]));
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Authorization: Bearer ' . $apiKey,
+    'X-Api-Key: ' . $apiKey,
     'Content-Type: application/json'
 ]);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

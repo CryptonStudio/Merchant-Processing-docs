@@ -64,7 +64,7 @@ if (typeof window !== 'undefined') {
 
 Curl команда для копирования:
 curl -X ${finalOptions.method || 'GET'} "${url}" \\
-  -H "Authorization: Bearer ${getApiKey()}" \\
+  -H "X-Api-Key: ${getApiKey()}" \\
   -H "Content-Type: application/json"${finalOptions.body ? ` \\
   -d '${finalOptions.body}'` : ''}`;
             }
@@ -109,7 +109,7 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
         const url = `${API_BASE_URL}${endpoint}`;
         const method = options.method || 'GET';
 
-        let curlCommand = `curl -X ${method} "${url}" \\\n  -H "Authorization: Bearer ${apiKey}" \\\n  -H "Content-Type: application/json"`;
+        let curlCommand = `curl -X ${method} "${url}" \\\n  -H "X-Api-Key: ${apiKey}" \\\n  -H "Content-Type: application/json"`;
 
         if (options.body) {
             curlCommand += ` \\\n  -d '${options.body}'`;

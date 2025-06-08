@@ -13,6 +13,8 @@ export default withMermaid(defineConfig({
 
 
 
+
+
     locales: {
         en: {
             label: 'English',
@@ -69,10 +71,7 @@ export default withMermaid(defineConfig({
                         {
                             text: 'Integration Guide',
                             items: [
-                                { text: 'Getting Started', link: '/en/integration/getting-started' },
-                                { text: 'Go SDK', link: '/en/integration/go' },
-                                { text: 'TypeScript SDK', link: '/en/integration/typescript' },
-                                { text: 'Python SDK', link: '/en/integration/python' }
+                                { text: 'Getting Started', link: '/en/integration/getting-started' }
                             ]
                         }
                     ],
@@ -142,10 +141,7 @@ export default withMermaid(defineConfig({
                         {
                             text: 'Руководство по интеграции',
                             items: [
-                                { text: 'Начало работы', link: '/ru/integration/getting-started' },
-                                { text: 'Go SDK', link: '/ru/integration/go' },
-                                { text: 'TypeScript SDK', link: '/ru/integration/typescript' },
-                                { text: 'Python SDK', link: '/ru/integration/python' }
+                                { text: 'Начало работы', link: '/ru/integration/getting-started' }
                             ]
                         }
                     ],
@@ -156,6 +152,63 @@ export default withMermaid(defineConfig({
                                 { text: 'Базовое использование', link: '/ru/examples/basic-usage' },
                                 { text: 'Поток платежей', link: '/ru/examples/payment-flow' },
                                 { text: 'Обработка вебхуков', link: '/ru/examples/webhooks' }
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        zh: {
+            label: '中文',
+            lang: 'zh-CN',
+            title: '加密货币支付网关',
+            description: '加密货币支付处理系统完整文档',
+            themeConfig: {
+                nav: [
+                    { text: '指南', link: '/zh/guide/introduction' },
+                    { text: 'API 参考', link: '/zh/api/overview' },
+                    { text: '集成', link: '/zh/integration/getting-started' },
+                    { text: '示例', link: '/zh/examples/basic-usage' },
+                    { text: '演示 API', link: '/zh/guide/demo-api' }
+                ],
+                sidebar: {
+                    '/zh/guide/': [
+                        {
+                            text: '开始使用',
+                            items: [
+                                { text: '介绍', link: '/zh/guide/introduction' },
+                                { text: '快速开始', link: '/zh/guide/quick-start' },
+                                { text: '演示 API', link: '/zh/guide/demo-api' }
+                            ]
+                        }
+                    ],
+                    '/zh/api/': [
+                        {
+                            text: 'API 参考',
+                            items: [
+                                { text: '概述', link: '/zh/api/overview' },
+                                { text: '身份验证', link: '/zh/api/authentication' },
+                                { text: '商户', link: '/zh/api/merchant' },
+                                { text: '地址', link: '/zh/api/addresses' },
+                                { text: '网络', link: '/zh/api/networks' },
+                                { text: '币种', link: '/zh/api/coins' },
+                                { text: '提现', link: '/zh/api/withdraws' }
+                            ]
+                        }
+                    ],
+                    '/zh/integration/': [
+                        {
+                            text: '集成指南',
+                            items: [
+                                { text: '开始使用', link: '/zh/integration/getting-started' }
+                            ]
+                        }
+                    ],
+                    '/zh/examples/': [
+                        {
+                            text: '代码示例',
+                            items: [
+                                { text: '基本用法', link: '/zh/examples/basic-usage' }
                             ]
                         }
                     ]

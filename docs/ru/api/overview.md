@@ -37,7 +37,7 @@ API использует версионирование через URL. Теку
 Все запросы к API должны включать заголовок аутентификации:
 
 ```http
-Authorization: Bearer YOUR_API_KEY
+X-Api-Key: YOUR_API_KEY
 Content-Type: application/json
 ```
 

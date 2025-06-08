@@ -1,0 +1,886 @@
+# 基本用法示例
+
+本页面提供了使用 Crypton Studio 支付网关的基本代码示例。
+
+## 完整的支付流程示例
+
+### JavaScript/Node.js
+
+'''javascript
+const { CryptonClient } = require('@crypton/payment-sdk')
+const express = require('express')
+const crypto = require('crypto')
+
+// 初始化客户端
+const client = new CryptonClient({
+  apiKey: process.env.CRYPTON_API_KEY,
+  environment: process.env.NODE_ENV === 'production' ? 'production' : 'sandbox'
+})
+
+const app = express()
+app.use(express.json())
+
+// 创建支付订单
+app.post('/create-payment', async (req, res) => {
+  try {
+    const { amount, currency, orderId } = req.body
+    
+    // 创建支付地址
+    const address = await client.addresses.create({
+      network: 'ethereum',
+      coin: currency,
+      label: '订单支付 - ' + orderId + '',
+      metadata: {
+        orderId,
+        amount,
+        currency,
+        createdAt: new Date().toISOString()
+      }
+    })
+    
+    res.json({
+      success: true,
+      data: {
+        paymentAddress: address.address,
+        qrCode: address.qrCode,
+        addressId: address.id,
+        amount,
+        currency,
+        orderId
+      }
+    })
+  } catch (error) {
+    console.error('创建支付失败:', error)
+    res.status(500).json({
+      success: false,
+      error: error.message
+    })
+  }
+})
+
+// 检查支付状态
+app.get('/payment-status/:addressId', async (req, res) => {
+  try {
+    const { addressId } = req.params
+    
+    const transactions = await client.addresses.getTransactions(addressId)
+    
+    let status = 'pending'
+    let transaction = null
+    
+    for (const tx of transactions) {
+      if (tx.status === 'confirmed') {
+        status = 'completed'
+        transaction = tx
+        break
+      } else if (tx.status === 'pending') {
+        status = 'pending'
+        transaction = tx
+      }
+    }
+    
+    res.json({
+      success: true,
+      data: {
+        status,
+        transaction
+      }
+    })
+  } catch (error) {
+    console.error('检查支付状态失败:', error)
+    res.status(500).json({
+      success: false,
+      error: error.message
+    })
+  }
+})
+
+// Webhook 处理
+app.post('/webhook', (req, res) => {
+  try {
+    // 验证签名
+    const signature = req.headers['x-crypton-signature']
+    const payload = JSON.stringify(req.body)
+    
+    if (!verifyWebhookSignature(payload, signature)) {
+      return res.status(401).send('Invalid signature')
+    }
+    
+    const { event, data } = req.body
+    
+    switch (event) {
+      case 'transaction.confirmed':
+        handlePaymentConfirmed(data)
+        break
+      case 'transaction.failed':
+        handlePaymentFailed(data)
+        break
+      default:
+        console.log('未处理的事件:', event)
+    }
+    
+    res.status(200).send('OK')
+  } catch (error) {
+    console.error('Webhook 处理失败:', error)
+    res.status(500).send('Internal Server Error')
+  }
+})
+
+function verifyWebhookSignature(payload, signature) {
+  const secret = process.env.WEBHOOK_SECRET
+  const expectedSignature = crypto
+    .createHmac('sha256', secret)
+    .update(payload)
+    .digest('hex')
+  
+  return 'sha256=' + expectedSignature + '' === signature
+}
+
+function handlePaymentConfirmed(data) {
+  console.log('支付确认:', data)
+  
+  // 更新数据库中的订单状态
+  // updateOrderStatus(data.metadata.orderId, 'paid')
+  
+  // 发送确认邮件
+  // sendConfirmationEmail(data.metadata.orderId)
+  
+  // 处理其他业务逻辑
+}
+
+function handlePaymentFailed(data) {
+  console.log('支付失败:', data)
+  
+  // 更新订单状态为失败
+  // updateOrderStatus(data.metadata.orderId, 'failed')
+  
+  // 通知用户
+  // notifyPaymentFailed(data.metadata.orderId)
+}
+
+app.listen(3000, () => {
+  console.log('服务器运行在端口 3000')
+})
+'''
+
+### Python/Flask
+
+'''python
+import os
+import hmac
+import hashlib
+import json
+from flask import Flask, request, jsonify
+from crypton_sdk import CryptonClient
+
+# 初始化客户端
+client = CryptonClient(
+    api_key=os.getenv('CRYPTON_API_KEY'),
+    environment='production' if os.getenv('FLASK_ENV') == 'production' else 'sandbox'
+)
+
+app = Flask(__name__)
+
+@app.route('/create-payment', methods=['POST'])
+def create_payment():
+    try:
+        data = request.get_json()
+        amount = data['amount']
+        currency = data['currency']
+        order_id = data['orderId']
+        
+        # 创建支付地址
+        address = client.addresses.create({
+            'network': 'ethereum',
+            'coin': currency,
+            'label': f'订单支付 - {order_id}',
+            'metadata': {
+                'order_id': order_id,
+                'amount': amount,
+                'currency': currency,
+                'created_at': datetime.utcnow().isoformat()
+            }
+        })
+        
+        return jsonify({
+            'success': True,
+            'data': {
+                'payment_address': address.address,
+                'qr_code': address.qr_code,
+                'address_id': address.id,
+                'amount': amount,
+                'currency': currency,
+                'order_id': order_id
+            }
+        })
+    except Exception as error:
+        print(f'创建支付失败: {error}')
+        return jsonify({
+            'success': False,
+            'error': str(error)
+        }), 500
+
+@app.route('/payment-status/<address_id>')
+def payment_status(address_id):
+    try:
+        transactions = client.addresses.get_transactions(address_id)
+        
+        status = 'pending'
+        transaction = None
+        
+        for tx in transactions:
+            if tx.status == 'confirmed':
+                status = 'completed'
+                transaction = tx.__dict__
+                break
+            elif tx.status == 'pending':
+                status = 'pending'
+                transaction = tx.__dict__
+        
+        return jsonify({
+            'success': True,
+            'data': {
+                'status': status,
+                'transaction': transaction
+            }
+        })
+    except Exception as error:
+        print(f'检查支付状态失败: {error}')
+        return jsonify({
+            'success': False,
+            'error': str(error)
+        }), 500
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    try:
+        # 验证签名
+        signature = request.headers.get('X-Crypton-Signature')
+        payload = request.get_data()
+        
+        if not verify_webhook_signature(payload, signature):
+            return 'Invalid signature', 401
+        
+        data = request.get_json()
+        event = data['event']
+        event_data = data['data']
+        
+        if event == 'transaction.confirmed':
+            handle_payment_confirmed(event_data)
+        elif event == 'transaction.failed':
+            handle_payment_failed(event_data)
+        else:
+            print(f'未处理的事件: {event}')
+        
+        return 'OK', 200
+    except Exception as error:
+        print(f'Webhook 处理失败: {error}')
+        return 'Internal Server Error', 500
+
+def verify_webhook_signature(payload, signature):
+    secret = os.getenv('WEBHOOK_SECRET').encode('utf-8')
+    expected_signature = hmac.new(
+        secret,
+        payload,
+        hashlib.sha256
+    ).hexdigest()
+    
+    return f'sha256={expected_signature}' == signature
+
+def handle_payment_confirmed(data):
+    print(f'支付确认: {data}')
+    
+    # 更新数据库中的订单状态
+    # update_order_status(data['metadata']['order_id'], 'paid')
+    
+    # 发送确认邮件
+    # send_confirmation_email(data['metadata']['order_id'])
+
+def handle_payment_failed(data):
+    print(f'支付失败: {data}')
+    
+    # 更新订单状态为失败
+    # update_order_status(data['metadata']['order_id'], 'failed')
+
+if __name__ == '__main__':
+    app.run(debug=True, port=3000)
+'''
+
+### Go
+
+'''go
+package main
+
+import (
+    "context"
+    "crypto/hmac"
+    "crypto/sha256"
+    "encoding/hex"
+    "encoding/json"
+    "fmt"
+    "log"
+    "net/http"
+    "os"
+    "time"
+    
+    "github.com/gin-gonic/gin"
+    "github.com/crypton-studio/payment-sdk-go"
+)
+
+type PaymentRequest struct {
+    Amount   string 'json:"amount"'
+    Currency string 'json:"currency"'
+    OrderID  string 'json:"orderId"'
+}
+
+type PaymentResponse struct {
+    Success bool        'json:"success"'
+    Data    interface{ + ' 'json:"data,omitempty"'
+    Error   string      'json:"error,omitempty"'
+}
+
+type WebhookPayload struct {
+    Event string      'json:"event"'
+    Data  interface{ + ' 'json:"data"'
+}
+
+var client *crypton.Client
+
+func main() {
+    // 初始化客户端
+    environment := "sandbox"
+    if os.Getenv("GIN_MODE") == "release" {
+        environment = "production"
+    }
+    
+    client = crypton.NewClient(&crypton.Config{
+        APIKey:      os.Getenv("CRYPTON_API_KEY"),
+        Environment: environment,
+    })
+    
+    r := gin.Default()
+    
+    r.POST("/create-payment", createPayment)
+    r.GET("/payment-status/:addressId", paymentStatus)
+    r.POST("/webhook", webhook)
+    
+    r.Run(":3000")
+}
+
+func createPayment(c *gin.Context) {
+    var req PaymentRequest
+    if err := c.ShouldBindJSON(&req); err != nil {
+        c.JSON(http.StatusBadRequest, PaymentResponse{
+            Success: false,
+            Error:   err.Error(),
+        })
+        return
+    }
+    
+    ctx := context.Background()
+    
+    // 创建支付地址
+    address, err := client.Addresses.Create(ctx, &crypton.CreateAddressRequest{
+        Network: "ethereum",
+        Coin:    req.Currency,
+        Label:   fmt.Sprintf("订单支付 - %s", req.OrderID),
+        Metadata: map[string]interface{}{
+            "order_id":   req.OrderID,
+            "amount":     req.Amount,
+            "currency":   req.Currency,
+            "created_at": time.Now().Format(time.RFC3339),
+        },
+    })
+    
+    if err != nil {
+        log.Printf("创建支付失败: %v", err)
+        c.JSON(http.StatusInternalServerError, PaymentResponse{
+            Success: false,
+            Error:   err.Error(),
+        })
+        return
+    }
+    
+    c.JSON(http.StatusOK, PaymentResponse{
+        Success: true,
+        Data: map[string]interface{}{
+            "payment_address": address.Address,
+            "qr_code":        address.QRCode,
+            "address_id":     address.ID,
+            "amount":         req.Amount,
+            "currency":       req.Currency,
+            "order_id":       req.OrderID,
+        },
+    })
+}
+
+func paymentStatus(c *gin.Context) {
+    addressID := c.Param("addressId")
+    ctx := context.Background()
+    
+    transactions, err := client.Addresses.GetTransactions(ctx, addressID)
+    if err != nil {
+        log.Printf("检查支付状态失败: %v", err)
+        c.JSON(http.StatusInternalServerError, PaymentResponse{
+            Success: false,
+            Error:   err.Error(),
+        })
+        return
+    }
+    
+    status := "pending"
+    var transaction *crypton.Transaction
+    
+    for _, tx := range transactions {
+        if tx.Status == "confirmed" {
+            status = "completed"
+            transaction = tx
+            break
+        } else if tx.Status == "pending" {
+            status = "pending"
+            transaction = tx
+        }
+    }
+    
+    c.JSON(http.StatusOK, PaymentResponse{
+        Success: true,
+        Data: map[string]interface{}{
+            "status":      status,
+            "transaction": transaction,
+        },
+    })
+}
+
+func webhook(c *gin.Context) {
+    // 验证签名
+    signature := c.GetHeader("X-Crypton-Signature")
+    body, err := c.GetRawData()
+    if err != nil {
+        c.String(http.StatusBadRequest, "Invalid request body")
+        return
+    }
+    
+    if !verifyWebhookSignature(body, signature) {
+        c.String(http.StatusUnauthorized, "Invalid signature")
+        return
+    }
+    
+    var payload WebhookPayload
+    if err := json.Unmarshal(body, &payload); err != nil {
+        c.String(http.StatusBadRequest, "Invalid JSON")
+        return
+    }
+    
+    switch payload.Event {
+    case "transaction.confirmed":
+        handlePaymentConfirmed(payload.Data)
+    case "transaction.failed":
+        handlePaymentFailed(payload.Data)
+    default:
+        log.Printf("未处理的事件: %s", payload.Event)
+    }
+    
+    c.String(http.StatusOK, "OK")
+}
+
+func verifyWebhookSignature(payload []byte, signature string) bool {
+    secret := os.Getenv("WEBHOOK_SECRET")
+    mac := hmac.New(sha256.New, []byte(secret))
+    mac.Write(payload)
+    expectedSignature := hex.EncodeToString(mac.Sum(nil))
+    
+    return fmt.Sprintf("sha256=%s", expectedSignature) == signature
+}
+
+func handlePaymentConfirmed(data interface{}) {
+    log.Printf("支付确认: %+v", data)
+    
+    // 更新数据库中的订单状态
+    // updateOrderStatus(data.metadata.order_id, "paid")
+    
+    // 发送确认邮件
+    // sendConfirmationEmail(data.metadata.order_id)
+}
+
+func handlePaymentFailed(data interface{}) {
+    log.Printf("支付失败: %+v", data)
+    
+    // 更新订单状态为失败
+    // updateOrderStatus(data.metadata.order_id, "failed")
+}
+'''
+
+## 前端集成示例
+
+### React 组件
+
+'''jsx
+import React, { useState, useEffect } from 'react'
+import QRCode from 'qrcode.react'
+
+const PaymentComponent = ({ amount, currency, orderId }) => {
+  const [paymentData, setPaymentData] = useState(null)
+  const [paymentStatus, setPaymentStatus] = useState('pending')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+
+  // 创建支付
+  const createPayment = async () => {
+    setLoading(true)
+    setError(null)
+    
+    try {
+      const response = await fetch('/api/create-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount,
+          currency,
+          orderId
+        })
+      })
+      
+      const result = await response.json()
+      
+      if (result.success) {
+        setPaymentData(result.data)
+        startStatusPolling(result.data.addressId)
+      } else {
+        setError(result.error)
+      }
+    } catch (err) {
+      setError('创建支付失败')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // 轮询支付状态
+  const startStatusPolling = (addressId) => {
+    const interval = setInterval(async () => {
+      try {
+        const response = await fetch('/api/payment-status/' + addressId + '')
+        const result = await response.json()
+        
+        if (result.success) {
+          setPaymentStatus(result.data.status)
+          
+          if (result.data.status === 'completed') {
+            clearInterval(interval)
+            onPaymentCompleted(result.data.transaction)
+          }
+        }
+      } catch (err) {
+        console.error('检查支付状态失败:', err)
+      }
+    }, 10000) // 每 10 秒检查一次
+    
+    // 5 分钟后停止轮询
+    setTimeout(() => clearInterval(interval), 300000)
+  }
+
+  const onPaymentCompleted = (transaction) => {
+    alert('支付成功！交易哈希: ' + transaction.hash + '')
+  }
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text)
+    alert('地址已复制到剪贴板')
+  }
+
+  useEffect(() => {
+    createPayment()
+  }, [])
+
+  if (loading) {
+    return <div className="loading">创建支付中...</div>
+  }
+
+  if (error) {
+    return (
+      <div className="error">
+        <p>错误: {error}</p>
+        <button onClick={createPayment}>重试</button>
+      </div>
+    )
+  }
+
+  if (!paymentData) {
+    return <div>加载中...</div>
+  }
+
+  return (
+    <div className="payment-container">
+      <h3>支付信息</h3>
+      
+      <div className="payment-details">
+        <p><strong>订单号:</strong> {orderId}</p>
+        <p><strong>金额:</strong> {amount} {currency}</p>
+        <p><strong>状态:</strong> 
+          <span className={'status ' + paymentStatus + ''}>
+            {paymentStatus === 'pending' ? '等待支付' : '支付完成'}
+          </span>
+        </p>
+      </div>
+
+      <div className="qr-section">
+        <h4>扫码支付</h4>
+        <QRCode 
+          value={paymentData.paymentAddress} 
+          size={200}
+          level="M"
+        />
+      </div>
+
+      <div className="address-section">
+        <h4>支付地址</h4>
+        <div className="address-input">
+          <input 
+            type="text" 
+            value={paymentData.paymentAddress} 
+            readOnly 
+          />
+          <button onClick={() => copyToClipboard(paymentData.paymentAddress)}>
+            复制
+          </button>
+        </div>
+      </div>
+
+      <div className="instructions">
+        <h4>支付说明</h4>
+        <ul>
+          <li>请向上述地址发送 <strong>{amount} {currency}</strong></li>
+          <li>支付确认通常需要 10-30 分钟</li>
+          <li>请勿发送其他币种到此地址</li>
+          <li>最小支付金额: 0.01 {currency}</li>
+        </ul>
+      </div>
+
+      {paymentStatus === 'pending' && (
+        <div className="status-indicator">
+          <div className="spinner"></div>
+          <p>等待支付确认...</p>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default PaymentComponent
+'''
+
+### CSS 样式
+
+'''css
+.payment-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.payment-details {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.status.pending {
+  color: #ff9800;
+}
+
+.status.completed {
+  color: #4caf50;
+}
+
+.qr-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.address-section {
+  margin-bottom: 20px;
+}
+
+.address-input {
+  display: flex;
+  gap: 10px;
+}
+
+.address-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.address-input button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.instructions {
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.instructions ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.status-indicator {
+  text-align: center;
+  padding: 20px;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+}
+
+.error button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+'''
+
+## 环境配置
+
+### .env 文件示例
+
+'''bash
+# API 配置
+CRYPTON_API_KEY=ck_test_your_key_here
+CRYPTON_ADMIN_KEY=ak_test_your_admin_key_here
+CRYPTON_ENVIRONMENT=sandbox
+
+# Webhook 配置
+WEBHOOK_SECRET=your_webhook_secret_here
+
+# 数据库配置
+DATABASE_URL=postgresql://user:password@localhost:5432/myapp
+
+# 应用配置
+NODE_ENV=development
+PORT=3000
+'''
+
+### Docker 配置
+
+'''dockerfile
+FROM node:16-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
+'''
+
+### docker-compose.yml
+
+'''yaml
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - CRYPTON_API_KEY=${CRYPTON_API_KEY}
+      - CRYPTON_ADMIN_KEY=${CRYPTON_ADMIN_KEY}
+      - WEBHOOK_SECRET=${WEBHOOK_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=myapp
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+'''
+
+## 测试示例
+
+### Jest 测试
+
+'''javascript
+const request = require('supertest')
+const app = require('../app')
+
+describe('Payment API', () => {
+  test('POST /create-payment', async () => {
+    const response = await request(app)
+      .post('/create-payment')
+      .send({
+        amount: '100.00',
+        currency: 'USDT',
+        orderId: 'test-order-123'
+      })
+      .expect(200)
+
+    expect(response.body.success).toBe(true)
+    expect(response.body.data).toHaveProperty('paymentAddress')
+    expect(response.body.data).toHaveProperty('qrCode')
+  })
+
+  test('GET /payment-status/:addressId', async () => {
+    const addressId = 'test-address-id'
+    
+    const response = await request(app)
+      .get('/payment-status/' + addressId + '')
+      .expect(200)
+
+    expect(response.body.success).toBe(true)
+    expect(response.body.data).toHaveProperty('status')
+  })
+})
+'''
+
+这些示例展示了如何在不同的编程语言和框架中集成 Crypton Studio 支付网关。您可以根据自己的技术栈选择合适的示例作为起点。 

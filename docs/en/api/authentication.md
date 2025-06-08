@@ -59,12 +59,12 @@ Configure your API key with appropriate settings:
 
 ## Authentication Methods
 
-### Bearer Token Authentication
+### API Key Authentication
 The primary authentication method uses Bearer tokens in the Authorization header:
 
 ```http
 GET /api/v1/addresses
-Authorization: Bearer sk_live_1234567890abcdef
+X-Api-Key: sk_live_1234567890abcdef
 Content-Type: application/json
 ```
 
@@ -254,7 +254,7 @@ X-RateLimit-Window: 60
 ### cURL
 ```bash
 curl -X GET "https://api.gateway.com/v1/addresses" \
-  -H "Authorization: Bearer sk_live_1234567890abcdef" \
+  -H "X-Api-Key: sk_live_1234567890abcdef" \
   -H "Content-Type: application/json"
 ```
 
@@ -352,7 +352,7 @@ class GatewayAPI {
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_CUSTOMREQUEST => $method,
             CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer ' . $this->apiKey,
+                'X-Api-Key: ' . $this->apiKey,
                 'Content-Type: application/json'
             ]
         ]);
@@ -414,7 +414,7 @@ export GATEWAY_API_KEY="sk_test_abcdef1234567890"
 
 # Test API call
 curl -X GET "https://api.gateway.com/v1/addresses" \
-  -H "Authorization: Bearer sk_test_abcdef1234567890"
+  -H "X-Api-Key: sk_test_abcdef1234567890"
 ```
 
 ### Authentication Test Endpoint
@@ -422,7 +422,7 @@ Verify your authentication setup:
 
 ```http
 GET /api/v1/auth/test
-Authorization: Bearer sk_live_1234567890abcdef
+X-Api-Key: sk_live_1234567890abcdef
 ```
 
 **Response:**

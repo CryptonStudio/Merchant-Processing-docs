@@ -1,0 +1,623 @@
+/* Глобальные мобильные стили для улучшения читаемости кнопок */
+
+/* Улучшение кнопок на главной странице */
+@media (max-width: 768px) {
+
+    /* Hero кнопки */
+    .VPHero .VPButton {
+        min-height: 48px !important;
+        padding: 12px 24px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        border-radius: 8px !important;
+        margin: 8px 4px !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Основная кнопка */
+    .VPButton.brand {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border: none !important;
+        color: white !important;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+    }
+
+    .VPButton.brand:hover {
+        background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4) !important;
+    }
+
+    /* Альтернативная кнопка */
+    .VPButton.alt {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 2px solid rgba(102, 126, 234, 0.3) !important;
+        color: var(--vp-c-text-1) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    .VPButton.alt:hover {
+        background: rgba(102, 126, 234, 0.1) !important;
+        border-color: rgba(102, 126, 234, 0.6) !important;
+        transform: translateY(-2px) !important;
+    }
+
+    /* Контейнер для кнопок */
+    .VPHero .actions {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Адаптация для очень маленьких экранов */
+    @media (max-width: 480px) {
+        .VPHero .VPButton {
+            min-height: 52px !important;
+            padding: 14px 20px !important;
+            font-size: 15px !important;
+            width: 100% !important;
+            max-width: 280px !important;
+        }
+    }
+}
+
+/* Улучшение кнопок в API документации */
+@media (max-width: 768px) {
+
+    /* Кнопки тестирования API */
+    .test-button,
+    .copy-curl-button {
+        min-height: 44px !important;
+        padding: 12px 16px !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        border-radius: 6px !important;
+        margin: 4px 2px !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+    }
+
+    .test-button {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+        border: none !important;
+        color: white !important;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
+    }
+
+    .test-button:hover {
+        background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
+    }
+
+    .copy-curl-button {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        border: none !important;
+        color: white !important;
+        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+    }
+
+    .copy-curl-button:hover {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4) !important;
+    }
+
+    /* Контейнер для кнопок API */
+    .demo-controls {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: stretch !important;
+        width: 100% !important;
+    }
+
+    /* Группировка кнопок */
+    .demo-controls .button-group {
+        display: flex !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+
+    /* Автоматическая группировка кнопок в demo-controls */
+    .demo-controls {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+
+    /* Группировка кнопок в одну строку на мобильных */
+    .demo-controls>*:last-child {
+        display: flex !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        margin-top: 8px !important;
+    }
+
+    /* Если кнопки идут подряд, группируем их */
+    .demo-controls button+button {
+        margin-left: 8px !important;
+    }
+
+    /* Адаптация полей ввода */
+    .demo-controls input,
+    .demo-controls select {
+        min-height: 44px !important;
+        padding: 12px 16px !important;
+        font-size: 16px !important;
+        border-radius: 6px !important;
+        border: 2px solid #e5e7eb !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .demo-controls input:focus,
+    .demo-controls select:focus {
+        border-color: #3b82f6 !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+    }
+
+    /* Лейблы */
+    .demo-controls label {
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: var(--vp-c-text-1) !important;
+        margin-bottom: 6px !important;
+        display: block !important;
+    }
+}
+
+/* Улучшение глобального управления API */
+@media (max-width: 768px) {
+    .global-api-controls {
+        margin: 16px 0 !important;
+        padding: 16px !important;
+        border-radius: 12px !important;
+    }
+
+    .global-api-controls input,
+    .global-api-controls select {
+        min-height: 48px !important;
+        padding: 14px 16px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .api-key-status {
+        font-size: 14px !important;
+        margin-top: 8px !important;
+        padding: 8px 12px !important;
+        border-radius: 6px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+    }
+}
+
+/* Улучшение навигационных кнопок */
+@media (max-width: 768px) {
+
+    .VPNavBarMenuLink,
+    .VPSidebarLink {
+        min-height: 44px !important;
+        padding: 12px 16px !important;
+        font-size: 16px !important;
+        line-height: 1.2 !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    /* Кнопки в содержании */
+    .vp-doc a,
+    .vp-doc button {
+        min-height: 44px !important;
+        padding: 12px 16px !important;
+        font-size: 16px !important;
+        border-radius: 6px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-decoration: none !important;
+        transition: all 0.3s ease !important;
+    }
+
+    /* Кнопки-ссылки */
+    .vp-doc a[href] {
+        background: rgba(59, 130, 246, 0.1) !important;
+        color: #3b82f6 !important;
+        border: 2px solid rgba(59, 130, 246, 0.2) !important;
+    }
+
+    .vp-doc a[href]:hover {
+        background: rgba(59, 130, 246, 0.2) !important;
+        border-color: rgba(59, 130, 246, 0.4) !important;
+        transform: translateY(-1px) !important;
+    }
+}
+
+/* Улучшение для темной темы */
+@media (max-width: 768px) {
+    .dark .VPButton.alt {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(102, 126, 234, 0.4) !important;
+        color: var(--vp-c-text-1) !important;
+    }
+
+    .dark .VPButton.alt:hover {
+        background: rgba(102, 126, 234, 0.15) !important;
+        border-color: rgba(102, 126, 234, 0.6) !important;
+    }
+
+    .dark .demo-controls input,
+    .dark .demo-controls select {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: var(--vp-c-text-1) !important;
+    }
+
+    .dark .demo-controls input:focus,
+    .dark .demo-controls select:focus {
+        border-color: #3b82f6 !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+    }
+}
+
+/* Дополнительные улучшения для очень маленьких экранов */
+@media (max-width: 360px) {
+    .VPHero .VPButton {
+        font-size: 14px !important;
+        padding: 12px 16px !important;
+        min-height: 48px !important;
+    }
+
+    .test-button,
+    .copy-curl-button {
+        font-size: 13px !important;
+        padding: 10px 12px !important;
+        min-height: 40px !important;
+    }
+
+    .demo-controls {
+        gap: 8px !important;
+    }
+
+    .global-api-controls {
+        padding: 12px !important;
+    }
+}
+
+/* Анимации для лучшего UX */
+.VPButton,
+.test-button,
+.copy-curl-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.VPButton:active,
+.test-button:active,
+.copy-curl-button:active {
+    transform: translateY(0) scale(0.98) !important;
+}
+
+/* Улучшение доступности */
+@media (prefers-reduced-motion: reduce) {
+
+    .VPButton,
+    .test-button,
+    .copy-curl-button {
+        transition: none !important;
+    }
+
+    .VPButton:hover,
+    .test-button:hover,
+    .copy-curl-button:hover {
+        transform: none !important;
+    }
+}
+
+/* Дополнительные улучшения для мобильных кнопок */
+@media (max-width: 768px) {
+
+    /* Автоматическая группировка кнопок в demo-controls */
+    .demo-controls {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+
+    /* Контейнер для кнопок действий */
+    .demo-controls .actions-container {
+        display: flex !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        margin-top: 8px !important;
+    }
+
+    /* Если кнопки идут подряд, группируем их */
+    .demo-controls button {
+        flex: 1 1 auto !important;
+        min-width: 120px !important;
+        max-width: 200px !important;
+    }
+
+    /* Улучшение читаемости текста на кнопках */
+    .test-button,
+    .copy-curl-button {
+        font-weight: 700 !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+        letter-spacing: 0.025em !important;
+    }
+
+    /* Увеличение контрастности для лучшей читаемости */
+    .VPButton.brand {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+        border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .VPButton.alt {
+        background: rgba(255, 255, 255, 0.95) !important;
+        color: #1f2937 !important;
+        border: 2px solid #4f46e5 !important;
+        font-weight: 600 !important;
+    }
+
+    .dark .VPButton.alt {
+        background: rgba(31, 41, 55, 0.95) !important;
+        color: #f9fafb !important;
+        border: 2px solid #6366f1 !important;
+    }
+
+    /* Улучшение фокуса для доступности */
+    .VPButton:focus,
+    .test-button:focus,
+    .copy-curl-button:focus {
+        outline: 3px solid rgba(79, 70, 229, 0.5) !important;
+        outline-offset: 2px !important;
+    }
+
+    /* Активное состояние */
+    .VPButton:active,
+    .test-button:active,
+    .copy-curl-button:active {
+        transform: translateY(1px) scale(0.98) !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+    }
+}
+
+/* Улучшения для планшетов */
+@media (min-width: 481px) and (max-width: 768px) {
+    .demo-controls {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+        align-items: end !important;
+    }
+
+    .demo-controls>* {
+        flex: 1 1 auto !important;
+        min-width: 120px !important;
+    }
+
+    .demo-controls button {
+        flex: 0 0 auto !important;
+        min-width: 100px !important;
+    }
+}
+
+/* Улучшение для больших мобильных экранов */
+@media (min-width: 375px) and (max-width: 480px) {
+    .VPHero .actions {
+        max-width: 350px !important;
+    }
+
+    .VPHero .VPButton {
+        min-height: 50px !important;
+        font-size: 16px !important;
+    }
+}
+
+/* Дополнительные улучшения для мобильных кнопок */
+@media (max-width: 768px) {
+
+    /* Улучшение читаемости текста на кнопках */
+    .test-button,
+    .copy-curl-button {
+        font-weight: 700 !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+        letter-spacing: 0.025em !important;
+    }
+
+    /* Увеличение контрастности для лучшей читаемости */
+    .VPButton.brand {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+        border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .VPButton.alt {
+        background: rgba(255, 255, 255, 0.95) !important;
+        color: #1f2937 !important;
+        border: 2px solid #4f46e5 !important;
+        font-weight: 600 !important;
+    }
+
+    .dark .VPButton.alt {
+        background: rgba(31, 41, 55, 0.95) !important;
+        color: #f9fafb !important;
+        border: 2px solid #6366f1 !important;
+    }
+
+    /* Улучшение фокуса для доступности */
+    .VPButton:focus,
+    .test-button:focus,
+    .copy-curl-button:focus {
+        outline: 3px solid rgba(79, 70, 229, 0.5) !important;
+        outline-offset: 2px !important;
+    }
+
+    /* Активное состояние */
+    .VPButton:active,
+    .test-button:active,
+    .copy-curl-button:active {
+        transform: translateY(1px) scale(0.98) !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /* Группировка кнопок в API документации */
+    .demo-controls {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+
+    /* Контейнер для кнопок действий */
+    .demo-controls .button-row {
+        display: flex !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        margin-top: 8px !important;
+    }
+
+    .demo-controls button {
+        flex: 1 1 auto !important;
+        min-width: 120px !important;
+        max-width: 200px !important;
+    }
+}
+
+/* Улучшения для планшетов */
+@media (min-width: 481px) and (max-width: 768px) {
+    .demo-controls {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+        align-items: end !important;
+    }
+
+    .demo-controls>* {
+        flex: 1 1 auto !important;
+        min-width: 120px !important;
+    }
+
+    .demo-controls button {
+        flex: 0 0 auto !important;
+        min-width: 100px !important;
+    }
+}
+
+/* Улучшение для больших мобильных экранов */
+@media (min-width: 375px) and (max-width: 480px) {
+    .VPHero .actions {
+        max-width: 350px !important;
+    }
+
+    .VPHero .VPButton {
+        min-height: 50px !important;
+        font-size: 16px !important;
+    }
+}
+
+/* Специальные улучшения для кнопок в demo-controls */
+@media (max-width: 768px) {
+
+    /* Автоматическая группировка кнопок, которые идут подряд */
+    .demo-controls button.test-button+button.copy-curl-button {
+        margin-left: 8px !important;
+        margin-top: 0 !important;
+    }
+
+    /* Контейнер для кнопок в одной строке */
+    .demo-controls {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    /* Группировка последних элементов (обычно кнопки) */
+    .demo-controls>button:last-child,
+    .demo-controls>button:nth-last-child(2) {
+        display: inline-flex !important;
+        margin: 4px !important;
+    }
+
+    /* Если есть два последних элемента-кнопки, группируем их */
+    .demo-controls>button:nth-last-child(2) {
+        margin-right: 4px !important;
+    }
+
+    /* Контейнер для всех кнопок в demo-controls */
+    .demo-controls::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    /* Флекс-контейнер для кнопок */
+    .demo-controls {
+        position: relative;
+    }
+
+    .demo-controls button {
+        float: none !important;
+        display: inline-block !important;
+        vertical-align: top !important;
+    }
+}
+
+/* Улучшение для кнопок, которые находятся на одной строке */
+@media (max-width: 768px) {
+    .demo-controls button+button {
+        margin-left: 8px !important;
+    }
+
+    /* Обертка для кнопок */
+    .demo-controls {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        align-items: start !important;
+    }
+
+    /* Последняя строка с кнопками */
+    .demo-controls>*:last-child {
+        display: flex !important;
+        gap: 8px !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        margin-top: 8px !important;
+    }
+
+    /* Если последний элемент - кнопка, а предпоследний тоже кнопка */
+    .demo-controls>button:last-child {
+        grid-column: 1 !important;
+        justify-self: center !important;
+    }
+
+    .demo-controls>button:nth-last-child(2)+button:last-child {
+        grid-column: 1 !important;
+        justify-self: end !important;
+        margin-left: 8px !important;
+    }
+
+    .demo-controls>button:nth-last-child(2) {
+        grid-column: 1 !important;
+        justify-self: start !important;
+    }
+}
