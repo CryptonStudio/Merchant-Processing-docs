@@ -61,6 +61,30 @@
             background: rgba(102, 126, 234, 0.3) !important;
             color: rgba(255, 255, 255, 1) !important;
         }
+
+        /* Кнопка переключения темы для iPhone XR */
+        .VPSwitchAppearance {
+            min-width: 48px !important;
+            min-height: 48px !important;
+            padding: 10px !important;
+            background: rgba(255, 255, 255, 0.15) !important;
+            border: 2px solid rgba(255, 255, 255, 0.3) !important;
+            border-radius: 10px !important;
+        }
+
+        .VPSwitchAppearance:active {
+            transform: scale(0.9) !important;
+            background: rgba(255, 255, 255, 0.25) !important;
+        }
+
+        .dark .VPSwitchAppearance {
+            background: rgba(0, 0, 0, 0.25) !important;
+            border-color: rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .dark .VPSwitchAppearance:active {
+            background: rgba(0, 0, 0, 0.35) !important;
+        }
     }
 
     /* Контейнер для кнопок */
@@ -236,6 +260,43 @@
         align-items: center !important;
     }
 
+    /* Улучшение навигационной панели на мобильных */
+    .VPNavBar {
+        padding: 0 16px !important;
+        min-height: 60px !important;
+    }
+
+    .VPNavBarTitle {
+        padding: 0 !important;
+    }
+
+    .VPNavBarMenu {
+        gap: 8px !important;
+    }
+
+    /* Кнопка меню на мобильных */
+    .VPNavBarHamburger {
+        min-width: 44px !important;
+        min-height: 44px !important;
+        padding: 8px !important;
+        border-radius: 8px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .VPNavBarHamburger:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .dark .VPNavBarHamburger {
+        background: rgba(0, 0, 0, 0.2) !important;
+        border-color: rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .dark .VPNavBarHamburger:hover {
+        background: rgba(0, 0, 0, 0.3) !important;
+    }
+
     /* Кнопки в содержании */
     .vp-doc a,
     .vp-doc button {
@@ -312,6 +373,51 @@
 
     .global-api-controls {
         padding: 12px !important;
+    }
+}
+
+/* Исправление кнопки переключения темы на мобильных */
+@media (max-width: 768px) {
+    .VPSwitchAppearance {
+        min-width: 44px !important;
+        min-height: 44px !important;
+        padding: 8px !important;
+        border-radius: 8px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .VPSwitchAppearance:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
+        transform: scale(1.05) !important;
+    }
+
+    .VPSwitchAppearance:active {
+        transform: scale(0.95) !important;
+    }
+
+    .VPSwitchAppearance .check {
+        width: 20px !important;
+        height: 20px !important;
+        border-radius: 4px !important;
+    }
+
+    .VPSwitchAppearance .icon {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    /* Темная тема */
+    .dark .VPSwitchAppearance {
+        background: rgba(0, 0, 0, 0.2) !important;
+        border-color: rgba(0, 0, 0, 0.3) !important;
+    }
+
+    .dark .VPSwitchAppearance:hover {
+        background: rgba(0, 0, 0, 0.3) !important;
+        border-color: rgba(0, 0, 0, 0.4) !important;
     }
 }
 
