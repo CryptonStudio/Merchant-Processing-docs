@@ -199,144 +199,135 @@
         gap: 8px !important;
         justify-content: center !important;
         flex-wrap: wrap !important;
-        margin-top: 8px !important;
     }
 
-    /* Если кнопки идут подряд, группируем их */
     .demo-controls button+button {
-        margin-left: 8px !important;
+        margin-left: 0 !important;
     }
 
-    /* Адаптация полей ввода */
     .demo-controls input,
     .demo-controls select {
-        min-height: 44px !important;
+        width: 100% !important;
         padding: 12px 16px !important;
         font-size: 16px !important;
         border-radius: 6px !important;
-        border: 2px solid #e5e7eb !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
+        border: 2px solid rgba(0, 0, 0, 0.1) !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        color: var(--vp-c-text-1) !important;
     }
 
     .demo-controls input:focus,
     .demo-controls select:focus {
-        border-color: #3b82f6 !important;
         outline: none !important;
+        border-color: #3b82f6 !important;
         box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
     }
 
-    /* Лейблы */
     .demo-controls label {
-        font-size: 14px !important;
         font-weight: 600 !important;
-        color: var(--vp-c-text-1) !important;
-        margin-bottom: 6px !important;
+        margin-bottom: 8px !important;
         display: block !important;
+        color: var(--vp-c-text-1) !important;
+        font-size: 14px !important;
     }
 }
 
-/* Улучшение глобального управления API */
+/* Глобальные стили для API ключа */
 @media (max-width: 768px) {
     .global-api-controls {
-        margin: 16px 0 !important;
         padding: 16px !important;
-        border-radius: 12px !important;
+        margin-bottom: 20px !important;
+        border-radius: 8px !important;
+        background: var(--vp-c-bg-soft) !important;
     }
 
     .global-api-controls input,
-    .global-api-controls select {
-        min-height: 48px !important;
-        padding: 14px 16px !important;
-        font-size: 16px !important;
-        border-radius: 8px !important;
+    .global-api-controls button {
         width: 100% !important;
-        box-sizing: border-box !important;
+        margin-bottom: 12px !important;
+        padding: 12px 16px !important;
+        font-size: 16px !important;
+        border-radius: 6px !important;
     }
 
     .api-key-status {
-        font-size: 14px !important;
-        margin-top: 8px !important;
         padding: 8px 12px !important;
-        border-radius: 6px !important;
-        background: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 4px !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        text-align: center !important;
     }
 }
 
-/* Улучшение навигационных кнопок */
+/* Улучшение навигации на мобильных */
 @media (max-width: 768px) {
 
     .VPNavBarMenuLink,
-    .VPSidebarLink {
-        min-height: 44px !important;
-        padding: 12px 16px !important;
-        font-size: 16px !important;
-        line-height: 1.2 !important;
-        display: flex !important;
-        align-items: center !important;
+    .VPNavBarSocialLinks {
+        display: none !important;
     }
 
-    /* Улучшение навигационной панели на мобильных */
     .VPNavBar {
         padding: 0 16px !important;
-        min-height: 60px !important;
+        height: 60px !important;
     }
 
     .VPNavBarTitle {
-        padding: 0 !important;
+        font-size: 18px !important;
     }
 
     .VPNavBarMenu {
-        gap: 8px !important;
+        display: none !important;
     }
 
-    /* Кнопка меню на мобильных */
     .VPNavBarHamburger {
-        min-width: 44px !important;
-        min-height: 44px !important;
-        padding: 8px !important;
-        border-radius: 8px !important;
-        background: rgba(255, 255, 255, 0.1) !important;
-        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 6px !important;
+        background: rgba(0, 0, 0, 0.05) !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
     }
 
     .VPNavBarHamburger:hover {
-        background: rgba(255, 255, 255, 0.2) !important;
+        background: rgba(0, 0, 0, 0.1) !important;
+        border-color: rgba(0, 0, 0, 0.2) !important;
     }
 
     .dark .VPNavBarHamburger {
-        background: rgba(0, 0, 0, 0.2) !important;
-        border-color: rgba(0, 0, 0, 0.3) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        color: var(--vp-c-text-1) !important;
     }
 
     .dark .VPNavBarHamburger:hover {
-        background: rgba(0, 0, 0, 0.3) !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
     }
 
-    /* Кнопки в содержании */
     .vp-doc a,
-    .vp-doc button {
-        min-height: 44px !important;
-        padding: 12px 16px !important;
-        font-size: 16px !important;
-        border-radius: 6px !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+    .vp-doc a:visited {
+        color: #3b82f6 !important;
         text-decoration: none !important;
+        border-bottom: 1px solid transparent !important;
         transition: all 0.3s ease !important;
+        padding: 2px 4px !important;
+        border-radius: 4px !important;
+        background: rgba(59, 130, 246, 0.05) !important;
+        margin: 0 2px !important;
     }
 
-    /* Кнопки-ссылки */
     .vp-doc a[href] {
-        background: rgba(59, 130, 246, 0.1) !important;
         color: #3b82f6 !important;
-        border: 2px solid rgba(59, 130, 246, 0.2) !important;
+        font-weight: 500 !important;
     }
 
     .vp-doc a[href]:hover {
-        background: rgba(59, 130, 246, 0.2) !important;
-        border-color: rgba(59, 130, 246, 0.4) !important;
+        color: #1d4ed8 !important;
+        background: rgba(59, 130, 246, 0.1) !important;
+        border-bottom-color: #3b82f6 !important;
         transform: translateY(-1px) !important;
     }
 }
@@ -365,6 +356,63 @@
     .dark .demo-controls select:focus {
         border-color: #3b82f6 !important;
         background: rgba(255, 255, 255, 0.08) !important;
+    }
+}
+
+/* СПЕЦИАЛЬНЫЕ СТИЛИ ДЛЯ СВЕТЛОЙ ТЕМЫ НА МОБИЛЬНЫХ */
+@media (max-width: 768px) {
+
+    /* Светлая тема - кнопки */
+    html:not(.dark) .VPButton.alt {
+        background: rgba(0, 0, 0, 0.05) !important;
+        border: 2px solid rgba(0, 0, 0, 0.2) !important;
+        color: rgba(0, 0, 0, 0.8) !important;
+        font-weight: 600 !important;
+    }
+
+    html:not(.dark) .VPButton.alt:hover {
+        background: rgba(0, 0, 0, 0.1) !important;
+        border-color: rgba(0, 0, 0, 0.3) !important;
+        color: rgba(0, 0, 0, 0.9) !important;
+    }
+
+    /* Светлая тема - формы */
+    html:not(.dark) .demo-controls input,
+    html:not(.dark) .demo-controls select {
+        background: rgba(255, 255, 255, 0.9) !important;
+        border: 2px solid rgba(0, 0, 0, 0.1) !important;
+        color: rgba(0, 0, 0, 0.8) !important;
+    }
+
+    html:not(.dark) .demo-controls input:focus,
+    html:not(.dark) .demo-controls select:focus {
+        border-color: #3b82f6 !important;
+        background: rgba(255, 255, 255, 1) !important;
+        color: rgba(0, 0, 0, 0.9) !important;
+    }
+
+    /* Светлая тема - навигация */
+    html:not(.dark) .VPNavBarHamburger {
+        background: rgba(0, 0, 0, 0.05) !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+        color: rgba(0, 0, 0, 0.8) !important;
+    }
+
+    html:not(.dark) .VPNavBarHamburger:hover {
+        background: rgba(0, 0, 0, 0.1) !important;
+        border-color: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /* Светлая тема - переключатель темы */
+    html:not(.dark) .VPSwitchAppearance {
+        background: rgba(0, 0, 0, 0.05) !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        color: rgba(0, 0, 0, 0.8) !important;
+    }
+
+    html:not(.dark) .VPSwitchAppearance:hover {
+        background: rgba(0, 0, 0, 0.1) !important;
+        border-color: rgba(0, 0, 0, 0.2) !important;
     }
 }
 
@@ -509,6 +557,21 @@
         border-color: rgba(255, 255, 255, 0.3) !important;
     }
 
+    /* Светлая тема для мобильного меню */
+    html:not(.dark) .VPNavScreen {
+        background: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    html:not(.dark) .VPNavScreenMenu {
+        background: var(--vp-c-bg) !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    }
+
+    html:not(.dark) .VPNavScreen .container {
+        background: var(--vp-c-bg) !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    }
+
     /* Предотвращение блокировки событий после переключения темы */
     .VPNavBar .content {
         position: relative !important;
@@ -537,13 +600,11 @@
         opacity: 0 !important;
     }
 
-    /* Дополнительные исправления для темной темы */
     .dark .VPNavScreen.fade-enter-active,
     .dark .VPNavScreen.fade-leave-active {
         transition: opacity 0.25s ease !important;
     }
 
-    /* Исправление для кнопки меню в темной теме */
     .dark .VPNavBarHamburger .container {
         background: transparent !important;
     }
@@ -554,18 +615,16 @@
         background: var(--vp-c-text-1) !important;
     }
 
-    /* Исправление для элементов меню в темной теме */
     .dark .VPNavScreenMenuLink {
         color: var(--vp-c-text-1) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
 
     .dark .VPNavScreenMenuLink:hover {
-        background: rgba(255, 255, 255, 0.05) !important;
         color: var(--vp-c-brand-1) !important;
+        background: var(--vp-c-bg-soft) !important;
     }
 
-    /* Принудительное отображение меню */
+    /* Принудительное открытие меню */
     .VPNavScreen[data-open="true"] {
         display: block !important;
         opacity: 1 !important;
@@ -580,76 +639,76 @@
         pointer-events: auto !important;
     }
 
-    /* Принудительные стили для темной темы - более агрессивные */
+    /* Дополнительные исправления для темной темы */
     .dark .VPNavScreen {
-        background: rgba(0, 0, 0, 0.9) !important;
+        background: rgba(0, 0, 0, 0.95) !important;
         backdrop-filter: blur(8px) !important;
         -webkit-backdrop-filter: blur(8px) !important;
-        display: none !important;
     }
 
     .dark .VPNavScreen.open,
     .dark .VPNavScreen[data-open="true"],
-    .dark .VPNavScreen[style*="display: block"] {
+    .dark .VPNavScreen.fade-enter-to {
         display: block !important;
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto !important;
-        z-index: 999 !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
     }
 
+    /* Исправления для кнопки гамбургера в темной теме */
     .dark .VPNavBarHamburger {
-        background: rgba(255, 255, 255, 0.15) !important;
-        border: 2px solid rgba(255, 255, 255, 0.3) !important;
-        color: white !important;
-        z-index: 9999 !important;
-        position: relative !important;
-        pointer-events: auto !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        color: var(--vp-c-text-1) !important;
+        transition: all 0.3s ease !important;
         cursor: pointer !important;
-        min-width: 44px !important;
-        min-height: 44px !important;
+        pointer-events: auto !important;
+        z-index: 1001 !important;
+        position: relative !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 6px !important;
+        padding: 8px !important;
     }
 
+    .dark .VPNavBarHamburger:hover,
     .dark .VPNavBarHamburger:active,
     .dark .VPNavBarHamburger:focus {
-        background: rgba(255, 255, 255, 0.25) !important;
-        border-color: rgba(255, 255, 255, 0.5) !important;
-        outline: none !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgba(255, 255, 255, 0.3) !important;
+        transform: scale(1.05) !important;
     }
 
-    /* Принудительное отображение линий гамбургера в темной теме */
     .dark .VPNavBarHamburger .hamburger-line,
-    .dark .VPNavBarHamburger span,
-    .dark .VPNavBarHamburger::before,
-    .dark .VPNavBarHamburger::after {
-        background: white !important;
+    .dark .VPNavBarHamburger .vp-hamburger-line,
+    .dark .VPNavBarHamburger span {
+        background: var(--vp-c-text-1) !important;
         opacity: 1 !important;
     }
 
-    /* Исправление для VitePress специфичных классов */
     .dark .VPNavBarHamburger .vp-hamburger,
     .dark .VPNavBarHamburger .hamburger {
-        background: transparent !important;
+        pointer-events: none !important;
     }
 
     .dark .VPNavBarHamburger .vp-hamburger span,
     .dark .VPNavBarHamburger .hamburger span {
-        background: white !important;
+        background: var(--vp-c-text-1) !important;
+        opacity: 1 !important;
         display: block !important;
         width: 20px !important;
         height: 2px !important;
-        margin: 4px 0 !important;
+        margin: 3px 0 !important;
+        transition: all 0.3s ease !important;
     }
 
-    /* Дополнительные стили для содержимого меню в темной теме */
+    /* Исправления для меню в темной теме */
     .dark .VPNavScreenMenu {
         background: var(--vp-c-bg) !important;
         color: var(--vp-c-text-1) !important;
@@ -657,54 +716,62 @@
         margin-top: 60px !important;
         min-height: calc(100vh - 60px) !important;
         padding: 20px !important;
+        z-index: 1000 !important;
+        position: relative !important;
     }
 
     .dark .VPNavScreen .container {
         background: var(--vp-c-bg) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+        color: var(--vp-c-text-1) !important;
         border-radius: 12px 12px 0 0 !important;
+        padding: 20px !important;
+        z-index: 1000 !important;
+        position: relative !important;
     }
 
-    /* Принудительная видимость для всех дочерних элементов */
     .dark .VPNavScreen * {
         color: var(--vp-c-text-1) !important;
     }
 
     .dark .VPNavScreenMenuLink {
         color: var(--vp-c-text-1) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-        padding: 16px !important;
+        padding: 12px 16px !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
         display: block !important;
         text-decoration: none !important;
     }
 
     .dark .VPNavScreenMenuLink:hover {
-        background: rgba(255, 255, 255, 0.05) !important;
+        background: var(--vp-c-bg-soft) !important;
         color: var(--vp-c-brand-1) !important;
+        transform: translateX(4px) !important;
     }
 
-    /* Отладочные стили - временно */
     .dark .VPNavBarHamburger {
-        border: 3px solid red !important;
-        background: yellow !important;
-        color: black !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        color: var(--vp-c-text-1) !important;
     }
 }
 
-/* Анимации для лучшего UX */
+/* Глобальные стили для кнопок */
 .VPButton,
 .test-button,
 .copy-curl-button {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    user-select: none !important;
 }
 
 .VPButton:active,
 .test-button:active,
 .copy-curl-button:active {
-    transform: translateY(0) scale(0.98) !important;
+    transform: scale(0.98) !important;
+    transition: transform 0.1s ease !important;
 }
 
-/* Улучшение доступности */
+/* Отключение анимаций для пользователей с настройкой reduced motion */
 @media (prefers-reduced-motion: reduce) {
 
     .VPButton,
@@ -718,299 +785,198 @@
     .copy-curl-button:hover {
         transform: none !important;
     }
+
+    .VPButton:active,
+    .test-button:active,
+    .copy-curl-button:active {
+        transform: none !important;
+    }
 }
 
-/* Дополнительные улучшения для мобильных кнопок */
+/* Дополнительные стили для мобильных устройств */
 @media (max-width: 768px) {
 
-    /* Автоматическая группировка кнопок в demo-controls */
+    /* Контейнер для демо-контролов */
     .demo-controls {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        gap: 12px !important;
-        width: 100% !important;
+        background: var(--vp-c-bg-soft) !important;
+        border: 1px solid var(--vp-c-border) !important;
+        border-radius: 12px !important;
+        padding: 20px !important;
+        margin: 20px 0 !important;
     }
 
-    /* Контейнер для кнопок действий */
     .demo-controls .actions-container {
         display: flex !important;
-        gap: 8px !important;
-        justify-content: center !important;
-        flex-wrap: wrap !important;
-        margin-top: 8px !important;
-    }
-
-    /* Если кнопки идут подряд, группируем их */
-    .demo-controls button {
-        flex: 1 1 auto !important;
-        min-width: 120px !important;
-        max-width: 200px !important;
-    }
-
-    /* Улучшение читаемости текста на кнопках */
-    .test-button,
-    .copy-curl-button {
-        font-weight: 700 !important;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
-        letter-spacing: 0.025em !important;
-    }
-
-    /* Увеличение контрастности для лучшей читаемости */
-    .VPButton.brand {
-        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
-        border: 2px solid rgba(255, 255, 255, 0.2) !important;
-    }
-
-    .VPButton.alt {
-        background: rgba(255, 255, 255, 0.95) !important;
-        color: #1f2937 !important;
-        border: 2px solid #4f46e5 !important;
-        font-weight: 600 !important;
-    }
-
-    .dark .VPButton.alt {
-        background: rgba(31, 41, 55, 0.95) !important;
-        color: #f9fafb !important;
-        border: 2px solid #6366f1 !important;
-    }
-
-    /* Улучшение фокуса для доступности */
-    .VPButton:focus,
-    .test-button:focus,
-    .copy-curl-button:focus {
-        outline: 3px solid rgba(79, 70, 229, 0.5) !important;
-        outline-offset: 2px !important;
-    }
-
-    /* Активное состояние */
-    .VPButton:active,
-    .test-button:active,
-    .copy-curl-button:active {
-        transform: translateY(1px) scale(0.98) !important;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
-    }
-}
-
-/* Улучшения для планшетов */
-@media (min-width: 481px) and (max-width: 768px) {
-    .demo-controls {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
+        flex-direction: column !important;
         gap: 12px !important;
-        align-items: end !important;
-    }
-
-    .demo-controls>* {
-        flex: 1 1 auto !important;
-        min-width: 120px !important;
-    }
-
-    .demo-controls button {
-        flex: 0 0 auto !important;
-        min-width: 100px !important;
-    }
-}
-
-/* Улучшение для больших мобильных экранов */
-@media (min-width: 375px) and (max-width: 480px) {
-    .VPHero .actions {
-        max-width: 350px !important;
-    }
-
-    .VPHero .VPButton {
-        min-height: 50px !important;
-        font-size: 16px !important;
-    }
-}
-
-/* Дополнительные улучшения для мобильных кнопок */
-@media (max-width: 768px) {
-
-    /* Улучшение читаемости текста на кнопках */
-    .test-button,
-    .copy-curl-button {
-        font-weight: 700 !important;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
-        letter-spacing: 0.025em !important;
-    }
-
-    /* Увеличение контрастности для лучшей читаемости */
-    .VPButton.brand {
-        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
-        border: 2px solid rgba(255, 255, 255, 0.2) !important;
-    }
-
-    .VPButton.alt {
-        background: rgba(255, 255, 255, 0.95) !important;
-        color: #1f2937 !important;
-        border: 2px solid #4f46e5 !important;
-        font-weight: 600 !important;
-    }
-
-    .dark .VPButton.alt {
-        background: rgba(31, 41, 55, 0.95) !important;
-        color: #f9fafb !important;
-        border: 2px solid #6366f1 !important;
-    }
-
-    /* Улучшение фокуса для доступности */
-    .VPButton:focus,
-    .test-button:focus,
-    .copy-curl-button:focus {
-        outline: 3px solid rgba(79, 70, 229, 0.5) !important;
-        outline-offset: 2px !important;
-    }
-
-    /* Активное состояние */
-    .VPButton:active,
-    .test-button:active,
-    .copy-curl-button:active {
-        transform: translateY(1px) scale(0.98) !important;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
-    }
-
-    /* Группировка кнопок в API документации */
-    .demo-controls {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        gap: 12px !important;
+        align-items: stretch !important;
         width: 100% !important;
-    }
-
-    /* Контейнер для кнопок действий */
-    .demo-controls .button-row {
-        display: flex !important;
-        gap: 8px !important;
-        justify-content: center !important;
-        flex-wrap: wrap !important;
-        margin-top: 8px !important;
+        margin-top: 16px !important;
     }
 
     .demo-controls button {
-        flex: 1 1 auto !important;
-        min-width: 120px !important;
-        max-width: 200px !important;
+        width: 100% !important;
+        padding: 14px 20px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        border-radius: 8px !important;
+        border: none !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .test-button,
+    .copy-curl-button {
+        min-height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+    }
+
+    .VPButton.brand {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+    }
+
+    .VPButton.alt {
+        background: rgba(102, 126, 234, 0.1) !important;
+        border: 2px solid rgba(102, 126, 234, 0.3) !important;
+        color: var(--vp-c-text-1) !important;
+    }
+
+    .dark .VPButton.alt {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(102, 126, 234, 0.4) !important;
+        color: var(--vp-c-text-1) !important;
+    }
+
+    .VPButton:focus,
+    .test-button:focus,
+    .copy-curl-button:focus {
+        outline: 2px solid #3b82f6 !important;
+        outline-offset: 2px !important;
+    }
+
+    .VPButton:active,
+    .test-button:active,
+    .copy-curl-button:active {
+        transform: scale(0.98) !important;
+        transition: transform 0.1s ease !important;
     }
 }
 
-/* Улучшения для планшетов */
+/* Стили для планшетов */
 @media (min-width: 481px) and (max-width: 768px) {
     .demo-controls {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        gap: 12px !important;
-        align-items: end !important;
+        padding: 24px !important;
+        border-radius: 16px !important;
     }
 
     .demo-controls>* {
-        flex: 1 1 auto !important;
-        min-width: 120px !important;
+        margin-bottom: 16px !important;
     }
 
     .demo-controls button {
-        flex: 0 0 auto !important;
-        min-width: 100px !important;
+        padding: 16px 24px !important;
+        font-size: 18px !important;
     }
 }
 
-/* Улучшение для больших мобильных экранов */
+/* Стили для маленьких телефонов */
 @media (min-width: 375px) and (max-width: 480px) {
     .VPHero .actions {
-        max-width: 350px !important;
+        max-width: 300px !important;
     }
 
     .VPHero .VPButton {
+        font-size: 15px !important;
+        padding: 13px 18px !important;
         min-height: 50px !important;
-        font-size: 16px !important;
     }
 }
 
-/* Специальные улучшения для кнопок в demo-controls */
+/* Финальные исправления для мобильных устройств */
 @media (max-width: 768px) {
 
-    /* Автоматическая группировка кнопок, которые идут подряд */
+    /* Группировка кнопок в demo-controls */
     .demo-controls button.test-button+button.copy-curl-button {
-        margin-left: 8px !important;
-        margin-top: 0 !important;
+        margin-top: 8px !important;
+        margin-left: 0 !important;
     }
 
-    /* Контейнер для кнопок в одной строке */
+    .demo-controls {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .demo-controls>button:last-child,
+    .demo-controls>button:nth-last-child(2) {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    .demo-controls>button:nth-last-child(2) {
+        margin-bottom: 8px !important;
+    }
+
+    .demo-controls::after {
+        content: '' !important;
+        display: block !important;
+        clear: both !important;
+        height: 0 !important;
+    }
+
+    /* Исправление для контейнера */
+    .demo-controls {
+        box-sizing: border-box !important;
+    }
+
+    .demo-controls button {
+        box-sizing: border-box !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+}
+
+/* Последние исправления для мобильных */
+@media (max-width: 768px) {
+    .demo-controls button+button {
+        margin-top: 8px !important;
+        margin-left: 0 !important;
+    }
+
     .demo-controls {
         display: flex !important;
         flex-direction: column !important;
         gap: 12px !important;
+        width: 100% !important;
     }
 
-    /* Группировка последних элементов (обычно кнопки) */
-    .demo-controls>button:last-child,
-    .demo-controls>button:nth-last-child(2) {
-        display: inline-flex !important;
-        margin: 4px !important;
-    }
-
-    /* Если есть два последних элемента-кнопки, группируем их */
-    .demo-controls>button:nth-last-child(2) {
-        margin-right: 4px !important;
-    }
-
-    /* Контейнер для всех кнопок в demo-controls */
-    .demo-controls::after {
-        content: '';
-        display: block;
-        clear: both;
-    }
-
-    /* Флекс-контейнер для кнопок */
-    .demo-controls {
-        position: relative;
-    }
-
-    .demo-controls button {
-        float: none !important;
-        display: inline-block !important;
-        vertical-align: top !important;
-    }
-}
-
-/* Улучшение для кнопок, которые находятся на одной строке */
-@media (max-width: 768px) {
-    .demo-controls button+button {
-        margin-left: 8px !important;
-    }
-
-    /* Обертка для кнопок */
-    .demo-controls {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        gap: 12px !important;
-        align-items: start !important;
-    }
-
-    /* Последняя строка с кнопками */
     .demo-controls>*:last-child {
         display: flex !important;
+        flex-direction: column !important;
         gap: 8px !important;
-        justify-content: center !important;
-        flex-wrap: wrap !important;
-        margin-top: 8px !important;
+        width: 100% !important;
     }
 
-    /* Если последний элемент - кнопка, а предпоследний тоже кнопка */
     .demo-controls>button:last-child {
-        grid-column: 1 !important;
-        justify-self: center !important;
+        width: 100% !important;
+        margin: 0 !important;
     }
 
     .demo-controls>button:nth-last-child(2)+button:last-child {
-        grid-column: 1 !important;
-        justify-self: end !important;
-        margin-left: 8px !important;
+        margin-top: 8px !important;
+        margin-left: 0 !important;
     }
 
     .demo-controls>button:nth-last-child(2) {
-        grid-column: 1 !important;
-        justify-self: start !important;
+        width: 100% !important;
+        margin: 0 0 8px 0 !important;
     }
 }
