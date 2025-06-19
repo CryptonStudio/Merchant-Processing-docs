@@ -32,23 +32,23 @@ API управления монетами позволяет:
   title="Создать монету"
   description="Создает новую монету или токен. Только для администраторов."
   :parameters="[
-    { name: 'coin', type: 'string', required: false, description: 'Уникальный идентификатор монеты (генерируется автоматически, если не указан)' },
-    { name: 'name', type: 'string', required: false, description: 'Название монеты или токена (определяется автоматически из контракта, если не указано)' },
-    { name: 'contractAddress', type: 'string', required: false, description: 'Адрес контракта токена (только для токенов)' },
-    { name: 'network', type: 'string', required: true, description: 'Слаг сети (например, ethereum, bitcoin, tron)' },
-    { name: 'useUsdLimits', type: 'boolean', required: false, description: 'Использовать USD лимиты для расчетов и транзакций' },
-    { name: 'collectThreshold', type: 'number', required: false, description: 'Минимальная сумма для перевода на сервисный кошелек' },
-    { name: 'collectServiceToColdThreshold', type: 'number', required: false, description: 'Минимальная сумма для перевода с сервисного на холодный кошелек' },
-    { name: 'collectPercentageHot', type: 'number', required: false, description: 'Процент монет, собираемых на горячем кошельке' },
-    { name: 'approveThreshold', type: 'number', required: false, description: 'Объем подтверждения для переводов на сервисный кошелек' },
-    { name: 'minValue', type: 'number', required: false, description: 'Минимально возможная сумма для разового вывода' },
-    { name: 'maxValue', type: 'number', required: false, description: 'Максимально возможная сумма для разового вывода' },
-    { name: 'maxValueDaily', type: 'number', required: false, description: 'Максимально возможный вывод за 24 часа' },
-    { name: 'minDepositAmount', type: 'number', required: false, description: 'Минимальная сумма для депозита' }
+    { name: 'coin', type: 'string', required: false, description: 'Unique coin identifier (auto-generated if not provided)' },
+    { name: 'name', type: 'string', required: false, description: 'Coin or token name (auto-detected from contract if not provided)' },
+    { name: 'contractAddress', type: 'string', required: false, description: 'Token contract address (for tokens only)' },
+    { name: 'network', type: 'string', required: true, description: 'Network slug (e.g., ethereum, bitcoin, tron)' },
+    { name: 'useUsdLimits', type: 'boolean', required: false, description: 'Use USD limits for settlements and transactions' },
+    { name: 'collectThreshold', type: 'number', required: false, description: 'Minimum amount for transfer to service wallet' },
+    { name: 'collectServiceToColdThreshold', type: 'number', required: false, description: 'Minimum amount for transfer from service to cold wallet' },
+    { name: 'collectPercentageHot', type: 'number', required: false, description: 'Percentage of coins collected on hot wallet' },
+    { name: 'approveThreshold', type: 'number', required: false, description: 'Confidence volume for transfers to service wallet' },
+    { name: 'minValue', type: 'number', required: false, description: 'Minimum possible amount for one-time withdrawal' },
+    { name: 'maxValue', type: 'number', required: false, description: 'Maximum possible amount for one-time withdrawal' },
+    { name: 'maxValueDaily', type: 'number', required: false, description: 'Maximum possible withdrawal in 24 hours' },
+    { name: 'minDepositAmount', type: 'number', required: false, description: 'Minimum amount for deposit' }
   ]"
   :responses="[
-    { status: '201 Created', description: 'Монета успешно создана' },
-    { status: '400 Bad Request', description: 'Неверные параметры' }
+    { status: '201 Created', description: 'Coin created successfully' },
+    { status: '400 Bad Request', description: 'Invalid parameters' }
   ]"
 />
 
@@ -58,12 +58,12 @@ API управления монетами позволяет:
   title="Предварительно создать токен"
   description="Предварительно создает токен, анализируя его адрес контракта. Только для администраторов."
   :parameters="[
-    { name: 'contractAddress', type: 'string', required: true, description: 'Адрес контракта токена' },
-    { name: 'network', type: 'string', required: true, description: 'Слаг сети (например, ethereum, bsc, polygon)' }
+    { name: 'contractAddress', type: 'string', required: true, description: 'Token contract address' },
+    { name: 'network', type: 'string', required: true, description: 'Network slug (e.g., ethereum, bsc, polygon)' }
   ]"
   :responses="[
-    { status: '201 Created', description: 'Токен успешно предварительно создан' },
-    { status: '400 Bad Request', description: 'Неверный адрес контракта или сеть' }
+    { status: '201 Created', description: 'Token precreated successfully' },
+    { status: '400 Bad Request', description: 'Invalid contract address or network' }
   ]"
 />
 
@@ -73,22 +73,22 @@ API управления монетами позволяет:
   title="Редактировать монету"
   description="Редактирует настройки и статус монеты или токена. Может использоваться для активации/деактивации монет. Только для администраторов."
   :parameters="[
-    { name: 'coin', type: 'string', required: true, description: 'Уникальный идентификатор монеты' },
-    { name: 'name', type: 'string', required: false, description: 'Название монеты или токена' },
-    { name: 'status', type: 'string', required: false, description: 'Статус монеты (ACTIVE, INACTIVE)' },
-    { name: 'useUsdLimits', type: 'boolean', required: false, description: 'Использовать USD лимиты для расчетов и транзакций' },
-    { name: 'collectThreshold', type: 'number', required: false, description: 'Минимальная сумма для перевода на сервисный кошелек' },
-    { name: 'collectServiceToColdThreshold', type: 'number', required: false, description: 'Минимальная сумма для перевода с сервисного на холодный кошелек' },
-    { name: 'collectPercentageHot', type: 'number', required: false, description: 'Процент монет, собираемых на горячем кошельке' },
-    { name: 'approveThreshold', type: 'number', required: false, description: 'Объем подтверждения для переводов на сервисный кошелек' },
-    { name: 'minValue', type: 'number', required: false, description: 'Минимально возможная сумма для разового вывода' },
-    { name: 'maxValue', type: 'number', required: false, description: 'Максимально возможная сумма для разового вывода' },
-    { name: 'maxValueDaily', type: 'number', required: false, description: 'Максимально возможный вывод за 24 часа' },
-    { name: 'minDepositAmount', type: 'number', required: false, description: 'Минимальная сумма для депозита' }
+    { name: 'coin', type: 'string', required: true, description: 'Unique coin identifier' },
+    { name: 'name', type: 'string', required: false, description: 'Coin or token name' },
+    { name: 'status', type: 'string', required: false, description: 'Coin status (ACTIVE, INACTIVE)' },
+    { name: 'useUsdLimits', type: 'boolean', required: false, description: 'Use USD limits for settlements and transactions' },
+    { name: 'collectThreshold', type: 'number', required: false, description: 'Minimum amount for transfer to service wallet' },
+    { name: 'collectServiceToColdThreshold', type: 'number', required: false, description: 'Minimum amount for transfer from service to cold wallet' },
+    { name: 'collectPercentageHot', type: 'number', required: false, description: 'Percentage of coins collected on hot wallet' },
+    { name: 'approveThreshold', type: 'number', required: false, description: 'Confidence volume for transfers to service wallet' },
+    { name: 'minValue', type: 'number', required: false, description: 'Minimum possible amount for one-time withdrawal' },
+    { name: 'maxValue', type: 'number', required: false, description: 'Maximum possible amount for one-time withdrawal' },
+    { name: 'maxValueDaily', type: 'number', required: false, description: 'Maximum possible withdrawal in 24 hours' },
+    { name: 'minDepositAmount', type: 'number', required: false, description: 'Minimum amount for deposit' }
   ]"
   :responses="[
-    { status: '200 OK', description: 'Монета успешно обновлена' },
-    { status: '400 Bad Request', description: 'Неверные параметры' }
+    { status: '200 OK', description: 'Coin updated successfully' },
+    { status: '400 Bad Request', description: 'Invalid parameters' }
   ]"
 />
 
@@ -98,7 +98,7 @@ API управления монетами позволяет:
   title="Получить монеты"
   description="Возвращает список всех доступных монет и токенов."
   :responses="[
-    { status: '200 OK', description: 'Список монет получен' }
+    { status: '200 OK', description: 'Coins list retrieved' }
   ]"
 />
 
@@ -108,11 +108,11 @@ API управления монетами позволяет:
   title="Получить монету"
   description="Возвращает информацию о конкретной монете или токене."
   :parameters="[
-    { name: 'coin', type: 'string', required: true, description: 'Слаг монеты (например, btc, eth, usdt)' }
+    { name: 'coin', type: 'string', required: true, description: 'Coin slug (e.g., btc, eth, usdt)' }
   ]"
   :responses="[
-    { status: '200 OK', description: 'Информация о монете получена' },
-    { status: '400 Bad Request', description: 'Неверный слаг монеты' }
+    { status: '200 OK', description: 'Coin information retrieved' },
+    { status: '400 Bad Request', description: 'Invalid coin slug' }
   ]"
 />
 
@@ -148,12 +148,12 @@ API управления монетами позволяет:
       <option value="polygon">Polygon</option>
     </select>
     <label for="coin-name">Название монеты:</label>
-    <input type="text" id="coin-name" placeholder="Мой токен" />
+    <input type="text" id="coin-name" placeholder="My Token" />
     <label for="coin-contract-address">Адрес контракта (для токенов):</label>
     <input type="text" id="coin-contract-address" placeholder="0xdAC17F958D2ee523a2206206994597C13D831ec7" />
     <div class="button-group">
       <button onclick="testCreateCoin()" class="test-button">Тест</button>
-      <button onclick="copyCurlCommand('/coins', {method: 'POST', body: JSON.stringify({network: 'ethereum', name: 'Мой токен', contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7'})})" class="copy-curl-button">📋 Копировать curl</button>
+      <button onclick="copyCurlCommand('/coins', {method: 'POST', body: JSON.stringify({network: 'ethereum', name: 'My Token', contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7'})})" class="copy-curl-button">📋 Копировать curl</button>
     </div>
   </div>
 </div>
@@ -164,7 +164,7 @@ curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
   -H "Content-Type: application/json" \
   -d '{
     "network": "ethereum",
-    "name": "Мой токен",
+    "name": "My Token",
     "contractAddress": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
     "collectThreshold": 0.001,
     "minValue": 0.0001,
@@ -172,28 +172,28 @@ curl -X POST "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
   }'
 ```
 
-**Ответ:**
+**Response:**
 ```json
 {
   "message": "Coin created successfully"
 }
 ```
 
-### Предварительно создать токен
+### Precreate Token
 
 <div class="api-demo">
   <div class="demo-controls">
-    <label for="contract-address">Адрес контракта:</label>
+    <label for="contract-address">Contract Address:</label>
     <input type="text" id="contract-address" placeholder="0xdAC17F958D2ee523a2206206994597C13D831ec7" />
-    <label for="precreate-network">Сеть:</label>
+    <label for="precreate-network">Network:</label>
     <select id="precreate-network">
       <option value="ethereum" selected>Ethereum</option>
       <option value="bsc">BSC</option>
       <option value="polygon">Polygon</option>
     </select>
     <div class="button-group">
-      <button onclick="testPrecreateToken()" class="test-button">Тест</button>
-      <button onclick="copyCurlCommand('/coins/precreate-token', {method: 'PUT', body: JSON.stringify({contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7', network: 'ethereum'})})" class="copy-curl-button">📋 Копировать curl</button>
+      <button onclick="testPrecreateToken()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/coins/precreate-token', {method: 'PUT', body: JSON.stringify({contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7', network: 'ethereum'})})" class="copy-curl-button">📋 Copy curl</button>
     </div>
   </div>
 </div>
@@ -208,7 +208,7 @@ curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/coins/precreate-token" \
   }'
 ```
 
-**Ответ:**
+**Response:**
 ```json
 {
   "coin": "usdt_erc20",
@@ -218,13 +218,13 @@ curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/coins/precreate-token" \
 }
 ```
 
-### Получить монеты
+### Get Coins
 
 <div class="api-demo">
   <div class="demo-controls">
     <div class="button-group">
-      <button onclick="testGetCoins()" class="test-button">Тест</button>
-      <button onclick="copyCurlCommand('/coins', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+      <button onclick="testGetCoins()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/coins', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
     </div>
   </div>
 </div>
@@ -234,7 +234,7 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
   -H "X-Api-Key: YOUR_API_KEY"
 ```
 
-**Ответ:**
+**Response:**
 ```json
 [
   {
@@ -258,180 +258,41 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
     "network": {
       "network": "bitcoin"
     }
+  },
+  {
+    "coin": "eth",
+    "name": "Ethereum",
+    "type": "NATIVE",
+    "decimals": 18,
+    "contractAddress": null,
+    "status": "ACTIVE",
+    "settings": {
+      "useUsdLimits": false,
+      "collectThreshold": 0.01,
+      "collectServiceToColdThreshold": 10,
+      "collectPercentageHot": 15,
+      "approveThreshold": 1000000,
+      "minValue": 0.001,
+      "maxValue": 100,
+      "maxValueDaily": 1000,
+      "minDepositAmount": 0.001
+    },
+    "network": {
+      "network": "ethereum"
+    }
   }
 ]
 ```
 
-</div>
-
-<div class="example-block" data-lang="javascript">
-
-### JavaScript Fetch
-
-```javascript
-// Создать монету
-const createCoin = async () => {
-  const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
-    method: 'POST',
-    headers: {
-      'X-Api-Key': 'YOUR_API_KEY',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      network: 'ethereum',
-      name: 'Мой токен',
-      contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-      collectThreshold: 0.001,
-      minValue: 0.0001,
-      maxValue: 1000
-    })
-  });
-  
-  const result = await response.json();
-  console.log('Создана монета:', result);
-};
-
-createCoin();
-```
-
-</div>
-
-<div class="example-block" data-lang="python">
-
-### Python Requests
-
-```python
-import requests
-
-# Конфигурация API
-API_BASE = 'https://cp-merch-dev.wsdemo.online/api/v1'
-headers = {
-    'X-Api-Key': 'YOUR_API_KEY',
-    'Content-Type': 'application/json'
-}
-
-# Создать монету
-payload = {
-    'network': 'ethereum',
-    'name': 'Мой токен',
-    'contractAddress': '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-    'collectThreshold': 0.001,
-    'minValue': 0.0001,
-    'maxValue': 1000
-}
-
-response = requests.post(f'{API_BASE}/coins', 
-                        headers=headers, 
-                        json=payload)
-
-if response.status_code == 201:
-    result = response.json()
-    print(f"Создана монета: {result['message']}")
-else:
-    print(f"Ошибка: {response.status_code}")
-```
-
-</div>
-
-<div class="example-block" data-lang="go">
-
-### Go HTTP клиент
-
-```go
-package main
-
-import (
-    "bytes"
-    "encoding/json"
-    "fmt"
-    "io"
-    "net/http"
-)
-
-func main() {
-    // Создать монету
-    payload := map[string]interface{}{
-        "network":         "ethereum",
-        "name":           "Мой токен",
-        "contractAddress": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-        "collectThreshold": 0.001,
-        "minValue":       0.0001,
-        "maxValue":       1000,
-    }
-    
-    jsonData, _ := json.Marshal(payload)
-    
-    req, _ := http.NewRequest("POST", "https://cp-merch-dev.wsdemo.online/api/v1/coins", bytes.NewBuffer(jsonData))
-    req.Header.Set("X-Api-Key", "YOUR_API_KEY")
-    req.Header.Set("Content-Type", "application/json")
-    
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    if err != nil {
-        panic(err)
-    }
-    defer resp.Body.Close()
-    
-    body, _ := io.ReadAll(resp.Body)
-    fmt.Printf("Ответ: %s\n", body)
-}
-```
-
-</div>
-
-<div class="example-block" data-lang="php">
-
-### PHP cURL
-
-```php
-<?php
-$apiKey = 'YOUR_API_KEY';
-$baseUrl = 'https://cp-merch-dev.wsdemo.online/api/v1';
-
-// Создать монету
-$payload = json_encode([
-    'network' => 'ethereum',
-    'name' => 'Мой токен',
-    'contractAddress' => '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-    'collectThreshold' => 0.001,
-    'minValue' => 0.0001,
-    'maxValue' => 1000
-]);
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $baseUrl . '/coins');
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'X-Api-Key: ' . $apiKey,
-    'Content-Type: application/json'
-]);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-if ($httpCode === 201) {
-    $result = json_decode($response, true);
-    echo "Создана монета: " . $result['message'] . "\n";
-} else {
-    echo "Ошибка: " . $httpCode . "\n";
-}
-?>
-```
-
-</div>
-
-### Получить конкретную монету
+### Get Specific Coin
 
 <div class="api-demo">
   <div class="demo-controls">
-    <label for="coin-slug">Слаг монеты:</label>
+    <label for="coin-slug">Coin Slug:</label>
     <input type="text" id="coin-slug" placeholder="btc" value="btc" />
     <div class="button-group">
-      <button onclick="testGetCoin()" class="test-button">Тест</button>
-      <button onclick="copyCurlCommand('/coins/btc', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+      <button onclick="testGetCoin()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/coins/btc', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
     </div>
   </div>
 </div>
@@ -441,7 +302,7 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins/btc" \
   -H "X-Api-Key: YOUR_API_KEY"
 ```
 
-**Ответ:**
+**Response:**
 ```json
 {
   "coin": "btc",
@@ -453,9 +314,20 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins/btc" \
   "settings": {
     "useUsdLimits": true,
     "collectThreshold": 0.001,
+    "collectServiceToColdThreshold": 1,
+    "collectPercentageHot": 10,
+    "approveThreshold": 1000000,
     "minValue": 0.0001,
     "maxValue": 10,
-    "maxValueDaily": 100
+    "maxValueDaily": 100,
+    "minDepositAmount": 0.0001,
+    "collectThresholdUSD": 50,
+    "collectServiceToColdThresholdUSD": 50000,
+    "approveThresholdUSD": 1000000,
+    "minValueUSD": 5,
+    "maxValueUSD": 500000,
+    "maxValueDailyUSD": 5000000,
+    "minDepositAmountUSD": 5
   },
   "network": {
     "network": "bitcoin"
@@ -463,24 +335,24 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins/btc" \
 }
 ```
 
-### Редактировать монету
+### Edit Coin
 
 <div class="api-demo">
   <div class="demo-controls">
-    <label for="edit-coin">Слаг монеты:</label>
+    <label for="edit-coin">Coin Slug:</label>
     <input type="text" id="edit-coin" placeholder="btc" value="btc" />
-    <label for="edit-status">Статус:</label>
+    <label for="edit-status">Status:</label>
     <select id="edit-status">
-      <option value="ACTIVE" selected>Активна</option>
-      <option value="INACTIVE">Неактивна</option>
+      <option value="ACTIVE" selected>Active</option>
+      <option value="INACTIVE">Inactive</option>
     </select>
-    <label for="edit-min-value">Мин. сумма:</label>
+    <label for="edit-min-value">Min Value:</label>
     <input type="number" id="edit-min-value" placeholder="0.0001" step="0.0001" value="0.0001" />
-    <label for="edit-max-value">Макс. сумма:</label>
+    <label for="edit-max-value">Max Value:</label>
     <input type="number" id="edit-max-value" placeholder="10" step="0.01" value="10" />
     <div class="button-group">
-      <button onclick="testEditCoin()" class="test-button">Тест</button>
-      <button onclick="copyCurlCommand('/coins', {method: 'PUT', body: JSON.stringify({coin: 'btc', status: 'ACTIVE', minValue: 0.0001, maxValue: 10})})" class="copy-curl-button">📋 Копировать curl</button>
+      <button onclick="testEditCoin()" class="test-button">Test</button>
+      <button onclick="copyCurlCommand('/coins', {method: 'PUT', body: JSON.stringify({coin: 'btc', status: 'ACTIVE', minValue: 0.0001, maxValue: 10})})" class="copy-curl-button">📋 Copy curl</button>
     </div>
   </div>
 </div>
@@ -493,11 +365,12 @@ curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
     "coin": "btc",
     "status": "ACTIVE",
     "minValue": 0.0001,
-    "maxValue": 10
+    "maxValue": 10,
+    "collectThreshold": 0.001
   }'
 ```
 
-**Ответ:**
+**Response:**
 ```json
 {
   "message": "Coin updated successfully"
@@ -508,7 +381,7 @@ curl -X PUT "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
 
 <div class="example-block" data-lang="go">
 
-### Go HTTP клиент
+### Go HTTP Client
 
 ```go
 package main
@@ -522,10 +395,10 @@ import (
 )
 
 func main() {
-    // Создать монету
+    // Create coin
     payload := map[string]interface{}{
         "network":         "ethereum",
-        "name":           "Мой токен",
+        "name":           "My Token",
         "contractAddress": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
         "collectThreshold": 0.001,
         "minValue":       0.0001,
@@ -546,7 +419,20 @@ func main() {
     defer resp.Body.Close()
     
     body, _ := io.ReadAll(resp.Body)
-    fmt.Printf("Ответ: %s\n", body)
+    fmt.Printf("Response: %s\n", body)
+    
+    // Get coins list
+    req2, _ := http.NewRequest("GET", "https://cp-merch-dev.wsdemo.online/api/v1/coins", nil)
+    req2.Header.Set("X-Api-Key", "YOUR_API_KEY")
+    
+    resp2, err := client.Do(req2)
+    if err != nil {
+        panic(err)
+    }
+    defer resp2.Body.Close()
+    
+    body2, _ := io.ReadAll(resp2.Body)
+    fmt.Printf("Coins list: %s\n", body2)
 }
 ```
 
@@ -557,7 +443,7 @@ func main() {
 ### JavaScript Fetch
 
 ```javascript
-// Создать монету
+// Create coin
 const createCoin = async () => {
   const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
     method: 'POST',
@@ -567,7 +453,7 @@ const createCoin = async () => {
     },
     body: JSON.stringify({
       network: 'ethereum',
-      name: 'Мой токен',
+      name: 'My Token',
       contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
       collectThreshold: 0.001,
       minValue: 0.0001,
@@ -576,7 +462,44 @@ const createCoin = async () => {
   });
   
   const result = await response.json();
-  console.log('Создана монета:', result);
+  console.log('Created coin:', result);
+  
+  // Get coins list
+  const coinsResponse = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
+    headers: {
+      'X-Api-Key': 'YOUR_API_KEY'
+    }
+  });
+  
+  const coins = await coinsResponse.json();
+  console.log('Coins list:', coins);
+  
+  // Get specific coin
+  const coinResponse = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins/btc', {
+    headers: {
+      'X-Api-Key': 'YOUR_API_KEY'
+    }
+  });
+  
+  const coin = await coinResponse.json();
+  console.log('Bitcoin info:', coin);
+  
+  // Edit coin
+  const editResponse = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
+    method: 'PUT',
+    headers: {
+      'X-Api-Key': 'YOUR_API_KEY',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      coin: 'btc',
+      status: 'ACTIVE',
+      minValue: 0.0001
+    })
+  });
+  
+  const editResult = await editResponse.json();
+  console.log('Edit result:', editResult);
 };
 
 createCoin();
@@ -590,18 +513,19 @@ createCoin();
 
 ```python
 import requests
+import json
 
-# Конфигурация API
+# API configuration
 API_BASE = 'https://cp-merch-dev.wsdemo.online/api/v1'
 headers = {
     'X-Api-Key': 'YOUR_API_KEY',
     'Content-Type': 'application/json'
 }
 
-# Создать монету
+# Create coin
 payload = {
     'network': 'ethereum',
-    'name': 'Мой токен',
+    'name': 'My Token',
     'contractAddress': '0xdAC17F958D2ee523a2206206994597C13D831ec7',
     'collectThreshold': 0.001,
     'minValue': 0.0001,
@@ -614,9 +538,38 @@ response = requests.post(f'{API_BASE}/coins',
 
 if response.status_code == 201:
     result = response.json()
-    print(f"Создана монета: {result['message']}")
+    print(f"Created coin: {result['message']}")
+    
+    # Get coins list
+    coins_response = requests.get(f'{API_BASE}/coins', headers=headers)
+    
+    if coins_response.status_code == 200:
+        coins = coins_response.json()
+        print(f"Found {len(coins)} coins")
+        
+        # Get specific coin
+        coin_response = requests.get(f'{API_BASE}/coins/btc', headers=headers)
+        
+        if coin_response.status_code == 200:
+            coin = coin_response.json()
+            print(f"Bitcoin: {coin['name']}, Status: {coin['status']}")
+            
+            # Edit coin
+            edit_payload = {
+                'coin': 'btc',
+                'status': 'ACTIVE',
+                'minValue': 0.0001
+            }
+            
+            edit_response = requests.put(f'{API_BASE}/coins', 
+                                       headers=headers, 
+                                       json=edit_payload)
+            
+            if edit_response.status_code == 200:
+                edit_result = edit_response.json()
+                print(f"Edit result: {edit_result['message']}")
 else:
-    print(f"Ошибка: {response.status_code}")
+    print(f"Error: {response.status_code}")
 ```
 
 </div>
@@ -630,10 +583,10 @@ else:
 $apiKey = 'YOUR_API_KEY';
 $baseUrl = 'https://cp-merch-dev.wsdemo.online/api/v1';
 
-// Создать монету
+// Create coin
 $payload = json_encode([
     'network' => 'ethereum',
-    'name' => 'Мой токен',
+    'name' => 'My Token',
     'contractAddress' => '0xdAC17F958D2ee523a2206206994597C13D831ec7',
     'collectThreshold' => 0.001,
     'minValue' => 0.0001,
@@ -656,9 +609,43 @@ curl_close($ch);
 
 if ($httpCode === 201) {
     $result = json_decode($response, true);
-    echo "Создана монета: " . $result['message'] . "\n";
+    echo "Created coin: " . $result['message'] . "\n";
+    
+    // Get coins list
+    $ch2 = curl_init();
+    curl_setopt($ch2, CURLOPT_URL, $baseUrl . '/coins');
+    curl_setopt($ch2, CURLOPT_HTTPHEADER, [
+        'X-Api-Key: ' . $apiKey
+    ]);
+    curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+    
+    $coinsResponse = curl_exec($ch2);
+    $coinsHttpCode = curl_getinfo($ch2, CURLINFO_HTTP_CODE);
+    curl_close($ch2);
+    
+    if ($coinsHttpCode === 200) {
+        $coins = json_decode($coinsResponse, true);
+        echo "Found " . count($coins) . " coins\n";
+        
+        // Get specific coin
+        $ch3 = curl_init();
+        curl_setopt($ch3, CURLOPT_URL, $baseUrl . '/coins/btc');
+        curl_setopt($ch3, CURLOPT_HTTPHEADER, [
+            'X-Api-Key: ' . $apiKey
+        ]);
+        curl_setopt($ch3, CURLOPT_RETURNTRANSFER, true);
+        
+        $coinResponse = curl_exec($ch3);
+        $coinHttpCode = curl_getinfo($ch3, CURLINFO_HTTP_CODE);
+        curl_close($ch3);
+        
+        if ($coinHttpCode === 200) {
+            $coin = json_decode($coinResponse, true);
+            echo "Bitcoin: " . $coin['name'] . ", Status: " . $coin['status'] . "\n";
+        }
+    }
 } else {
-    echo "Ошибка: " . $httpCode . "\n";
+    echo "Error: " . $httpCode . "\n";
 }
 ?>
 ```
@@ -666,4 +653,4 @@ if ($httpCode === 201) {
 </div>
 
   </template>
-</ApiDoc>
+</ApiDoc> 
