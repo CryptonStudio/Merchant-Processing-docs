@@ -2,6 +2,15 @@
 
 The Crypto Payment Gateway API uses API keys for authentication. This guide covers how to obtain, configure, and use API keys securely.
 
+::: tip Interactive Testing
+On this page you can test authentication methods in real time! Enter your API key in the field below and click the "Test" buttons to send requests to the server `https://cp-merch-dev.wsdemo.online/api`.
+
+**If you encounter CORS errors:**
+- Use the "📋 Copy curl" buttons to get ready-to-use commands
+- Execute commands in terminal or use Postman
+- Install a browser extension to disable CORS (e.g., "CORS Unblock")
+:::
+
 ## API Key Types
 
 ### Production Keys
@@ -405,15 +414,37 @@ app.use('/webhooks', (req, res, next) => {
 
 ## Testing Authentication
 
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>API Configuration</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Key:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Set API Key</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
 ### Test API Key
 Use test keys for development and testing:
+
+<div class="api-demo">
+  <div class="demo-controls">
+    <div class="button-group">
+      <button onclick="testAuthKey()" class="test-button">Test Authentication</button>
+      <button onclick="copyCurlCommand('/auth/test', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
+  </div>
+</div>
 
 ```bash
 # Test environment
 export GATEWAY_API_KEY="sk_test_abcdef1234567890"
 
 # Test API call
-curl -X GET "https://api.gateway.com/v1/addresses" \
+curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/auth/test" \
   -H "X-Api-Key: sk_test_abcdef1234567890"
 ```
 

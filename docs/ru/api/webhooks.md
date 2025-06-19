@@ -2,6 +2,15 @@
 
 Webhooks позволяют получать уведомления в реальном времени о событиях в вашем платежном шлюзе.
 
+::: tip Интерактивное тестирование
+На этой странице вы можете тестировать управление webhooks в реальном времени! Введите ваш API ключ в поле ниже и нажимайте кнопки "Тест" для отправки запросов на сервер `https://cp-merch-dev.wsdemo.online/api`.
+
+**При возникновении CORS ошибок:**
+- Используйте кнопки "📋 Копировать curl" для получения готовых команд
+- Выполняйте команды в терминале или используйте Postman
+- Установите расширение для браузера, отключающее CORS (например, "CORS Unblock")
+:::
+
 ## Обзор
 
 Webhooks - это HTTP POST запросы, отправляемые на указанный вами эндпоинт при возникновении определенных событий. Это позволяет:
@@ -145,7 +154,31 @@ app.post('/webhook', (req, res) => {
 
 ## Управление Webhooks
 
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>Конфигурация API</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Ключ:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Установить API Ключ</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
 ### Создание Webhook
+
+<div class="api-demo">
+  <div class="demo-controls">
+    <label for="webhook-url">URL Webhook:</label>
+    <input type="text" id="webhook-url" placeholder="https://your-domain.com/webhook" />
+    <div class="button-group">
+      <button onclick="testCreateWebhook()" class="test-button">Тест создания</button>
+      <button onclick="copyCurlCommand('/webhooks', {method: 'POST', body: JSON.stringify({url: 'https://your-domain.com/webhook', events: ['transaction.confirmed'], active: true})})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
+  </div>
+</div>
 
 ```http
 POST /api/v1/webhooks
@@ -166,6 +199,15 @@ POST /api/v1/webhooks
 ```
 
 ### Список Webhooks
+
+<div class="api-demo">
+  <div class="demo-controls">
+    <div class="button-group">
+      <button onclick="testListWebhooks()" class="test-button">Тест списка</button>
+      <button onclick="copyCurlCommand('/webhooks', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
+  </div>
+</div>
 
 ```http
 GET /api/v1/webhooks

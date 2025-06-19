@@ -2,6 +2,15 @@
 
 Webhooks allow you to receive real-time notifications about events in your payment gateway.
 
+::: tip Interactive Testing
+On this page you can test webhook management in real time! Enter your API key in the field below and click the "Test" buttons to send requests to the server `https://cp-merch-dev.wsdemo.online/api`.
+
+**If you encounter CORS errors:**
+- Use the "📋 Copy curl" buttons to get ready-to-use commands
+- Execute commands in terminal or use Postman
+- Install a browser extension to disable CORS (e.g., "CORS Unblock")
+:::
+
 ## Overview
 
 Webhooks are HTTP POST requests sent to your specified endpoint when certain events occur. This enables you to:
@@ -145,7 +154,31 @@ app.post('/webhook', (req, res) => {
 
 ## Managing Webhooks
 
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>API Configuration</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Key:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Set API Key</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
 ### Create Webhook
+
+<div class="api-demo">
+  <div class="demo-controls">
+    <label for="webhook-url">Webhook URL:</label>
+    <input type="text" id="webhook-url" placeholder="https://your-domain.com/webhook" />
+    <div class="button-group">
+      <button onclick="testCreateWebhook()" class="test-button">Test Create</button>
+      <button onclick="copyCurlCommand('/webhooks', {method: 'POST', body: JSON.stringify({url: 'https://your-domain.com/webhook', events: ['transaction.confirmed'], active: true})})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
+  </div>
+</div>
 
 ```http
 POST /api/v1/webhooks
@@ -166,6 +199,15 @@ POST /api/v1/webhooks
 ```
 
 ### List Webhooks
+
+<div class="api-demo">
+  <div class="demo-controls">
+    <div class="button-group">
+      <button onclick="testListWebhooks()" class="test-button">Test List</button>
+      <button onclick="copyCurlCommand('/webhooks', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
+  </div>
+</div>
 
 ```http
 GET /api/v1/webhooks

@@ -2,6 +2,15 @@
 
 The Crypto Payment Gateway provides a comprehensive RESTful API for managing cryptocurrency transactions, addresses, and wallets.
 
+::: tip Interactive API Testing
+This overview page provides interactive examples you can test in real time! Enter your API key in the fields below and click the "Test" buttons to send requests to the server `https://cp-merch-dev.wsdemo.online/api`.
+
+**If you encounter CORS errors:**
+- Use the "📋 Copy curl" buttons to get ready-to-use commands
+- Execute commands in terminal or use Postman
+- Install a browser extension to disable CORS (e.g., "CORS Unblock")
+:::
+
 ## Base URL
 
 **Production:**
@@ -132,6 +141,45 @@ Query transaction history and details.
 - `GET /transactions/address/{address}` - Get address transactions
 
 ## Interactive API Explorer
+
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>API Configuration</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Key:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Set API Key</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
+### Quick API Tests
+
+<div class="api-demo">
+  <div class="demo-controls">
+    <label for="test-network">Network:</label>
+    <select id="test-network">
+      <option value="ethereum" selected>Ethereum</option>
+      <option value="bitcoin">Bitcoin</option>
+      <option value="tron">Tron</option>
+    </select>
+    <div class="button-group">
+      <button onclick="testGetNetworks()" class="test-button">Test Get Networks</button>
+      <button onclick="copyCurlCommand('/networks', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
+  </div>
+</div>
+
+<div class="api-demo">
+  <div class="demo-controls">
+    <div class="button-group">
+      <button onclick="testCreateAddress()" class="test-button">Test Create Address</button>
+      <button onclick="copyCurlCommand('/addresses', {method: 'POST', body: JSON.stringify({network: 'ethereum'})})" class="copy-curl-button">📋 Copy curl</button>
+    </div>
+  </div>
+</div>
 
 Try our API endpoints directly in your browser:
 

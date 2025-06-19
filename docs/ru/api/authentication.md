@@ -2,6 +2,15 @@
 
 Эта страница описывает, как получить и использовать API ключи для доступа к API платежного шлюза Crypton Studio.
 
+::: tip Интерактивное тестирование
+На этой странице вы можете тестировать методы аутентификации в реальном времени! Введите ваш API ключ в поле ниже и нажимайте кнопки "Тест" для отправки запросов на сервер `https://cp-merch-dev.wsdemo.online/api`.
+
+**При возникновении CORS ошибок:**
+- Используйте кнопки "📋 Копировать curl" для получения готовых команд
+- Выполняйте команды в терминале или используйте Postman
+- Установите расширение для браузера, отключающее CORS (например, "CORS Unblock")
+:::
+
 ## Типы API ключей
 
 Мы предоставляем два типа API ключей:
@@ -193,6 +202,35 @@ client = CryptonClient(
     api_key=os.getenv('CRYPTON_API_KEY'),
     environment=os.getenv('CRYPTON_ENVIRONMENT', 'sandbox')
 )
+```
+
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>Конфигурация API</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Ключ:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Установить API Ключ</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
+### Тестирование аутентификации
+
+<div class="api-demo">
+  <div class="demo-controls">
+    <div class="button-group">
+      <button onclick="testAuthKey()" class="test-button">Тест аутентификации</button>
+      <button onclick="copyCurlCommand('/auth/test', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
+  </div>
+</div>
+
+```bash
+curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/auth/test" \
+  -H "X-Api-Key: YOUR_API_KEY"
 ```
 
 ### Go

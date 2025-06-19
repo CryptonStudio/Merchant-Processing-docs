@@ -317,6 +317,10 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
 
     // Show loading state
     function showLoading(button) {
+        if (!button) {
+            console.error('Button not found for showLoading');
+            return 'Loading...';
+        }
         const originalText = button.textContent;
         button.disabled = true;
         button.innerHTML = '<span class="demo-loading"></span>Загрузка...';
@@ -325,6 +329,10 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
 
     // Hide loading state
     function hideLoading(button, originalText) {
+        if (!button) {
+            console.error('Button not found for hideLoading');
+            return;
+        }
         button.disabled = false;
         button.textContent = originalText;
     }
@@ -1052,7 +1060,265 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
         showResult(button.closest('.api-demo'), result);
     }
 
-    // Export new functions
+    // Authentication API functions
+    async function testAuthKey() {
+        const button = document.querySelector('button[onclick="testAuthKey()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const result = await makeApiRequest('/auth/test');
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    // Webhooks API functions
+    async function testCreateWebhook() {
+        const button = document.querySelector('button[onclick="testCreateWebhook()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const url = document.getElementById('webhook-url')?.value || 'https://your-domain.com/webhook';
+
+        const body = {
+            url,
+            events: ['transaction.confirmed', 'transaction.failed'],
+            description: 'Test webhook',
+            active: true
+        };
+
+        const result = await makeApiRequest('/webhooks', {
+            method: 'POST',
+            body: JSON.stringify(body)
+        });
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    async function testListWebhooks() {
+        const button = document.querySelector('button[onclick="testListWebhooks()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const result = await makeApiRequest('/webhooks');
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    // Merchant/Invoice API functions
+    async function testCreateInvoice() {
+        const button = document.querySelector('button[onclick="testCreateInvoice()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const currency = document.getElementById('invoice-currency')?.value || 'eth';
+        const amount = parseFloat(document.getElementById('invoice-amount')?.value || '0.001');
+
+        const body = {
+            currency,
+            amount,
+            externalId: `demo_${Date.now()}`
+        };
+
+        const result = await makeApiRequest('/invoices', {
+            method: 'POST',
+            body: JSON.stringify(body)
+        });
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    async function testGetInvoices() {
+        const button = document.querySelector('button[onclick="testGetInvoices()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const result = await makeApiRequest('/invoices/getAll?page=1&perPage=20');
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    async function testGetInvoice() {
+        const button = document.querySelector('button[onclick="testGetInvoice()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const invoiceId = document.getElementById('invoice-id')?.value || 'inv_demo_123';
+
+        const result = await makeApiRequest(`/invoices?id=${invoiceId}`);
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    async function testGetInvoiceByExternalId() {
+        const button = document.querySelector('button[onclick="testGetInvoiceByExternalId()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const externalId = document.getElementById('external-id')?.value || 'demo_123';
+
+        const result = await makeApiRequest(`/invoices/getByExternalId?externalId=${externalId}`);
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    async function testGetSummary() {
+        const button = document.querySelector('button[onclick="testGetSummary()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const result = await makeApiRequest('/invoices/summary');
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    async function testChangeInvoiceStatus() {
+        const button = document.querySelector('button[onclick="testChangeInvoiceStatus()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const invoiceId = document.getElementById('status-invoice-id')?.value || 'inv_demo_123';
+        const status = document.getElementById('invoice-status')?.value || 'completed';
+
+        const body = { invoiceId, status };
+
+        const result = await makeApiRequest('/invoices', {
+            method: 'PUT',
+            body: JSON.stringify(body)
+        });
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    async function testGetInvoiceSettings() {
+        const button = document.querySelector('button[onclick="testGetInvoiceSettings()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const result = await makeApiRequest('/invoices/configureSettings');
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    // Coins API functions
+    async function testCreateCoin() {
+        const button = document.querySelector('button[onclick="testCreateCoin()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const network = document.getElementById('coin-network')?.value || 'ethereum';
+        const name = document.getElementById('coin-name')?.value || 'Test Coin';
+        const contractAddress = document.getElementById('coin-contract-address')?.value || '';
+
+        const body = {
+            network,
+            name,
+            collectThreshold: 0.001,
+            minValue: 0.0001,
+            maxValue: 1000
+        };
+
+        // Add contract address if provided
+        if (contractAddress.trim()) {
+            body.contractAddress = contractAddress.trim();
+        }
+
+        const result = await makeApiRequest('/coins', {
+            method: 'POST',
+            body: JSON.stringify(body)
+        });
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    async function testPrecreateToken() {
+        const button = document.querySelector('button[onclick="testPrecreateToken()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const contractAddress = document.getElementById('contract-address')?.value || '0xdAC17F958D2ee523a2206206994597C13D831ec7';
+        const network = document.getElementById('precreate-network')?.value || 'ethereum';
+
+        const body = { contractAddress, network };
+
+        const result = await makeApiRequest('/coins/precreate-token', {
+            method: 'PUT',
+            body: JSON.stringify(body)
+        });
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    async function testGetCoins() {
+        const button = document.querySelector('button[onclick="testGetCoins()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const result = await makeApiRequest('/coins');
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    async function testGetCoin() {
+        const button = document.querySelector('button[onclick="testGetCoin()"]');
+        if (!button) {
+            console.error('Button not found for testGetCoin');
+            return;
+        }
+
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const coinSlugElement = document.getElementById('coin-slug');
+        const coinSlug = coinSlugElement?.value || 'btc';
+
+        console.log('testGetCoin - coin slug element:', coinSlugElement, 'value:', coinSlug);
+
+        const result = await makeApiRequest(`/coins/${coinSlug}`);
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    async function testEditCoin() {
+        const button = document.querySelector('button[onclick="testEditCoin()"]');
+        const originalText = button.textContent;
+        showLoading(button);
+
+        const coin = document.getElementById('edit-coin')?.value || 'btc';
+        const status = document.getElementById('edit-status')?.value || 'ACTIVE';
+        const minValue = parseFloat(document.getElementById('edit-min-value')?.value || '0.0001');
+        const maxValue = parseFloat(document.getElementById('edit-max-value')?.value || '10');
+
+        const body = {
+            coin,
+            status,
+            minValue,
+            maxValue
+        };
+
+        const result = await makeApiRequest('/coins', {
+            method: 'PUT',
+            body: JSON.stringify(body)
+        });
+
+        hideLoading(button, originalText);
+        showResult(button.closest('.api-demo'), result);
+    }
+
+    // Export all functions
     window.testCreateAddress = testCreateAddress;
     window.testGetAddress = testGetAddress;
     window.testGetHotWallet = testGetHotWallet;
@@ -1066,4 +1332,21 @@ curl -X ${finalOptions.method || 'GET'} "${url}" \\
     window.testGetTronResources = testGetTronResources;
     window.testInitiateWithdraw = testInitiateWithdraw;
     window.testGetWithdrawalRequests = testGetWithdrawalRequests;
+
+    // Export new functions
+    window.testAuthKey = testAuthKey;
+    window.testCreateWebhook = testCreateWebhook;
+    window.testListWebhooks = testListWebhooks;
+    window.testCreateInvoice = testCreateInvoice;
+    window.testGetInvoices = testGetInvoices;
+    window.testGetInvoice = testGetInvoice;
+    window.testGetInvoiceByExternalId = testGetInvoiceByExternalId;
+    window.testGetSummary = testGetSummary;
+    window.testChangeInvoiceStatus = testChangeInvoiceStatus;
+    window.testGetInvoiceSettings = testGetInvoiceSettings;
+    window.testCreateCoin = testCreateCoin;
+    window.testPrecreateToken = testPrecreateToken;
+    window.testGetCoins = testGetCoins;
+    window.testGetCoin = testGetCoin;
+    window.testEditCoin = testEditCoin;
 } 

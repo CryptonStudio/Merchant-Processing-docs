@@ -10,7 +10,12 @@ layout: page
 The coins API provides functionality for managing cryptocurrency coins and tokens across different blockchain networks.
 
 ::: tip Interactive Testing
-Test the API in real time! Enter your API key and click "Test" buttons to send requests to `https://cp-merch-dev.wsdemo.online/api`.
+On this page you can test the API in real time! Enter your API key in the field below and click the "Test" buttons to send requests to the server `https://cp-merch-dev.wsdemo.online/api`.
+
+**If you encounter CORS errors:**
+- Use the "📋 Copy curl" buttons to get ready-to-use commands
+- Execute commands in terminal or use Postman
+- Install a browser extension to disable CORS (e.g., "CORS Unblock")
 :::
 
 ## Overview
@@ -134,20 +139,21 @@ The coins API allows you to:
 
 <div class="api-demo">
   <div class="demo-controls">
-    <label for="api-key">API Key:</label>
-    <input type="text" id="api-key" value="sk_test_demo_key_12345" placeholder="Enter your API key" />
     <label for="coin-network">Network:</label>
     <select id="coin-network">
       <option value="ethereum" selected>Ethereum</option>
       <option value="bitcoin">Bitcoin</option>
       <option value="tron">Tron</option>
       <option value="bsc">BSC</option>
+      <option value="polygon">Polygon</option>
     </select>
     <label for="coin-name">Coin Name:</label>
     <input type="text" id="coin-name" placeholder="My Token" />
+    <label for="coin-contract-address">Contract Address (for tokens):</label>
+    <input type="text" id="coin-contract-address" placeholder="0xdAC17F958D2ee523a2206206994597C13D831ec7" />
     <div class="button-group">
       <button onclick="testCreateCoin()" class="test-button">Test</button>
-      <button onclick="copyCurlCommand('/coins', {method: 'POST', body: JSON.stringify({network: 'ethereum', name: 'My Token'})})" class="copy-curl-button">📋 Copy curl</button>
+      <button onclick="copyCurlCommand('/coins', {method: 'POST', body: JSON.stringify({network: 'ethereum', name: 'My Token', contractAddress: '0xdAC17F958D2ee523a2206206994597C13D831ec7'})})" class="copy-curl-button">📋 Copy curl</button>
     </div>
   </div>
 </div>
@@ -282,8 +288,8 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins" \
 
 <div class="api-demo">
   <div class="demo-controls">
-    <label for="get-coin-slug">Coin Slug:</label>
-    <input type="text" id="get-coin-slug" placeholder="btc" value="btc" />
+    <label for="coin-slug">Coin Slug:</label>
+    <input type="text" id="coin-slug" placeholder="btc" value="btc" />
     <div class="button-group">
       <button onclick="testGetCoin()" class="test-button">Test</button>
       <button onclick="copyCurlCommand('/coins/btc', {method: 'GET'})" class="copy-curl-button">📋 Copy curl</button>
@@ -333,18 +339,20 @@ curl -X GET "https://cp-merch-dev.wsdemo.online/api/v1/coins/btc" \
 
 <div class="api-demo">
   <div class="demo-controls">
-    <label for="edit-coin-slug">Coin Slug:</label>
-    <input type="text" id="edit-coin-slug" placeholder="btc" value="btc" />
-    <label for="edit-coin-status">Status:</label>
-    <select id="edit-coin-status">
+    <label for="edit-coin">Coin Slug:</label>
+    <input type="text" id="edit-coin" placeholder="btc" value="btc" />
+    <label for="edit-status">Status:</label>
+    <select id="edit-status">
       <option value="ACTIVE" selected>Active</option>
       <option value="INACTIVE">Inactive</option>
     </select>
     <label for="edit-min-value">Min Value:</label>
-    <input type="number" id="edit-min-value" placeholder="0.0001" step="0.0001" />
+    <input type="number" id="edit-min-value" placeholder="0.0001" step="0.0001" value="0.0001" />
+    <label for="edit-max-value">Max Value:</label>
+    <input type="number" id="edit-max-value" placeholder="10" step="0.01" value="10" />
     <div class="button-group">
       <button onclick="testEditCoin()" class="test-button">Test</button>
-      <button onclick="copyCurlCommand('/coins', {method: 'PUT', body: JSON.stringify({coin: 'btc', status: 'ACTIVE', minValue: 0.0001})})" class="copy-curl-button">📋 Copy curl</button>
+      <button onclick="copyCurlCommand('/coins', {method: 'PUT', body: JSON.stringify({coin: 'btc', status: 'ACTIVE', minValue: 0.0001, maxValue: 10})})" class="copy-curl-button">📋 Copy curl</button>
     </div>
   </div>
 </div>
@@ -645,158 +653,4 @@ if ($httpCode === 201) {
 </div>
 
   </template>
-</ApiDoc>
-
-<script>
-if (typeof window !== 'undefined') {
-  window.testCreateCoin = async function() {
-    const apiKey = document.getElementById('api-key').value;
-    const network = document.getElementById('coin-network').value;
-    const name = document.getElementById('coin-name').value;
-    
-    if (!apiKey) {
-      alert('Please enter your API key');
-      return;
-    }
-    
-    try {
-      const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
-        method: 'POST',
-        headers: {
-          'X-Api-Key': apiKey,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          network: network,
-          name: name || 'My Token',
-          collectThreshold: 0.001,
-          minValue: 0.0001,
-          maxValue: 1000
-        })
-      });
-      
-      const result = await response.json();
-      alert(`Response (${response.status}): ${JSON.stringify(result, null, 2)}`);
-    } catch (error) {
-      handleApiError(error, '/coins', {method: 'POST', body: JSON.stringify({network: network, name: name || 'My Token'})});
-    }
-  };
-  
-  window.testPrecreateToken = async function() {
-    const apiKey = document.getElementById('api-key').value;
-    const contractAddress = document.getElementById('contract-address').value;
-    const network = document.getElementById('precreate-network').value;
-    
-    if (!apiKey) {
-      alert('Please enter your API key');
-      return;
-    }
-    
-    if (!contractAddress) {
-      alert('Please enter contract address');
-      return;
-    }
-    
-    try {
-      const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins/precreate-token', {
-        method: 'PUT',
-        headers: {
-          'X-Api-Key': apiKey,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          contractAddress: contractAddress,
-          network: network
-        })
-      });
-      
-      const result = await response.json();
-      alert(`Response (${response.status}): ${JSON.stringify(result, null, 2)}`);
-    } catch (error) {
-      handleApiError(error, '/coins/precreate-token', {method: 'PUT', body: JSON.stringify({contractAddress: contractAddress, network: network})});
-    }
-  };
-  
-  window.testGetCoins = async function() {
-    const apiKey = document.getElementById('api-key').value;
-    
-    if (!apiKey) {
-      alert('Please enter your API key');
-      return;
-    }
-    
-    try {
-      const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
-        headers: {
-          'X-Api-Key': apiKey
-        }
-      });
-      
-      const result = await response.json();
-      alert(`Response (${response.status}): ${JSON.stringify(result, null, 2)}`);
-    } catch (error) {
-      handleApiError(error, '/coins', {method: 'GET'});
-    }
-  };
-  
-  window.testGetCoin = async function() {
-    const apiKey = document.getElementById('api-key').value;
-    const coinSlug = document.getElementById('get-coin-slug').value;
-    
-    if (!apiKey) {
-      alert('Please enter your API key');
-      return;
-    }
-    
-    try {
-      const response = await fetch(`https://cp-merch-dev.wsdemo.online/api/v1/coins/${coinSlug}`, {
-        headers: {
-          'X-Api-Key': apiKey
-        }
-      });
-      
-      const result = await response.json();
-      alert(`Response (${response.status}): ${JSON.stringify(result, null, 2)}`);
-    } catch (error) {
-      handleApiError(error, `/coins/${coinSlug}`, {method: 'GET'});
-    }
-  };
-  
-  window.testEditCoin = async function() {
-    const apiKey = document.getElementById('api-key').value;
-    const coinSlug = document.getElementById('edit-coin-slug').value;
-    const status = document.getElementById('edit-coin-status').value;
-    const minValue = document.getElementById('edit-min-value').value;
-    
-    if (!apiKey) {
-      alert('Please enter your API key');
-      return;
-    }
-    
-    const payload = {
-      coin: coinSlug,
-      status: status
-    };
-    
-    if (minValue) {
-      payload.minValue = parseFloat(minValue);
-    }
-    
-    try {
-      const response = await fetch('https://cp-merch-dev.wsdemo.online/api/v1/coins', {
-        method: 'PUT',
-        headers: {
-          'X-Api-Key': apiKey,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-      
-      const result = await response.json();
-      alert(`Response (${response.status}): ${JSON.stringify(result, null, 2)}`);
-    } catch (error) {
-      handleApiError(error, '/coins', {method: 'PUT', body: JSON.stringify(payload)});
-    }
-  };
-}
-</script> 
+</ApiDoc> 

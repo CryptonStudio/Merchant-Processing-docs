@@ -2,6 +2,15 @@
 
 Криптоплатежный шлюз предоставляет RESTful API для интеграции с вашими приложениями. API позволяет управлять адресами, обрабатывать платежи, отслеживать транзакции и выполнять выводы средств.
 
+::: tip Интерактивное тестирование API
+На этой странице обзора представлены интерактивные примеры, которые вы можете тестировать в реальном времени! Введите ваш API ключ в поля ниже и нажимайте кнопки "Тест" для отправки запросов на сервер `https://cp-merch-dev.wsdemo.online/api`.
+
+**При возникновении CORS ошибок:**
+- Используйте кнопки "📋 Копировать curl" для получения готовых команд
+- Выполняйте команды в терминале или используйте Postman
+- Установите расширение для браузера, отключающее CORS (например, "CORS Unblock")
+:::
+
 ## Базовая информация
 
 ### Базовый URL
@@ -131,6 +140,45 @@ X-RateLimit-Reset: 1640995200
 | 500 | Internal Server Error | Внутренняя ошибка |
 
 ## Основные эндпоинты
+
+<!-- API Key Configuration Section -->
+<div class="api-key-section">
+  <h4>Конфигурация API</h4>
+  <div class="api-key-controls">
+    <div class="api-key-input-group">
+      <label for="global-api-key">API Ключ:</label>
+      <input type="text" id="global-api-key" class="api-key-input" placeholder="sk_test_demo_key_12345" />
+    </div>
+    <button onclick="setGlobalApiKey()" class="set-api-key-button">Установить API Ключ</button>
+  </div>
+  <div class="api-key-status"></div>
+</div>
+
+### Быстрые тесты API
+
+<div class="api-demo">
+  <div class="demo-controls">
+    <label for="test-network">Сеть:</label>
+    <select id="test-network">
+      <option value="ethereum" selected>Ethereum</option>
+      <option value="bitcoin">Bitcoin</option>
+      <option value="tron">Tron</option>
+    </select>
+    <div class="button-group">
+      <button onclick="testGetNetworks()" class="test-button">Тест получения сетей</button>
+      <button onclick="copyCurlCommand('/networks', {method: 'GET'})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
+  </div>
+</div>
+
+<div class="api-demo">
+  <div class="demo-controls">
+    <div class="button-group">
+      <button onclick="testCreateAddress()" class="test-button">Тест создания адреса</button>
+      <button onclick="copyCurlCommand('/addresses', {method: 'POST', body: JSON.stringify({network: 'ethereum'})})" class="copy-curl-button">📋 Копировать curl</button>
+    </div>
+  </div>
+</div>
 
 ### Адреса
 ```http
