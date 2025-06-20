@@ -1349,3 +1349,158 @@
         color: rgba(255, 255, 255, 0.5) !important;
     }
 }
+
+/* ========================================
+   FORCE LIGHT THEME ON MOBILE DEVICES
+   ======================================== */
+
+/* Force light theme on mobile devices regardless of system settings */
+@media (max-width: 768px) {
+
+    /* Override system dark mode detection for mobile */
+    html.dark .api-content,
+    .dark .api-content {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+        border-right: 1px solid #e2e8f0 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    html.dark .demo-controls,
+    .dark .demo-controls {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 2px solid #e2e8f0 !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    html.dark .demo-controls input,
+    html.dark .demo-controls select,
+    .dark .demo-controls input,
+    .dark .demo-controls select {
+        background: #ffffff !important;
+        border: 2px solid #d1d5db !important;
+        color: #1f2937 !important;
+        -webkit-text-fill-color: #1f2937 !important;
+    }
+
+    html.dark .demo-controls input:focus,
+    html.dark .demo-controls select:focus,
+    .dark .demo-controls input:focus,
+    .dark .demo-controls select:focus {
+        background: #ffffff !important;
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        -webkit-text-fill-color: #1f2937 !important;
+    }
+
+    html.dark .demo-controls input::placeholder,
+    .dark .demo-controls input::placeholder {
+        color: #9ca3af !important;
+        opacity: 1 !important;
+    }
+
+    html.dark .demo-controls label,
+    .dark .demo-controls label {
+        color: #374151 !important;
+    }
+
+    html.dark .api-demo,
+    .dark .api-demo {
+        background: rgba(255, 255, 255, 0.9) !important;
+        border: 2px solid #e2e8f0 !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    html.dark .demo-result,
+    .dark .demo-result {
+        background: #f9fafb !important;
+        border: 2px solid #e5e7eb !important;
+        color: #1f2937 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    html.dark .demo-result.success,
+    .dark .demo-result.success {
+        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%) !important;
+        border-color: #22c55e !important;
+        color: #15803d !important;
+        box-shadow: 0 2px 8px rgba(34, 197, 94, 0.1) !important;
+    }
+
+    html.dark .demo-result.error,
+    .dark .demo-result.error {
+        background: linear-gradient(135deg, #fef2f2 0%, #fef1f1 100%) !important;
+        border-color: #ef4444 !important;
+        color: #dc2626 !important;
+        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1) !important;
+    }
+
+    /* Force light theme for API key section on mobile */
+    html.dark .api-key-section,
+    .dark .api-key-section {
+        background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%) !important;
+        border: 2px solid #3b82f6 !important;
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.25) !important;
+    }
+
+    html.dark .api-key-input,
+    .dark .api-key-input {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        -webkit-text-fill-color: white !important;
+    }
+
+    html.dark .api-key-input:focus,
+    .dark .api-key-input:focus {
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2) !important;
+        -webkit-text-fill-color: white !important;
+    }
+
+    html.dark .api-key-input::placeholder,
+    .dark .api-key-input::placeholder {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+}
+
+/* Alternative approach: Use prefers-color-scheme to force light theme on mobile */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+
+    /* Force light theme even when system prefers dark */
+    :root {
+        color-scheme: light !important;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #1f2937 !important;
+    }
+
+    /* Ensure all API elements use light theme */
+    .api-content,
+    .demo-controls,
+    .api-demo {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border-color: #e2e8f0 !important;
+        color: #1f2937 !important;
+    }
+
+    .demo-controls input,
+    .demo-controls select {
+        background: #ffffff !important;
+        border: 2px solid #d1d5db !important;
+        color: #1f2937 !important;
+        -webkit-text-fill-color: #1f2937 !important;
+    }
+
+    .demo-controls label {
+        color: #374151 !important;
+    }
+
+    .demo-result {
+        background: #f9fafb !important;
+        border: 2px solid #e5e7eb !important;
+        color: #1f2937 !important;
+    }
+}
