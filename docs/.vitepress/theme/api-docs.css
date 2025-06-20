@@ -1048,3 +1048,206 @@
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25) !important;
     }
 }
+
+/* ========================================
+   LIGHT THEME MOBILE OPTIMIZATIONS
+   ======================================== */
+
+/* Light theme mobile layout improvements */
+@media (max-width: 768px) {
+
+    /* Enhanced background for light theme on mobile */
+    html:not(.dark) .api-content {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+        border-right: 1px solid #e2e8f0 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* Improved mobile demo controls for light theme */
+    html:not(.dark) .demo-controls {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 2px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /* Enhanced input fields for light theme mobile */
+    html:not(.dark) .demo-controls input,
+    html:not(.dark) .demo-controls select {
+        background: #ffffff !important;
+        border: 2px solid #d1d5db !important;
+        color: #1f2937 !important;
+        font-size: 16px !important;
+        padding: 0.875rem !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+        transition: all 0.2s ease !important;
+    }
+
+    html:not(.dark) .demo-controls input:focus,
+    html:not(.dark) .demo-controls select:focus {
+        background: #ffffff !important;
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        outline: none !important;
+    }
+
+    /* Enhanced buttons for light theme mobile */
+    html:not(.dark) .test-button {
+        background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%) !important;
+        color: #ffffff !important;
+        border: 2px solid #3b82f6 !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        padding: 1rem 1.5rem !important;
+        border-radius: 10px !important;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+        min-height: 48px !important;
+        touch-action: manipulation !important;
+    }
+
+    html:not(.dark) .test-button:hover,
+    html:not(.dark) .test-button:active {
+        background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
+    }
+
+    html:not(.dark) .copy-curl-button {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+        color: #ffffff !important;
+        border: 2px solid #059669 !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        padding: 1rem 1.5rem !important;
+        border-radius: 10px !important;
+        box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3) !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+        min-height: 48px !important;
+        touch-action: manipulation !important;
+    }
+
+    html:not(.dark) .copy-curl-button:hover,
+    html:not(.dark) .copy-curl-button:active {
+        background: linear-gradient(135deg, #047857 0%, #065f46 100%) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 6px 16px rgba(5, 150, 105, 0.4) !important;
+    }
+
+    /* Enhanced demo results for light theme mobile */
+    html:not(.dark) .demo-result {
+        background: #f9fafb !important;
+        border: 2px solid #e5e7eb !important;
+        border-radius: 10px !important;
+        padding: 1.25rem !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    html:not(.dark) .demo-result.success {
+        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%) !important;
+        border-color: #22c55e !important;
+        color: #15803d !important;
+        box-shadow: 0 2px 8px rgba(34, 197, 94, 0.1) !important;
+    }
+
+    html:not(.dark) .demo-result.error {
+        background: linear-gradient(135deg, #fef2f2 0%, #fef1f1 100%) !important;
+        border-color: #ef4444 !important;
+        color: #dc2626 !important;
+        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1) !important;
+    }
+
+    /* Enhanced labels for light theme mobile */
+    html:not(.dark) .demo-controls label {
+        color: #374151 !important;
+        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+        margin-bottom: 0.5rem !important;
+        display: block !important;
+    }
+
+    /* Enhanced API demo container for light theme mobile */
+    html:not(.dark) .api-demo {
+        background: rgba(255, 255, 255, 0.9) !important;
+        border: 2px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        margin: 1.5rem 0 !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+}
+
+/* Ultra-small mobile devices (iPhone SE, etc.) */
+@media (max-width: 480px) {
+    html:not(.dark) .demo-controls {
+        padding: 1rem !important;
+        margin: 1rem 0 !important;
+    }
+
+    html:not(.dark) .demo-controls input,
+    html:not(.dark) .demo-controls select {
+        font-size: 16px !important;
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    html:not(.dark) .test-button,
+    html:not(.dark) .copy-curl-button {
+        width: 100% !important;
+        margin: 0.5rem 0 !important;
+        padding: 1.25rem 1rem !important;
+        font-size: 16px !important;
+        min-height: 52px !important;
+    }
+
+    html:not(.dark) .api-demo {
+        padding: 1rem !important;
+        margin: 1rem 0 !important;
+        border-radius: 10px !important;
+    }
+
+    html:not(.dark) .demo-result {
+        padding: 1rem !important;
+        font-size: 13px !important;
+        max-height: 250px !important;
+    }
+}
+
+/* Enhanced API Key section for light theme mobile */
+@media (max-width: 768px) {
+    html:not(.dark) .api-key-section {
+        background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%) !important;
+        border: 2px solid #3b82f6 !important;
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        margin-bottom: 2rem !important;
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.25) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    html:not(.dark) .api-key-input {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border: 2px solid rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        font-size: 16px !important;
+        padding: 1rem !important;
+        border-radius: 8px !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    html:not(.dark) .api-key-input:focus {
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-color: rgba(255, 255, 255, 0.6) !important;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2) !important;
+    }
+
+    html:not(.dark) .api-key-input::placeholder {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+}
