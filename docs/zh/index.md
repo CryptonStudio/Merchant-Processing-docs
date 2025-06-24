@@ -38,11 +38,12 @@ features:
 
 我们的支付网关支持以下主流区块链网络：
 
-- **以太坊 (Ethereum)** - ETH 和 ERC-20 代币
-- **比特币 (Bitcoin)** - BTC 原生支付
-- **波场 (Tron)** - TRX 和 TRC-20 代币
-- **币安智能链 (BSC)** - BNB 和 BEP-20 代币
-- **Polygon** - MATIC 和 Polygon 代币
+- **以太坊 (Ethereum)** – eth 和 erc-20 代币
+- **比特币 (Bitcoin)** – btc 原生支付
+- **波场 (Tron)** – trx 和 trc-20 代币
+- **币安智能链 (BSC)** – bnb 和 bep-20 代币
+- **Polygon** – matic 和 polygon 代币
+- **TON**（开放网络）– 快速且可扩展的区块链平台
 
 ## 快速开始
 

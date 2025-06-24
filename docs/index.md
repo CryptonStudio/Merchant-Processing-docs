@@ -59,14 +59,14 @@ onMounted(() => {
 
 ## Supported Networks
 
-- **Bitcoin** - The original cryptocurrency
-- **Ethereum** - Smart contracts and ERC-20 tokens  
-- **Tron** - High throughput blockchain
-- **Polygon** - Layer 2 scaling solution
-- **BSC** - Binance Smart Chain
-- **Arbitrum** - Ethereum Layer 2
-- **Fantom** - High-speed blockchain
-- **Litecoin** - Fast and lightweight
+- **Bitcoin** – the original cryptocurrency
+- **Ethereum** – smart contracts and ERC-20 tokens  
+- **Tron** – high throughput blockchain
+- **Polygon** – layer 2 scaling solution
+- **BSC** – binance Smart Chain
+- **Arbitrum** – ethereum Layer 2
+- **Fantom** – high-speed blockchain
+- **Litecoin** – fast and lightweight
 
 ## Quick Start
 
